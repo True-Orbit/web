@@ -1,5 +1,5 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import React from 'react';
+// import type { Metadata } from 'next'
 import './styles/reset.css'
 import './styles/globals.css'
 
@@ -9,8 +9,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    React.createElement("html", { lang: "en" },
       <body>{children}</body>
-    </html>
+    )
   )
 }
