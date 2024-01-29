@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const path = require('path');
- 
+
 nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
@@ -12,8 +12,8 @@ nextConfig = {
         destination: '/feed',
         permanent: true,
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

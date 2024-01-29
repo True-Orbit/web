@@ -2,19 +2,31 @@
   "name": "social_life",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "npx prettier . --write",
+    "seed": "npx prisma db seed"
   },
   "dependencies": {
     "@mui/material": "^5.15.2",
+    "@prisma/client": "5.8.1",
+    "change-case": "^5.4.2",
+    "dotenv": "^16.4.1",
     "next": "14.0.3",
+    "node": "^21.6.1",
+    "prisma": "^5.8.1",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -22,6 +34,7 @@
     "eslint": "^8.56.0",
     "eslint-config-next": "14.0.3",
     "eslint-config-prettier": "^9.1.0",
+    "tsx": "^4.7.0",
     "typescript": "^5"
   }
 }
