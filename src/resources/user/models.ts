@@ -1,4 +1,4 @@
-import { BaseDBModel } from '@/resources/base';
+import { BaseDBModel, BaseContextModel } from '@/resources/base';
 
 export interface CoreUserModel {
   email: String;
@@ -10,3 +10,5 @@ export interface CoreUserModel {
 }
 
 export interface UserModel extends BaseDBModel, CoreUserModel {}
+
+export interface UserContextModel extends BaseContextModel {}
