@@ -12,7 +12,7 @@ export const defaultState: BaseStateModel = {
 };
 
 export const defaultContext: BaseContextModel = {
-  getAll: async () => ([]),
+  getAll: async () => [],
   find: async (id: string) => ({}),
   create: async (item: any) => ({}),
   update: async (item: any) => ({}),

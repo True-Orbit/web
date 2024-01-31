@@ -1,4 +1,4 @@
-import { BaseActionModel, BaseReducerFunc} from '@/resources/base';
+import { BaseActionModel, BaseReducerFunc } from '@/resources/base';
 
 export enum FetchStatusTypes {
   FETCHING = 'FETCHING',

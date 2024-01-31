@@ -1,5 +1,12 @@
 import { ReactNode } from 'react';
-import { BaseResourceModel, BaseContextModel, BaseStateModel, BaseActionModel, BaseReducerFunc, BaseProviderProps } from '@/resources/base';
+import {
+  BaseResourceModel,
+  BaseContextModel,
+  BaseStateModel,
+  BaseActionModel,
+  BaseReducerFunc,
+  BaseProviderProps,
+} from '@/resources/base';
 import { reducers } from '.';
 
 export interface CoreUserModel {

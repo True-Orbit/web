@@ -2,11 +2,11 @@ import { ReactNode } from 'react';
 import { FetchStateModel } from '@/resources/fetch';
 import { BaseApi } from '.';
 
-export interface FetchResponse<T> { 
-  status: string, 
-  statusText: string,
-  ok: boolean, 
-  data: T | T[]; 
+export interface FetchResponse<T> {
+  status: string;
+  statusText: string;
+  ok: boolean;
+  data: T | T[];
 }
 
 export type FetchMethods = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -48,4 +48,5 @@ export interface BaseProviderProps<RM = BaseResourceModel, C = BaseContextModel>
   api: BaseApi<RM>;
   children?: ReactNode;
   Context: any;
+  [key: string]: any;
 }

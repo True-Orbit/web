@@ -14,7 +14,8 @@ export const fetchClient = async ({ method = 'GET', url, data }: FetchClientPara
 
   const response = await fetch(url, options);
   if (response.ok) {
-    return response.json();
+    const json = await response.json();
+    return json;
   } else {
     throw new Error(response.statusText);
   }

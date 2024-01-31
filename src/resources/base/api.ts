@@ -17,7 +17,6 @@ export class BaseApi<T> {
   }
 
   public getAll(): Promise<FetchResponse<T>> {
-    console.log('getAll')
     return fetchClient({ url: `${this.baseUrl}/${this.endpoint}` });
   }
 

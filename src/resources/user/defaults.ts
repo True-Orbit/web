@@ -1,4 +1,8 @@
-import { defaultContext as baseDefaultContext, defaultState as baseDefaultstate, defaultResource } from '@/resources/base';
+import {
+  defaultContext as baseDefaultContext,
+  defaultState as baseDefaultstate,
+  defaultResource,
+} from '@/resources/base';
 import { UserActionModel, UserModel, UserContextModel, UserStateModel } from '.';
 
 export const defaultUser: UserModel = {
