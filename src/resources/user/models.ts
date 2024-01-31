@@ -1,4 +1,5 @@
-import { BaseResourceModel, BaseContextModel, BaseStateModel, BaseActionModel, BaseReducerFunc } from '@/resources/base';
+import { ReactNode } from 'react';
+import { BaseResourceModel, BaseContextModel, BaseStateModel, BaseActionModel, BaseReducerFunc, BaseProviderProps } from '@/resources/base';
 import { reducers } from '.';
 
 export interface CoreUserModel {
@@ -26,3 +27,7 @@ export interface UserStateModel extends BaseStateModel {
 
 export interface UserActionModel extends BaseActionModel<UserReducersTypes> {}
 export type UserReducerFunc = BaseReducerFunc<UserStateModel, UserActionModel>;
+
+export interface UserProviderProps {
+  children?: ReactNode;
+}

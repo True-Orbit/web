@@ -1,15 +1,11 @@
-import { ReactNode, useReducer } from 'react';
-import { BaseProvider, BaseProviderProps } from '@/resources/base';
-import { UserContext, UserApi, reducer, defaultState, UserContextModel, UserModel } from '.';
-
-interface UserProviderProps extends BaseProviderProps<UserModel, UserContextModel> {
-  children: ReactNode;
-}
+import { useReducer } from 'react';
+import { BaseProvider } from '@/resources/base';
+import { UserContext, UserApi, reducer, defaultState, UserProviderProps, UserModel } from '.';
 
 const api = new UserApi();
 
 export const Provider = ({ children }: UserProviderProps) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
 
-  return <BaseProvider api={api} Context={UserContext}>{children}</BaseProvider>;
+  return <BaseProvider<UserModel> api={api} Context={UserContext}>{children}</BaseProvider>;
 };

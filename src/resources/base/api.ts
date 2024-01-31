@@ -16,6 +16,11 @@ export class BaseApi<T> {
     return fetchClient({ url: `${this.baseUrl}/${endpoint}` });
   }
 
+  public getAll(): Promise<FetchResponse<T>> {
+    console.log('getAll')
+    return fetchClient({ url: `${this.baseUrl}/${this.endpoint}` });
+  }
+
   public find(id: string): Promise<FetchResponse<T>> {
     return fetchClient({ url: `${this.baseUrl}/${this.endpoint}/${id}` });
   }

@@ -1,10 +1,12 @@
+import { ReactNode } from 'react';
 import { FetchStateModel } from '@/resources/fetch';
+import { BaseApi } from '.';
 
 export interface FetchResponse<T> { 
   status: string, 
   statusText: string,
   ok: boolean, 
-  data: T; 
+  data: T | T[]; 
 }
 
 export type FetchMethods = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -26,6 +28,7 @@ export interface BaseResourceModel {
 }
 
 export interface BaseContextModel<T = any> {
+  getAll: () => Promise<T[]>;
   find: (id: string) => Promise<T>;
   create: (item: Partial<T>) => Promise<T>;
   update: (item: Partial<T>) => Promise<T>;
@@ -40,3 +43,9 @@ export interface BaseActionModel<AT = string, P = any> {
 }
 
 export type BaseReducerFunc<BSM = BaseStateModel, BAM = BaseActionModel> = (state: BSM, action: BAM) => BSM;
+
+export interface BaseProviderProps<RM = BaseResourceModel, C = BaseContextModel> {
+  api: BaseApi<RM>;
+  children?: ReactNode;
+  Context: any;
+}

@@ -1,13 +1,12 @@
-import { ReactNode } from 'react';
-import { BaseContext, defaultContext, BaseApi, BaseContextModel, BaseResourceModel } from '.';
+import { BaseContext, defaultContext, BaseProviderProps } from '.';
 
-export interface BaseProviderProps<RM = BaseResourceModel, C = BaseContextModel> {
-  api: BaseApi<RM>;
-  children: ReactNode;
-  Context: any;
-}
+export const BaseProvider = <T extends unknown>({ Context = BaseContext, api, children, ...args }: BaseProviderProps) => {
+  
+  const getAll = async (id: string): Promise<T[]> => {
+    const response = await api.getAll();
+    return response.data as T[];
+  }
 
-export const BaseProvider = <T, >({ Context = BaseContext, api, children, ...args }: BaseProviderProps) => {
   const find = async (id: string): Promise<T> => {
     const response = await api.find(id);
     return response.data as T;
@@ -34,6 +33,7 @@ export const BaseProvider = <T, >({ Context = BaseContext, api, children, ...arg
     create,
     update,
     remove,
+    getAll,
     ...args,
   };
 
