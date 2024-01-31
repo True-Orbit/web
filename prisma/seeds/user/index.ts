@@ -12,7 +12,7 @@ export const seed = async (prisma: any) => {
     update: { ...BRUCE_WAYNE },
     create: { ...BRUCE_WAYNE },
   });
-  
+
   for (let i = 0; i < 10; i++) {
     const randomUser = factories.randomUser();
     await prisma.user.upsert({

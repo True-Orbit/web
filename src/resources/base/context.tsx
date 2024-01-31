@@ -1,4 +1,4 @@
 import { createContext } from 'react';
-import { defaultContext } from '.';
+import { defaultContext, BaseContextModel } from '.';
 
-export const BaseContext = createContext(defaultContext);
+export const BaseContext = createContext<BaseContextModel>(defaultContext);

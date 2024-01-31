@@ -8,6 +8,6 @@ export const startRequest: FetchReducerFunc = (state: FetchStateModel, action: F
     fetch: {
       ...state.fetch,
       [action.payload.key]: { status, error },
-    }
-  }
+    },
+  };
 };

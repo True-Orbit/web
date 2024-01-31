@@ -1,23 +1,15 @@
-import { ReactNode } from 'react';
-import { BaseProvider } from '@/resources/base';
-import { UserContext, UserModel, UserApi } from '.';
+import { ReactNode, useReducer } from 'react';
+import { BaseProvider, BaseProviderProps } from '@/resources/base';
+import { UserContext, UserApi, reducer, defaultState, UserContextModel, UserModel } from '.';
 
-interface UserProviderProps {
+interface UserProviderProps extends BaseProviderProps<UserModel, UserContextModel> {
   children: ReactNode;
 }
 
 const api = new UserApi();
 
-export class Provider extends BaseProvider<UserModel> {
-  constructor(props: UserProviderProps) {
-    super({ ...props, api });
-  }
+export const Provider = ({ children }: UserProviderProps) => {
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
-  render(): ReactNode {
-    return (
-      <UserContext.Provider value={this.contextValue}>
-        {this.props.children}
-      </UserContext.Provider> 
-    );
-  };
-}
+  return <BaseProvider api={api} Context={UserContext}>{children}</BaseProvider>;
+};

@@ -1,5 +1,4 @@
-import { ActionModel } from '@/resources/base';
-import { Reducer } from "react";
+import { BaseActionModel, BaseReducerFunc} from '@/resources/base';
 
 export enum FetchStatusTypes {
   FETCHING = 'FETCHING',
@@ -16,11 +15,11 @@ export interface FetchModel {
 export interface FetchStateModel {
   fetch: {
     [key: string]: FetchModel;
-  }
+  };
 }
 
 export interface FetchPayloadModel extends FetchModel {
   key: string;
 }
-export interface FetchReducerFunc extends Reducer<FetchStateModel, ActionModel> {}
-export interface FetchActionModel extends ActionModel<string, FetchPayloadModel> {}
+export interface FetchReducerFunc extends BaseReducerFunc<FetchStateModel, FetchActionModel> {}
+export interface FetchActionModel extends BaseActionModel<string, FetchPayloadModel> {}
