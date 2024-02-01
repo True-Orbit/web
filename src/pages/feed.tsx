@@ -3,7 +3,6 @@ import { Provider as UserProvider } from '@/resources/user';
 import { Test } from '@/components/test';
 
 const Home = () => {
-
   return (
     <UserProvider>
       <Test />

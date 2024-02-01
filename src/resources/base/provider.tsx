@@ -8,7 +8,6 @@ export const BaseProvider = <T extends unknown>({
   dispatch,
   ...args
 }: BaseProviderProps) => {
-
   const getAll = async (): Promise<void> => {
     if (state.fetch.getAll) return;
 
@@ -72,7 +71,7 @@ export const BaseProvider = <T extends unknown>({
     update,
     remove,
     getAll,
-    state, 
+    state,
     dispatch,
     ...args,
   };

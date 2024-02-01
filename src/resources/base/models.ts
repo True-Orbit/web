@@ -40,7 +40,7 @@ export interface BaseStateModel<RM = BaseResourceModel> extends FetchStateModel 
   list: RM[];
 }
 
-export type BaseReducerTypes = "setItem" | "setList";
+export type BaseReducerTypes = 'setItem' | 'setList';
 
 export interface BaseActionModel<T = BaseReducerTypes, P = any> {
   type: T;

@@ -6,14 +6,14 @@ export const baseReducers = <RM = BaseResourceModel, SM = BaseStateModel>(defaul
   reset: (state: SM, action: BaseActionModel<BaseReducerTypes, RM>): SM => ({
     ...defaultState,
   }),
-  
+
   setItem: (state: SM, action: BaseActionModel<BaseReducerTypes, RM>): SM => ({
     ...state,
     item: action.payload as RM,
-  }), 
+  }),
 
   setList: (state: SM, action: BaseActionModel<BaseReducerTypes, RM[]>): SM => ({
     ...state,
     list: action.payload as RM[],
-  }),  
-})
+  }),
+});

@@ -14,6 +14,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) 
   res.status(200).json({
     data: users,
   });
-}
+};
 
 export default handler;
