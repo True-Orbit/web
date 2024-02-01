@@ -1,3 +1,5 @@
+'use client'; // This is a client component
+
 import './styles/reset.css';
 import './styles/globals.css';
 
