@@ -27,12 +27,9 @@ export interface UserContextModel extends BaseContextModel<UserModel> {
 
 export type UserReducersTypes = keyof typeof reducers;
 
-export interface UserStateModel extends BaseStateModel {
-  user: UserModel;
-  users: { [key: string]: UserModel };
-}
+export interface UserStateModel extends BaseStateModel<UserModel> {}
 
-export interface UserActionModel extends BaseActionModel<UserReducersTypes> {}
+export interface UserActionModel<P = any> extends BaseActionModel<UserReducersTypes, P> {}
 export type UserReducerFunc = BaseReducerFunc<UserStateModel, UserActionModel>;
 
 export interface UserProviderProps {

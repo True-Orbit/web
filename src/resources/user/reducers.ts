@@ -1,5 +1,5 @@
 import { UserStateModel, UserActionModel, defaultState, UserReducerFunc } from '.';
 
-export const reset: UserReducerFunc = (state: UserStateModel, action: UserActionModel): UserStateModel => ({
-  ...defaultState,
-});
+export const blank: UserReducerFunc = (state: UserStateModel, action: UserActionModel) => {
+  return state;
+}

@@ -17,8 +17,8 @@ export const defaultUser: UserModel = {
 
 export const defaultState: UserStateModel = {
   ...baseDefaultstate,
-  user: { ...defaultUser },
-  users: {},
+  item: { ...defaultUser },
+  list: [],
 };
 
 export const defaultContext: UserContextModel = {

@@ -3,7 +3,7 @@ import { UserContext } from '@/resources/user';
 
 export const Test = () => {
   const {
-    state: { users },
+    state: { list: users },
     getAll,
   } = useContext(UserContext);
 
@@ -13,8 +13,8 @@ export const Test = () => {
 
   return (
     <>
-      {Object.keys(users).map((key) => {
-        return <div key={key}>{users[key].firstName}</div>;
+      {users.map((user) => {
+        return <div key={user.id}>{user.firstName}</div>;
       })}
     </>
   );

@@ -1,25 +1,32 @@
 import { BaseActionModel, BaseReducerFunc } from '@/resources/base';
 
-export enum FetchStatusTypes {
+export enum FetchStatusEnum {
   FETCHING = 'FETCHING',
   SUCCESS = 'SUCCESS',
-  ERROR = 'ERROR',
+  FAILED = 'FAILED',
   CANCELLED = 'CANCELLED',
 }
 
+export type FetchStatusTypes = keyof typeof FetchStatusEnum;
+
+type Error = string | null;
+type Name = string;
+
 export interface FetchModel {
-  status: typeof FetchStatusTypes;
-  error: string | null;
+  status?: FetchStatusTypes;
+  error?: Error;
 }
 
 export interface FetchStateModel {
   fetch: {
-    [key: string]: FetchModel;
+    [key: Name]: FetchModel;
   };
 }
 
-export interface FetchPayloadModel extends FetchModel {
-  key: string;
+export interface FetchPayloadModel {
+  name: Name;
+  error?: Error;
 }
+
 export interface FetchReducerFunc extends BaseReducerFunc<FetchStateModel, FetchActionModel> {}
 export interface FetchActionModel extends BaseActionModel<string, FetchPayloadModel> {}

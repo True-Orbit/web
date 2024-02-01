@@ -5,3 +5,4 @@ export * from './context';
 export * from './api';
 export * from './fetch-client';
 export * from './combine';
+export { baseReducers } from './reducers';

@@ -9,6 +9,8 @@ export const defaultResource: BaseResourceModel = {
 
 export const defaultState: BaseStateModel = {
   ...defaultFetchState,
+  item: { ...defaultResource },
+  list: [],
 };
 
 export const defaultContext: BaseContextModel = {

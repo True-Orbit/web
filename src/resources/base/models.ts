@@ -35,10 +35,15 @@ export interface BaseContextModel<T = any> {
   remove: (id: string) => void;
 }
 
-export interface BaseStateModel extends FetchStateModel {}
+export interface BaseStateModel<RM = BaseResourceModel> extends FetchStateModel {
+  item: RM;
+  list: RM[];
+}
 
-export interface BaseActionModel<AT = string, P = any> {
-  type: AT;
+export type BaseReducerTypes = "setItem" | "setList";
+
+export interface BaseActionModel<T = BaseReducerTypes, P = any> {
+  type: T;
   payload: P;
 }
 

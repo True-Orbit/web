@@ -6,7 +6,7 @@ const api = new UserApi();
 
 export const Provider = ({ children }: UserProviderProps) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
-  console.log('state', state);
+
   return (
     <BaseProvider<UserModel> api={api} Context={UserContext} state={state} dispatch={dispatch}>
       {children}
