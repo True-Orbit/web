@@ -1,5 +1,5 @@
-import { signIn } from "next-auth/react"
-import { getServerSession } from "next-auth/next";
+import { signIn } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/pages/api/auth/options';
 
 export const getServerSideProps = async ({ req, res }: any) => {
@@ -9,12 +9,12 @@ export const getServerSideProps = async ({ req, res }: any) => {
     res.setHeader('Location', '/feed');
     res.statusCode = 302;
     res.end();
-    return { props: {} }
+    return { props: {} };
   }
   return {
-    props: { session }
-  }
-}
+    props: { session },
+  };
+};
 
 export default function SignIn() {
   return (
@@ -23,5 +23,5 @@ export default function SignIn() {
       <button onClick={() => signIn('github')}>Sign in with GitHub</button>
       <button onClick={() => signIn('google')}>Sign in with Google</button>
     </div>
-  )
+  );
 }
