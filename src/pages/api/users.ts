@@ -13,12 +13,11 @@ type ResponseData = {
 const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) => {
   const session = await getServerSession(req, res, authOptions);
   if (req.method !== 'POST' || !session) {
-    res.status(403).send()
-    return
-  }
-  else {
+    res.status(403).send();
+    return;
+  } else {
     const users: UserModel[] = await prisma.user.findMany();
-  
+
     res.status(200).json({
       data: users,
     });

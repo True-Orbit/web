@@ -4,7 +4,7 @@ describe('fetch reducer', () => {
   let state: FetchStateModel;
 
   beforeEach(() => {
-    state = { fetch: {} }
+    state = { fetch: {} };
   });
 
   test('startRequest', () => {

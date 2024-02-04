@@ -15,4 +15,3 @@ export const baseReducers = <RM = BaseResourceModel, SM = BaseStateModel>(state:
   ...fetchReducers,
   ...reducers,
 });
-

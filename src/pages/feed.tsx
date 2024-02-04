@@ -11,7 +11,7 @@ export const getServerSideProps = async ({ req, res }: any) => {
 };
 
 const Feed = ({ session }) => {
-  console.log('session: ', session)
+  console.log('session: ', session);
   return (
     <UserProvider>
       <SignOut />

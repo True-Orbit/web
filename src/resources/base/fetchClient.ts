@@ -13,7 +13,7 @@ export const fetchClient = async ({ method = 'POST', url, data }: FetchClientPar
   }
 
   const response = await fetch(url, options);
-  
+
   if (response.ok) {
     const json = await response.json();
     return json;

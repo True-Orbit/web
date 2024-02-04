@@ -3,8 +3,8 @@ import { createReducer } from '..';
 describe('createReducer', () => {
   it('should create a reducer', () => {
     const combinedReducers = {
-      'ADD': (state: any, action: any) => state + action.payload,
-      'SUBTRACT': (state: any, action: any) => state - action.payload,
+      ADD: (state: any, action: any) => state + action.payload,
+      SUBTRACT: (state: any, action: any) => state - action.payload,
     };
 
     const reducer = createReducer(combinedReducers);
