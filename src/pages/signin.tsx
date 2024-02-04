@@ -21,6 +21,7 @@ export default function SignIn() {
     <div>
       <h1>Sign In</h1>
       <button onClick={() => signIn('github')}>Sign in with GitHub</button>
+      <button onClick={() => signIn('google')}>Sign in with Google</button>
     </div>
   )
 }
