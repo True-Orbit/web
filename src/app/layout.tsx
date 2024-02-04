@@ -1,12 +1,17 @@
 'use client'; // This is a client component
+import { SessionProvider } from "next-auth/react"
 
 import './styles/reset.css';
 import './styles/globals.css';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, session, ...props }: { children: React.ReactNode }) {
+  console.log('session', session);
+  console.log('props', props);
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <SessionProvider session={session}>
+      <html lang="en">
+        <body>{children}</body>
+      </html>`
+    </SessionProvider>
   );
 }
