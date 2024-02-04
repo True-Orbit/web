@@ -47,3 +47,28 @@ export const cancelRequest: FetchReducerFunc = (state: FetchStateModel, action: 
     },
   };
 };
+
+export const reset: FetchReducerFunc = (state: FetchStateModel, action: FetchActionModel): FetchStateModel => {
+  const { name } = action.payload;
+  delete state.fetch[name];
+
+  return {
+    ...state,
+    fetch: {
+      ...state.fetch,
+    },
+  };
+};
+
+export const resetIncludes: FetchReducerFunc = (state: FetchStateModel, action: FetchActionModel): FetchStateModel => {
+  const { name } = action.payload;
+  const filteredKeys = Object.keys(state.fetch).filter((key) => !key.includes(name));
+  const newFetch = filteredKeys.reduce((acc, key) => ({ ...acc, [key]: state.fetch[key] }), {});
+
+  return {
+    ...state,
+    fetch: {
+      ...newFetch,
+    },
+  };
+};

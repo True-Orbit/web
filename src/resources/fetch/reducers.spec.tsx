@@ -42,4 +42,29 @@ describe('fetch reducer', () => {
 
     expect(newState.fetch[name].status).toBe(FetchStatusEnum.CANCELLED);
   });
+
+  test('reset', () => {
+    const name = 'test';
+    state.fetch[name] = { status: FetchStatusEnum.SUCCESS };
+    state.fetch['who'] = { status: FetchStatusEnum.SUCCESS };
+
+    const action = { type: 'reset', payload: { name } };
+
+    const newState = reducers.reset(state, action);
+
+    expect(newState.fetch).toEqual({ who: { status: FetchStatusEnum.SUCCESS } });
+  });
+
+  test('resetIncludes', () => {
+    const name = 'test';
+    state.fetch[`${name}:0:20`] = { status: FetchStatusEnum.SUCCESS };
+    state.fetch[`${name}:20:40`] = { status: FetchStatusEnum.SUCCESS };
+    state.fetch['who'] = { status: FetchStatusEnum.SUCCESS };
+
+    const action = { type: 'resetIncludes', payload: { name } };
+
+    const newState = reducers.resetIncludes(state, action);
+
+    expect(newState.fetch).toEqual({ who: { status: FetchStatusEnum.SUCCESS } });
+  });
 });
