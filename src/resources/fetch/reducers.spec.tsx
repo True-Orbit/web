@@ -11,35 +11,35 @@ describe('fetch reducer', () => {
     const name = 'test';
     const action = { type: 'startRequest', payload: { name } };
 
-    const result = reducers.startRequest(state, action);
+    const newState = reducers.startRequest(state, action);
 
-    expect(result.fetch[name].status).toBe(FetchStatusEnum.FETCHING);
+    expect(newState.fetch[name].status).toBe(FetchStatusEnum.FETCHING);
   });
 
   test('successRequest', () => {
     const name = 'test';
     const action = { type: 'successRequest', payload: { name } };
 
-    const result = reducers.successRequest(state, action);
+    const newState = reducers.successRequest(state, action);
 
-    expect(result.fetch[name].status).toBe(FetchStatusEnum.SUCCESS);
+    expect(newState.fetch[name].status).toBe(FetchStatusEnum.SUCCESS);
   });
 
   test('failRequest', () => {
     const name = 'test';
     const action = { type: 'failRequest', payload: { name } };
 
-    const result = reducers.failRequest(state, action);
+    const newState = reducers.failRequest(state, action);
 
-    expect(result.fetch[name].status).toBe(FetchStatusEnum.FAILED);
+    expect(newState.fetch[name].status).toBe(FetchStatusEnum.FAILED);
   });
 
   test('cancelRequest', () => {
     const name = 'test';
     const action = { type: 'cancelRequest', payload: { name } };
 
-    const result = reducers.cancelRequest(state, action);
+    const newState = reducers.cancelRequest(state, action);
 
-    expect(result.fetch[name].status).toBe(FetchStatusEnum.CANCELLED);
+    expect(newState.fetch[name].status).toBe(FetchStatusEnum.CANCELLED);
   });
 });

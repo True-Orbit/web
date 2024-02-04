@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { FetchStateModel } from '@/resources/fetch';
-import { BaseApi } from '.';
+import { BaseApi, reducers } from '.';
 
 export interface FetchResponse<T> {
   status: string;
@@ -40,7 +40,7 @@ export interface BaseStateModel<RM = BaseResourceModel> extends FetchStateModel 
   list: RM[];
 }
 
-export type BaseReducerTypes = 'setItem' | 'setList';
+export type BaseReducerTypes = keyof typeof reducers;
 
 export interface BaseActionModel<T = BaseReducerTypes, P = any> {
   type: T;
