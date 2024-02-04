@@ -1,9 +1,17 @@
-import { useContext, useEffect } from 'react';
 import { Provider as UserProvider } from '@/resources/user';
 import { Test } from '@/components/test';
 import { SignOut } from '@/components/signout';
 
-const Home = () => {
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/pages/api/auth/options';
+
+export const getServerSideProps = async ({ req, res }: any) => {
+  const session = await getServerSession(req, res, authOptions);
+  return { props: { session } };
+};
+
+const Feed = ({ session }) => {
+
   return (
     <UserProvider>
       <SignOut />
@@ -13,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Feed;

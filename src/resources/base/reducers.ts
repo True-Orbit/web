@@ -1,19 +1,25 @@
-import { reducers as fetchReducers } from '@/resources/fetch';
-import { BaseStateModel, BaseActionModel, BaseResourceModel, BaseReducerTypes } from '.';
+import { BaseStateModel, BaseActionModel, BaseResourceModel, BaseReducerTypes, defaultState } from '.';
 
-export const baseReducers = <RM = BaseResourceModel, SM = BaseStateModel>(defaultState: SM) => ({
-  ...fetchReducers,
-  reset: (state: SM, action: BaseActionModel<BaseReducerTypes, RM>): SM => ({
-    ...defaultState,
-  }),
+export const reset = <RM = BaseResourceModel, SM = BaseStateModel>(
+  state: SM,
+  action: BaseActionModel<BaseReducerTypes, null>,
+): SM => ({
+  ...state,
+  ...defaultState,
+});
 
-  setItem: (state: SM, action: BaseActionModel<BaseReducerTypes, RM>): SM => ({
-    ...state,
-    item: action.payload as RM,
-  }),
+export const setItem = <RM = BaseResourceModel, SM = BaseStateModel>(
+  state: SM,
+  action: BaseActionModel<BaseReducerTypes, RM>,
+): SM => ({
+  ...state,
+  item: action.payload as RM,
+});
 
-  setList: (state: SM, action: BaseActionModel<BaseReducerTypes, RM[]>): SM => ({
-    ...state,
-    list: action.payload as RM[],
-  }),
+export const setList = <RM = BaseResourceModel, SM = BaseStateModel>(
+  state: SM,
+  action: BaseActionModel<BaseReducerTypes, RM[]>,
+): SM => ({
+  ...state,
+  list: action.payload as RM[],
 });

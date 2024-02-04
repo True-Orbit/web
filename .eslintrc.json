@@ -23,5 +23,13 @@
   "rules": {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/spec.tsx", "**/spec.ts", "**/spec.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }

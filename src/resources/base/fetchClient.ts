@@ -1,6 +1,6 @@
 import { FetchClientParams } from '.';
 
-export const fetchClient = async ({ method = 'GET', url, data }: FetchClientParams) => {
+export const fetchClient = async ({ method = 'POST', url, data }: FetchClientParams) => {
   const options: RequestInit = {
     method,
     headers: {
@@ -13,6 +13,7 @@ export const fetchClient = async ({ method = 'GET', url, data }: FetchClientPara
   }
 
   const response = await fetch(url, options);
+
   if (response.ok) {
     const json = await response.json();
     return json;
