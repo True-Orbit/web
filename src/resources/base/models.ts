@@ -3,7 +3,7 @@ import { FetchStateModel } from '@/resources/fetch';
 import { BaseApi, reducers } from '.';
 
 export interface FetchResponse<T> {
-  status: string;
+  status: number;
   statusText: string;
   ok: boolean;
   data: T | T[];

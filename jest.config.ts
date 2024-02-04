@@ -95,6 +95,7 @@ const config: Config = {
     '^@/pages/(.*)$': '<rootDir>/src/pages/$1',
     '^@/resources/(.*)$': '<rootDir>/src/resources/$1',
     '^@/components/(.*)$': '<rootDir>/src/components/$1',
+    '^@/lib/(.*)$': '<rootDir>/src/lib/$1',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

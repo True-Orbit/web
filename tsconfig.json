@@ -23,8 +23,10 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/app/*": ["./src/app/*"],
+      "@/page/*": ["./src/page/*"],
+      "@/resources/*": ["./src/resources/*"],
       "@/components/*": ["./src/components/*"],
-      "@/providers/*": ["./src/resources/*"]
+      "@/lib/*": ["./src/lib/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
