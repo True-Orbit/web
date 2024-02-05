@@ -13,7 +13,7 @@ export class BaseApi<T> {
     Object.keys(ids).forEach((key: string) => {
       endpoint = endpoint.replace(`:${key}`, ids[key]);
     });
-    return fetchClient({ url: `${this.baseUrl}/${endpoint}` });
+    return fetchClient({ method, url: `${this.baseUrl}/${endpoint}` });
   }
 
   public getAll(): Promise<FetchResponse<T>> {

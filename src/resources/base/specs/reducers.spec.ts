@@ -1,6 +1,4 @@
-import { start } from 'repl';
 import { reducers, defaultState, BaseStateModel, BaseReducerTypes } from '..';
-import { fa } from '@faker-js/faker';
 
 const fakeItem = { id: '1', createdAt: new Date(), updatedAt: new Date() };
 
@@ -32,7 +30,6 @@ describe('fetch reducer', () => {
   });
 
   test('setList', () => {
-    const name = 'test';
     const action = { type: 'setList' as BaseReducerTypes, payload: [fakeItem] };
 
     const state = reducers.setList(startState, action);

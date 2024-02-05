@@ -4,7 +4,13 @@ import { SessionProvider } from 'next-auth/react';
 import './styles/reset.css';
 import './styles/globals.css';
 
-export default function RootLayout({ children, session, ...props }: { children: React.ReactNode }) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  session: any;
+}
+
+export default function RootLayout({ children, session }: RootLayoutProps) {
   return (
     <SessionProvider session={session}>
       <html lang="en">

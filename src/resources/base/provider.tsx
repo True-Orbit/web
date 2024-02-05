@@ -1,20 +1,20 @@
-import { BaseContext, defaultContext, BaseProviderProps } from '.';
+import { BaseContext, defaultContext, BaseProviderProps, BaseResourceModel } from '.';
 
-export const BaseProvider = <T extends unknown>({
+export const BaseProvider = <RM = BaseResourceModel, >({
   Context = BaseContext,
   api,
   children,
   state,
   dispatch,
   ...args
-}: BaseProviderProps) => {
+}: BaseProviderProps<RM>) => {
   const getAll = async (): Promise<void> => {
     if (state.fetch.getAll) return;
 
     dispatch({ type: 'startRequest', payload: { name: 'getAll' } });
     try {
       const response = await api.getAll();
-      dispatch({ type: 'setList', payload: response.data as T[] });
+      dispatch({ type: 'setList', payload: response.data as RM[] });
       dispatch({ type: 'successRequest', payload: { name: 'getAll' } });
     } catch (error) {
       dispatch({ type: 'failRequest', payload: { name: 'getAll', error } });
@@ -25,29 +25,29 @@ export const BaseProvider = <T extends unknown>({
     dispatch({ type: 'startRequest', payload: { name: 'find' } });
     try {
       const response = await api.find(id);
-      dispatch({ type: 'setItem', payload: response.data as T[] });
+      dispatch({ type: 'setItem', payload: response.data as RM[] });
       dispatch({ type: 'successRequest', payload: { name: 'find' } });
     } catch (error) {
       dispatch({ type: 'failRequest', payload: { name: 'find', error } });
     }
   };
 
-  const create = async (item: Partial<T>): Promise<void> => {
+  const create = async (item: Partial<RM>): Promise<void> => {
     dispatch({ type: 'startRequest', payload: { name: 'create' } });
     try {
       const response = await api.create(item);
-      dispatch({ type: 'setItem', payload: response.data as T[] });
+      dispatch({ type: 'setItem', payload: response.data as RM });
       dispatch({ type: 'successRequest', payload: { name: 'create' } });
     } catch (error) {
       dispatch({ type: 'failRequest', payload: { name: 'create', error } });
     }
   };
 
-  const update = async (item: Partial<T>): Promise<void> => {
+  const update = async (item: Partial<RM>): Promise<void> => {
     dispatch({ type: 'startRequest', payload: { name: 'update' } });
     try {
       const response = await api.update(item);
-      dispatch({ type: 'setItem', payload: response.data as T[] });
+      dispatch({ type: 'setItem', payload: response.data as RM });
       dispatch({ type: 'successRequest', payload: { name: 'update' } });
     } catch (error) {
       dispatch({ type: 'failRequest', payload: { name: 'update', error } });
@@ -57,7 +57,7 @@ export const BaseProvider = <T extends unknown>({
   const remove = async (id: string): Promise<void> => {
     dispatch({ type: 'startRequest', payload: { name: 'remove' } });
     try {
-      const response = await api.delete(id);
+      await api.delete(id);
       dispatch({ type: 'successRequest', payload: { name: 'remove' } });
     } catch (error) {
       dispatch({ type: 'failRequest', payload: { name: 'remove', error } });

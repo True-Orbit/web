@@ -15,8 +15,12 @@ export const defaultState: BaseStateModel = {
 
 export const defaultContext: BaseContextModel = {
   getAll: async () => [],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   find: async (id: string) => ({}),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   create: async (item: any) => ({}),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   update: async (item: any) => ({}),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   remove: async (id: string) => {},
 };

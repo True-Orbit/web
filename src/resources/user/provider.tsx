@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { BaseProvider } from '@/resources/base';
-import { UserContext, UserApi, reducer, defaultState, UserProviderProps, UserModel, defaultContext } from '.';
+import { UserContext, UserApi, reducer, defaultState, UserProviderProps, UserModel } from '.';
 
 const api = new UserApi();
 
