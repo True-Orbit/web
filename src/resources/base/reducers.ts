@@ -1,7 +1,9 @@
 import { BaseStateModel, BaseActionModel, BaseResourceModel, BaseReducerTypes, defaultState } from '.';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const reset = <RM = BaseResourceModel, SM = BaseStateModel>(
   state: SM,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   action: BaseActionModel<BaseReducerTypes, null>,
 ): SM => ({
   ...state,

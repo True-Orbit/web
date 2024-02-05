@@ -24,5 +24,6 @@ export const defaultState: UserStateModel = {
 export const defaultContext: UserContextModel = {
   ...baseDefaultContext,
   state: { ...defaultState },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   dispatch: (action: UserActionModel) => {},
 };

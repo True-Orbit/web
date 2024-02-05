@@ -8,10 +8,9 @@ export * from './combine';
 export * as reducers from './reducers';
 
 import { reducers as fetchReducers } from '@/resources/fetch';
-import { BaseStateModel, BaseResourceModel } from '.';
 import * as reducers from './reducers';
 
-export const baseReducers = <RM = BaseResourceModel, SM = BaseStateModel>(state: SM) => ({
+export const baseReducers = {
   ...fetchReducers,
   ...reducers,
-});
+};

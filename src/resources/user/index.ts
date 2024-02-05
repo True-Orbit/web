@@ -6,6 +6,6 @@ export * from './defaults';
 export * as reducers from './reducers';
 
 import { createReducer, baseReducers } from '@/resources/base';
-import { UserModel, UserStateModel, defaultState, reducers } from '.';
+import { reducers } from '.';
 
-export const reducer = createReducer({ ...baseReducers<UserModel, UserStateModel>(defaultState), ...reducers });
+export const reducer = createReducer({ ...baseReducers, ...reducers });

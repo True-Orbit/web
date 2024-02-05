@@ -1,5 +1,3 @@
-import { FetchResponse } from '@/resources/base';
-
 export const mockFetch = (error: string | null = null) => {
   global.fetch = jest.fn((url, options) => {
     if (error) {

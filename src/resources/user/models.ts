@@ -1,21 +1,19 @@
-import { ReactNode } from 'react';
 import {
   BaseResourceModel,
   BaseContextModel,
   BaseStateModel,
   BaseActionModel,
   BaseReducerFunc,
-  BaseProviderProps,
 } from '@/resources/base';
 import { reducers } from '.';
 
 export interface CoreUserModel {
-  email: String;
-  firstName: String;
-  lastName: String;
-  profileUrl: String;
-  handle: String;
-  avatar: String;
+  email: string;
+  firstName: string;
+  lastName: string;
+  profileUrl: string;
+  handle: string;
+  avatar: string;
 }
 
 export interface UserModel extends BaseResourceModel, CoreUserModel {}
@@ -29,9 +27,13 @@ export type UserReducersTypes = keyof typeof reducers;
 
 export interface UserStateModel extends BaseStateModel<UserModel> {}
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface UserActionModel<P = any> extends BaseActionModel<UserReducersTypes, P> {}
 export type UserReducerFunc = BaseReducerFunc<UserStateModel, UserActionModel>;
 
 export interface UserProviderProps {
-  children?: ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  children?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }

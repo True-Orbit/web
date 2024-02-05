@@ -10,10 +10,10 @@ type ResponseData = {
   data: UserModel[];
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData | string>) => {
   const session = await getServerSession(req, res, authOptions);
   if (req.method !== 'POST' || !session) {
-    res.status(403).send();
+    res.status(403).send('Forbidden');
     return;
   } else {
     const users: UserModel[] = await prisma.user.findMany();

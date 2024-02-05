@@ -3,6 +3,7 @@
 ## Getting Started
 
 ### Prerequisites
+
 - docker
 - postgresql
 - node 21

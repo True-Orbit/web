@@ -1,20 +1,29 @@
-import { Provider as UserProvider } from '@/resources/user';
-import { Test } from '@/components/test';
-import { SignOut } from '@/components/signout';
-
+import { GetServerSidePropsContext } from 'next';
 import { getServerSession } from 'next-auth/next';
+
+import { Provider as UserProvider } from '@/resources/user';
+import { Session } from '@/resources/base';
+
+import { Test } from '@/components/test';
+import { SignOut } from '@/components/signOut';
+import { SignIn } from '@/components/signIn';
+
 import { authOptions } from '@/pages/api/auth/options';
 
-export const getServerSideProps = async ({ req, res }: any) => {
+export const getServerSideProps = async ({ req, res }: GetServerSidePropsContext) => {
   const session = await getServerSession(req, res, authOptions);
   return { props: { session } };
 };
 
-const Feed = ({ session }) => {
+interface FeedProps {
+  session: Session | null;
+}
 
+const Feed = ({ session }: FeedProps) => {
   return (
     <UserProvider>
-      <SignOut />
+      {session ? <SignOut /> : <SignIn />}
+
       <Test />
       <h1>Welcome to Smurf Social!</h1>
     </UserProvider>
