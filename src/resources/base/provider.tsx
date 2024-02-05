@@ -1,6 +1,6 @@
 import { BaseContext, defaultContext, BaseProviderProps, BaseResourceModel } from '.';
 
-export const BaseProvider = <RM = BaseResourceModel, >({
+export const BaseProvider = <RM = BaseResourceModel,>({
   Context = BaseContext,
   api,
   children,

@@ -20,11 +20,10 @@ interface FeedProps {
 }
 
 const Feed = ({ session }: FeedProps) => {
-
   return (
     <UserProvider>
-      { session ? <SignOut /> : <SignIn /> } 
-      
+      {session ? <SignOut /> : <SignIn />}
+
       <Test />
       <h1>Welcome to Smurf Social!</h1>
     </UserProvider>
