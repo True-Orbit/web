@@ -1,14 +1,14 @@
 import { useReducer } from 'react';
 import { BaseProvider } from '@/resources/base';
-import { UserContext, UserApi, reducer, defaultState, UserProviderProps, UserModel } from '.';
+import { Context, UserApi, reducer, defaults, MODELS } from '.';
 
 const api = new UserApi();
 
-export const Provider = ({ children }: UserProviderProps) => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+export const Provider = ({ children }: MODELS.ProviderProps) => {
+  const [state, dispatch] = useReducer(reducer, defaults.state);
 
   return (
-    <BaseProvider<UserModel> api={api} Context={UserContext} state={state} dispatch={dispatch}>
+    <BaseProvider<MODELS.User> api={api} Context={Context} state={state} dispatch={dispatch}>
       {children}
     </BaseProvider>
   );

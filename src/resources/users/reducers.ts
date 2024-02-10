@@ -1,6 +1,6 @@
-import { UserStateModel, UserActionModel, UserReducerFunc } from '.';
+import { MODELS } from '.';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const blank: UserReducerFunc = (state: UserStateModel, action: UserActionModel) => {
+export const blank: MODELS.ReducerFunc = (state: MODELS.State, action: MODELS.Action) => {
   return state;
 };

@@ -1,13 +1,9 @@
 import {
-  BaseResourceModel,
-  BaseContextModel,
-  BaseStateModel,
-  BaseActionModel,
-  BaseReducerFunc,
+  MODELS as BASE_MODELS,
 } from '@/resources/base';
 import { reducers } from '.';
 
-export interface CoreUserModel {
+export interface Core {
   email: string;
   firstName: string;
   lastName: string;
@@ -16,22 +12,22 @@ export interface CoreUserModel {
   avatar: string;
 }
 
-export interface UserModel extends BaseResourceModel, CoreUserModel {}
+export interface User extends BASE_MODELS.Resource, Core {}
 
-export interface UserContextModel extends BaseContextModel<UserModel> {
-  state: UserStateModel;
-  dispatch: (action: UserActionModel) => void;
+export interface Context extends BASE_MODELS.Context<User> {
+  state: State;
+  dispatch: (action: Action) => void;
 }
 
-export type UserReducersTypes = keyof typeof reducers;
+export type ReducersTypes = keyof typeof reducers;
 
-export interface UserStateModel extends BaseStateModel<UserModel> {}
+export interface State extends BASE_MODELS.State<User> {}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface UserActionModel<P = any> extends BaseActionModel<UserReducersTypes, P> {}
-export type UserReducerFunc = BaseReducerFunc<UserStateModel, UserActionModel>;
+export interface Action<P = any> extends BASE_MODELS.Action<ReducersTypes, P> {}
+export type ReducerFunc = BASE_MODELS.ReducerFunc<State, Action>;
 
-export interface UserProviderProps {
+export interface ProviderProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

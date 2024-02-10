@@ -1,19 +1,19 @@
 import { defaults as fetchDefaults } from '@/resources/fetch';
-import { BaseContextModel, BaseStateModel, BaseResourceModel } from '.';
+import { MODELS } from '.';
 
-export const resource: BaseResourceModel = {
+export const resource: MODELS.Resource = {
   id: '',
   createdAt: new Date(),
   updatedAt: new Date(),
 };
 
-export const state: BaseStateModel = {
+export const state: MODELS.State = {
   ...fetchDefaults.state,
   item: { ...resource },
   list: [],
 };
 
-export const context: BaseContextModel = {
+export const context: MODELS.Context = {
   getAll: async () => [],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   find: async (id: string) => ({}),

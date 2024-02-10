@@ -1,7 +1,7 @@
-import { BaseApi } from '@/resources/base';
-import { UserModel } from '.';
+import { Api } from '@/resources/base';
+import { MODELS } from '.';
 
-export class UserApi extends BaseApi<UserModel> {
+export class UserApi extends Api<MODELS.User> {
   constructor() {
     super('users');
   }

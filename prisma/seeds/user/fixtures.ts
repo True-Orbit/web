@@ -1,7 +1,7 @@
-import { CoreUserModel } from '@/resources/users';
+import { MODELS as USER_MODELS } from '@/resources/users';
 import { faker } from '@faker-js/faker';
 
-export const BRUCE_WAYNE: CoreUserModel = {
+export const BRUCE_WAYNE: USER_MODELS.Core = {
   email: 'bruceWayne@example.com',
   firstName: 'Bruce',
   lastName: 'Wayne',

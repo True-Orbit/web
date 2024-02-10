@@ -1,13 +1,13 @@
-import { BaseContext, defaults, BaseProviderProps, BaseResourceModel } from '.';
+import { BaseContext, defaults, MODELS } from '.';
 
-export const BaseProvider = <RM extends BaseResourceModel>({
+export const BaseProvider = <RM extends MODELS.Resource>({
   Context = BaseContext,
   api,
   children,
   state,
   dispatch,
   ...args
-}: BaseProviderProps<RM>) => { 
+}: MODELS.ProviderProps<RM>) => { 
   
   const getAll = async (): Promise<void> => {
     if (state.fetch.getAll) return;

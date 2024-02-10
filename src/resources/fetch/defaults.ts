@@ -1,5 +1,5 @@
-import { FetchStateModel } from '.';
+import { MODELS } from '.';
 
-export const state: FetchStateModel = {
+export const state: MODELS.State = {
   fetch: {},
 };

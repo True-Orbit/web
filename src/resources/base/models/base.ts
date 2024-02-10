@@ -1,29 +1,29 @@
-import { FetchStateModel } from '@/resources/fetch';
-import { BaseApi, reducers } from '..';
+import { MODELS as FETCH_MODELS } from '@/resources/fetch';
+import { Api, reducers } from '..';
 
-export interface BaseResourceModel {
+export interface Resource {
   id: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface BaseStateModel<RM = BaseResourceModel> extends FetchStateModel {
+export interface State<RM = Resource> extends FETCH_MODELS.State {
   item: RM;
   list: RM[];
 }
 
-export type BaseReducerTypes = keyof typeof reducers;
+export type ReducerTypes = keyof typeof reducers;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface BaseActionModel<T = BaseReducerTypes, P = any> {
+export interface Action<T = ReducerTypes, P = any> {
   type: T;
   payload: P;
 }
 
-export type BaseReducerFunc<BSM = BaseStateModel, BAM = BaseActionModel> = (state: BSM, action: BAM) => BSM;
+export type ReducerFunc<BSM = State, BAM = Action> = (state: BSM, action: BAM) => BSM;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface BaseContextModel<T = any> {
+export interface Context<T = any> {
   getAll: () => Promise<T[]>;
   find: (id: string) => Promise<T>;
   create: (item: Partial<T>) => Promise<T>;
@@ -31,8 +31,8 @@ export interface BaseContextModel<T = any> {
   remove: (id: string) => void;
 }
 
-export interface BaseProviderProps<RM> {
-  api: BaseApi<RM>;
+export interface ProviderProps<RM> {
+  api: Api<RM>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children?: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
