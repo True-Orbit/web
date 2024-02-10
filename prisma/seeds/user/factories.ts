@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { CoreUserModel } from '@/resources/user';
+import { CoreUserModel } from '@/resources/users';
 import * as changeCase from 'change-case';
 
 export const randomUser = (): CoreUserModel => {

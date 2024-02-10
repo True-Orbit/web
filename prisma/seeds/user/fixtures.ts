@@ -1,4 +1,4 @@
-import { CoreUserModel } from '@/resources/user';
+import { CoreUserModel } from '@/resources/users';
 import { faker } from '@faker-js/faker';
 
 export const BRUCE_WAYNE: CoreUserModel = {

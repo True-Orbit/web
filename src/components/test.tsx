@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { UserContext } from '@/resources/user';
+import { UserContext } from '@/resources/users';
 
 export const Test = () => {
   const {

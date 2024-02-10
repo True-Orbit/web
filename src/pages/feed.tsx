@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import { getServerSession } from 'next-auth/next';
 
-import { Provider as UserProvider } from '@/resources/user';
+import { Provider as UserProvider } from '@/resources/users';
 import { Session } from '@/resources/base';
 
 import { Test } from '@/components/test';
