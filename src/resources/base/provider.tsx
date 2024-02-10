@@ -1,4 +1,4 @@
-import { BaseContext, defaultContext, BaseProviderProps, BaseResourceModel } from '.';
+import { BaseContext, defaults, BaseProviderProps, BaseResourceModel } from '.';
 
 export const BaseProvider = <RM extends BaseResourceModel>({
   Context = BaseContext,
@@ -66,7 +66,7 @@ export const BaseProvider = <RM extends BaseResourceModel>({
   };
 
   const contextValue = {
-    ...defaultContext,
+    ...defaults.context,
     find,
     create,
     update,

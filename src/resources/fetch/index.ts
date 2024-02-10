@@ -1,3 +1,3 @@
 export * from './models';
-export * from './defaults';
+export * as defaults from './defaults';
 export * as reducers from './reducers';

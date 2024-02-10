@@ -1,12 +1,10 @@
 import {
-  defaultContext as baseDefaultContext,
-  defaultState as baseDefaultstate,
-  defaultResource,
+  defaults as baseDefaults,
 } from '@/resources/base';
 import { UserActionModel, UserModel, UserContextModel, UserStateModel } from '.';
 
-export const defaultUser: UserModel = {
-  ...defaultResource,
+export const user: UserModel = {
+  ...baseDefaults.resource,
   email: '',
   firstName: '',
   lastName: '',
@@ -15,15 +13,15 @@ export const defaultUser: UserModel = {
   avatar: '',
 };
 
-export const defaultState: UserStateModel = {
-  ...baseDefaultstate,
-  item: { ...defaultUser },
+export const state: UserStateModel = {
+  ...baseDefaults.state,
+  item: { ...user },
   list: [],
 };
 
-export const defaultContext: UserContextModel = {
-  ...baseDefaultContext,
-  state: { ...defaultState },
+export const context: UserContextModel = {
+  ...baseDefaults.context,
+  state: { ...state },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   dispatch: (action: UserActionModel) => {},
 };

@@ -1,4 +1,4 @@
-import { BaseStateModel, BaseActionModel, BaseResourceModel, BaseReducerTypes, defaultState } from '.';
+import { BaseStateModel, BaseActionModel, BaseResourceModel, BaseReducerTypes, defaults } from '.';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const reset = <RM = BaseResourceModel, SM = BaseStateModel>(
@@ -7,7 +7,7 @@ export const reset = <RM = BaseResourceModel, SM = BaseStateModel>(
   action: BaseActionModel<BaseReducerTypes, null>,
 ): SM => ({
   ...state,
-  ...defaultState,
+  ...defaults.state,
 });
 
 export const setItem = <RM = BaseResourceModel, SM = BaseStateModel>(

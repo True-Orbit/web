@@ -1,5 +1,5 @@
 import { FetchStateModel } from '.';
 
-export const defaultState: FetchStateModel = {
+export const state: FetchStateModel = {
   fetch: {},
 };

@@ -1,4 +1,3 @@
 import { createContext } from 'react';
-import { UserContextModel } from '.';
-import { defaultContext } from './defaults';
-export const UserContext = createContext<UserContextModel>(defaultContext);
+import { UserContextModel, defaults } from '.';
+export const UserContext = createContext<UserContextModel>(defaults.context);
