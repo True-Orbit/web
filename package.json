@@ -12,7 +12,8 @@
     "start": "next start",
     "test": "jest",
     "lint": "next lint",
-    "prettier": "npx prettier . --write",
+    "prettier:write": "npx prettier . --write",
+    "prettier:check": "npx prettier . --check",
     "seed": "npx prisma db seed"
   },
   "dependencies": {
