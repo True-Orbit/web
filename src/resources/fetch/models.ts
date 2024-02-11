@@ -1,13 +1,13 @@
 import { MODELS as BASE_MODELS } from '@/resources/base';
 
-export enum StatusEnum {
+export enum Status {
   FETCHING = 'FETCHING',
   SUCCESS = 'SUCCESS',
   FAILED = 'FAILED',
   CANCELLED = 'CANCELLED',
 }
 
-export type StatusTypes = keyof typeof StatusEnum;
+export type StatusTypes = keyof typeof Status;
 
 type Error = string | null;
 type Name = string;

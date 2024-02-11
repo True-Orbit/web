@@ -13,7 +13,7 @@ describe('fetch reducer', () => {
 
     const newState = reducers.startRequest(state, action);
 
-    expect(newState.fetch[name].status).toBe(MODELS.StatusEnum.FETCHING);
+    expect(newState.fetch[name].status).toBe(MODELS.Status.FETCHING);
   });
 
   test('successRequest', () => {
@@ -22,7 +22,7 @@ describe('fetch reducer', () => {
 
     const newState = reducers.successRequest(state, action);
 
-    expect(newState.fetch[name].status).toBe(MODELS.StatusEnum.SUCCESS);
+    expect(newState.fetch[name].status).toBe(MODELS.Status.SUCCESS);
   });
 
   test('failRequest', () => {
@@ -31,7 +31,7 @@ describe('fetch reducer', () => {
 
     const newState = reducers.failRequest(state, action);
 
-    expect(newState.fetch[name].status).toBe(MODELS.StatusEnum.FAILED);
+    expect(newState.fetch[name].status).toBe(MODELS.Status.FAILED);
   });
 
   test('cancelRequest', () => {
@@ -40,31 +40,31 @@ describe('fetch reducer', () => {
 
     const newState = reducers.cancelRequest(state, action);
 
-    expect(newState.fetch[name].status).toBe(MODELS.StatusEnum.CANCELLED);
+    expect(newState.fetch[name].status).toBe(MODELS.Status.CANCELLED);
   });
 
   test('reset', () => {
     const name = 'test';
-    state.fetch[name] = { status: MODELS.StatusEnum.SUCCESS };
-    state.fetch['who'] = { status: MODELS.StatusEnum.SUCCESS };
+    state.fetch[name] = { status: MODELS.Status.SUCCESS };
+    state.fetch['who'] = { status: MODELS.Status.SUCCESS };
 
     const action = { type: 'reset', payload: { name } };
 
     const newState = reducers.reset(state, action);
 
-    expect(newState.fetch).toEqual({ who: { status: MODELS.StatusEnum.SUCCESS } });
+    expect(newState.fetch).toEqual({ who: { status: MODELS.Status.SUCCESS } });
   });
 
   test('resetIncludes', () => {
     const name = 'test';
-    state.fetch[`${name}:0:20`] = { status: MODELS.StatusEnum.SUCCESS };
-    state.fetch[`${name}:20:40`] = { status: MODELS.StatusEnum.SUCCESS };
-    state.fetch['who'] = { status: MODELS.StatusEnum.SUCCESS };
+    state.fetch[`${name}:0:20`] = { status: MODELS.Status.SUCCESS };
+    state.fetch[`${name}:20:40`] = { status: MODELS.Status.SUCCESS };
+    state.fetch['who'] = { status: MODELS.Status.SUCCESS };
 
     const action = { type: 'resetIncludes', payload: { name } };
 
     const newState = reducers.resetIncludes(state, action);
 
-    expect(newState.fetch).toEqual({ who: { status: MODELS.StatusEnum.SUCCESS } });
+    expect(newState.fetch).toEqual({ who: { status: MODELS.Status.SUCCESS } });
   });
 });

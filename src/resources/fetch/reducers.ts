@@ -7,7 +7,7 @@ export const startRequest: MODELS.ReducerFunc = (state: MODELS.State, action: MO
     ...state,
     fetch: {
       ...state.fetch,
-      [name]: { status: MODELS.StatusEnum.FETCHING },
+      [name]: { status: MODELS.Status.FETCHING },
     },
   };
 };
@@ -19,7 +19,7 @@ export const successRequest: MODELS.ReducerFunc = (state: MODELS.State, action: 
     ...state,
     fetch: {
       ...state.fetch,
-      [name]: { status: MODELS.StatusEnum.SUCCESS, error },
+      [name]: { status: MODELS.Status.SUCCESS, error },
     },
   };
 };
@@ -31,7 +31,7 @@ export const failRequest: MODELS.ReducerFunc = (state: MODELS.State, action: MOD
     ...state,
     fetch: {
       ...state.fetch,
-      [name]: { status: MODELS.StatusEnum.FAILED, error },
+      [name]: { status: MODELS.Status.FAILED, error },
     },
   };
 };
@@ -43,7 +43,7 @@ export const cancelRequest: MODELS.ReducerFunc = (state: MODELS.State, action: M
     ...state,
     fetch: {
       ...state.fetch,
-      [name]: { status: MODELS.StatusEnum.CANCELLED, error },
+      [name]: { status: MODELS.Status.CANCELLED, error },
     },
   };
 };
