@@ -12,8 +12,8 @@
     "start": "next start",
     "test": "jest",
     "lint": "next lint",
-    "prettier:write": "npx prettier . --write",
-    "prettier:check": "npx prettier . --check",
+    "prettier:write": "npx prettier '{src,prisma}/**/*.{ts,js,tsx}' --write",
+    "prettier:check": "npx prettier '{src,prisma}/**/*.{ts,js,tsx}' --check",
     "seed": "npx prisma db seed"
   },
   "dependencies": {
