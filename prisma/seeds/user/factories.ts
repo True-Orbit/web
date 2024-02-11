@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { CoreUserModel } from '@/resources/user';
+import { MODELS as USER_MODELS } from '@/resources/users';
 import * as changeCase from 'change-case';
 
-export const randomUser = (): CoreUserModel => {
+export const randomUser = (): USER_MODELS.Core => {
   const email = faker.internet.email();
   const firstName = faker.person.firstName();
   const lastName = faker.person.firstName();

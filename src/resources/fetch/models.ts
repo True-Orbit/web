@@ -1,32 +1,32 @@
-import { BaseActionModel, BaseReducerFunc } from '@/resources/base';
+import { MODELS as BASE_MODELS } from '@/resources/base';
 
-export enum FetchStatusEnum {
+export enum Status {
   FETCHING = 'FETCHING',
   SUCCESS = 'SUCCESS',
   FAILED = 'FAILED',
   CANCELLED = 'CANCELLED',
 }
 
-export type FetchStatusTypes = keyof typeof FetchStatusEnum;
+export type StatusTypes = keyof typeof Status;
 
 type Error = string | null;
 type Name = string;
 
-export interface FetchModel {
-  status?: FetchStatusTypes;
+export interface Fetch {
+  status?: StatusTypes;
   error?: Error;
 }
 
-export interface FetchStateModel {
+export interface State {
   fetch: {
-    [key: Name]: FetchModel;
+    [key: Name]: Fetch;
   };
 }
 
-export interface FetchPayloadModel {
+export interface Payload {
   name: Name;
   error?: Error;
 }
 
-export interface FetchReducerFunc extends BaseReducerFunc<FetchStateModel, FetchActionModel> {}
-export interface FetchActionModel extends BaseActionModel<string, FetchPayloadModel> {}
+export interface ReducerFunc extends BASE_MODELS.ReducerFunc<State, Action> {}
+export interface Action extends BASE_MODELS.Action<string, Payload> {}

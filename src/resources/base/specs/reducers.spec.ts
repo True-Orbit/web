@@ -1,20 +1,20 @@
-import { reducers, defaultState, BaseStateModel, BaseReducerTypes } from '..';
+import { reducers, defaults, MODELS } from '..';
 
 const fakeItem = { id: '1', createdAt: new Date(), updatedAt: new Date() };
 
 describe('fetch reducer', () => {
-  let startState: BaseStateModel;
-  let expectedState: BaseStateModel;
+  let startState: MODELS.State;
+  let expectedState: MODELS.State;
 
   beforeEach(() => {
-    startState = { ...defaultState };
-    expectedState = { ...defaultState };
+    startState = { ...defaults.state };
+    expectedState = { ...defaults.state };
   });
 
   test('reset', () => {
     startState.list = [fakeItem];
     startState.item = fakeItem;
-    const action = { type: 'reset' as BaseReducerTypes, payload: null };
+    const action = { type: 'reset' as MODELS.ReducerTypes, payload: null };
 
     const state = reducers.reset(startState, action);
 
@@ -22,7 +22,7 @@ describe('fetch reducer', () => {
   });
 
   test('setItem', () => {
-    const action = { type: 'setItem' as BaseReducerTypes, payload: fakeItem };
+    const action = { type: 'setItem' as MODELS.ReducerTypes, payload: fakeItem };
 
     const state = reducers.setItem(startState, action);
 
@@ -30,7 +30,7 @@ describe('fetch reducer', () => {
   });
 
   test('setList', () => {
-    const action = { type: 'setList' as BaseReducerTypes, payload: [fakeItem] };
+    const action = { type: 'setList' as MODELS.ReducerTypes, payload: [fakeItem] };
 
     const state = reducers.setList(startState, action);
 

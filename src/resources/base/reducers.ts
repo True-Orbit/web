@@ -1,26 +1,26 @@
-import { BaseStateModel, BaseActionModel, BaseResourceModel, BaseReducerTypes, defaultState } from '.';
+import { MODELS, defaults } from '.';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const reset = <RM = BaseResourceModel, SM = BaseStateModel>(
+export const reset = <RM = MODELS.Resource, SM = MODELS.State>(
   state: SM,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  action: BaseActionModel<BaseReducerTypes, null>,
+  action: MODELS.Action<MODELS.ReducerTypes, null>,
 ): SM => ({
   ...state,
-  ...defaultState,
+  ...defaults.state,
 });
 
-export const setItem = <RM = BaseResourceModel, SM = BaseStateModel>(
+export const setItem = <RM = MODELS.Resource, SM = MODELS.State>(
   state: SM,
-  action: BaseActionModel<BaseReducerTypes, RM>,
+  action: MODELS.Action<MODELS.ReducerTypes, RM>,
 ): SM => ({
   ...state,
   item: action.payload as RM,
 });
 
-export const setList = <RM = BaseResourceModel, SM = BaseStateModel>(
+export const setList = <RM = MODELS.Resource, SM = MODELS.State>(
   state: SM,
-  action: BaseActionModel<BaseReducerTypes, RM[]>,
+  action: MODELS.Action<MODELS.ReducerTypes, RM[]>,
 ): SM => ({
   ...state,
   list: action.payload as RM[],

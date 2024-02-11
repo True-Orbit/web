@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { UserModel } from '@/resources/user';
+import { MODELS as USER_MODELS } from '@/resources/users';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/pages/api/auth/options';
@@ -7,7 +7,7 @@ import { authOptions } from '@/pages/api/auth/options';
 const prisma = new PrismaClient();
 
 type ResponseData = {
-  data: UserModel[];
+  data: USER_MODELS.User[];
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData | string>) => {
@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<ResponseData | 
     res.status(403).send('Forbidden');
     return;
   } else {
-    const users: UserModel[] = await prisma.user.findMany();
+    const users: USER_MODELS.User[] = await prisma.user.findMany();
 
     res.status(200).json({
       data: users,

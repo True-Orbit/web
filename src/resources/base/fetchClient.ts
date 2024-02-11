@@ -1,6 +1,6 @@
-import { FetchClientParams } from '.';
+import { MODELS } from '.';
 
-export const fetchClient = async ({ method = 'POST', url, data }: FetchClientParams) => {
+export const fetchClient = async ({ method = 'POST', url, data }: MODELS.FetchClientParams) => {
   const options: RequestInit = {
     method,
     headers: {
