@@ -7,8 +7,7 @@ export const BaseProvider = <RM extends MODELS.Resource>({
   state,
   dispatch,
   ...args
-}: MODELS.ProviderProps<RM>) => { 
-  
+}: MODELS.ProviderProps<RM>) => {
   const getAll = async (): Promise<void> => {
     if (state.fetch.getAll) return;
 
@@ -77,5 +76,5 @@ export const BaseProvider = <RM extends MODELS.Resource>({
     ...args,
   };
 
-  return (<Context.Provider value={contextValue}>{children}</Context.Provider>);
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };

@@ -1,6 +1,4 @@
-import {
-  defaults as baseDefaults,
-} from '@/resources/base';
+import { defaults as baseDefaults } from '@/resources/base';
 import { MODELS } from '.';
 
 export const user: MODELS.User = {

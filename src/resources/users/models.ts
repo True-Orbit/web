@@ -1,6 +1,4 @@
-import {
-  MODELS as BASE_MODELS,
-} from '@/resources/base';
+import { MODELS as BASE_MODELS } from '@/resources/base';
 import { reducers } from '.';
 
 export interface Core {
