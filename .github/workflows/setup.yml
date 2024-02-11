@@ -33,7 +33,7 @@ jobs:
         run: pnpm run lint
 
       - name: Prettier
-        run: pnpm run prettier:check
+        run: pnpm run prettier:check -- --ignore-path .gitignore
 
       - name: Run tests
         run: pnpm test
