@@ -8,12 +8,12 @@ export interface usebasicSearchProps {
   enabled: boolean;
 }
 
-export const usebasicSearch = ({
+export const useBasicSearch = ({
   searchType,
   api,
   searchOptions,
   enabled,
-}: usebasicSearchProps): UseQueryResult<{ data: unknown[], pagination: MODELS.Pagination }> =>
+}: usebasicSearchProps): UseQueryResult<{ data: unknown[]; pagination: MODELS.Pagination }> =>
   useQuery({
     enabled,
     queryKey: [searchType, 'search', searchOptions],

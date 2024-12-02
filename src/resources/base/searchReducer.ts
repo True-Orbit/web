@@ -1,4 +1,4 @@
-import { MODELS } from ".";
+import { MODELS } from '.';
 
 export const setSearchString = (state: MODELS.SearchState, action: MODELS.Action<'setSearchString', string>) => ({
   ...state,
@@ -14,7 +14,10 @@ export const forceSearch = (state: MODELS.SearchState, action: MODELS.Action<'fo
   forceSearch: action.payload,
 });
 
-export const setOptions = (state: MODELS.SearchState, action: MODELS.Action<'setOptions', Record<string, unknown>>) => ({
+export const setOptions = (
+  state: MODELS.SearchState,
+  action: MODELS.Action<'setOptions', Record<string, unknown>>,
+) => ({
   ...state,
   searchOptions: {
     ...state.searchOptions,
@@ -26,7 +29,10 @@ export const setOptions = (state: MODELS.SearchState, action: MODELS.Action<'set
   },
 });
 
-export const replaceOptions = (state: MODELS.SearchState, action: MODELS.Action<'replaceOptions', Record<string, unknown>>) => ({
+export const replaceOptions = (
+  state: MODELS.SearchState,
+  action: MODELS.Action<'replaceOptions', Record<string, unknown>>,
+) => ({
   ...state,
   searchOptions: {
     ...action.payload,
@@ -37,7 +43,10 @@ export const replaceOptions = (state: MODELS.SearchState, action: MODELS.Action<
   },
 });
 
-export const setPagination = (state: MODELS.SearchState, action: MODELS.Action<'setPagination', MODELS.Pagination>) => ({
+export const setPagination = (
+  state: MODELS.SearchState,
+  action: MODELS.Action<'setPagination', MODELS.Pagination>,
+) => ({
   ...state,
   pagination: {
     ...state.pagination,
@@ -71,4 +80,4 @@ export const deleteFilter = (state: MODELS.SearchState, action: MODELS.Action<'d
       page: 1,
     },
   };
-}
+};

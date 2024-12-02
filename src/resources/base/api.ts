@@ -6,11 +6,11 @@ export interface BaseApiParams {
   transformations?: MODELS.Transformations;
 }
 
-export abstract class BaseApi <R extends MODELS.Resource> {
+export abstract class BaseApi<R extends MODELS.Resource> {
   protected endpoint: string;
   protected allowedProps: MODELS.AllowedProps;
   protected transformations: MODELS.Transformations;
-  protected baseUrl = "";
+  protected baseUrl = '';
 
   protected constructor({ endpoint, allowedProps, transformations }: BaseApiParams) {
     this.endpoint = endpoint;

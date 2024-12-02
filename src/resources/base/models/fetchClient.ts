@@ -6,4 +6,3 @@ export interface FetchResponse<T> {
 }
 
 export type FetchMethods = 'GET' | 'POST' | 'PUT' | 'DELETE';
-

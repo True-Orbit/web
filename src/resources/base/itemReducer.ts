@@ -5,7 +5,7 @@ export const setMofified = (state: MODELS.ItemState, action: MODELS.Action<'setM
     ...state,
     modified: action.payload,
   };
-}
+};
 
 export const resetItem = (state: MODELS.ItemState, action: MODELS.Action<'resetItem', never>) => {
   return {
@@ -13,11 +13,11 @@ export const resetItem = (state: MODELS.ItemState, action: MODELS.Action<'resetI
     modified: false,
     item: {},
   };
-}
+};
 
 export const reset = (state: MODELS.ItemState, action: MODELS.Action<'reset', never>) => {
   return defaults.itemState;
-}
+};
 
 export const setItem = (state: MODELS.ItemState, action: MODELS.Action<'setItem', MODELS.Resource>) => {
   return {
@@ -25,7 +25,7 @@ export const setItem = (state: MODELS.ItemState, action: MODELS.Action<'setItem'
     modified: false,
     item: action.payload,
   };
-}
+};
 
 export const setItemProps = (state: MODELS.ItemState, action: MODELS.Action<'setItemProps', MODELS.Resource>) => {
   return {
@@ -36,7 +36,7 @@ export const setItemProps = (state: MODELS.ItemState, action: MODELS.Action<'set
       ...action.payload,
     },
   };
-}
+};
 
 export const setCurrentItemId = (state: MODELS.ItemState, action: MODELS.Action<'setCurrentItemId', string>) => {
   return {
@@ -45,4 +45,4 @@ export const setCurrentItemId = (state: MODELS.ItemState, action: MODELS.Action<
     modified: false,
     item: {},
   };
-}
+};

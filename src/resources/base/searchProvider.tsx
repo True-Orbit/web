@@ -1,5 +1,17 @@
-import { useReducer, useEffect, useState, useMemo } from 'react';
-import { createReducer, MODELS, defaults, BaseApi, baseSearchReducer, SearchContext, useBasicSearch, removeUndefined, defaultCreateQuery, defaultIsEnabled, defaultHasFilters } from '.';
+import { useReducer, useMemo } from 'react';
+import {
+  createReducer,
+  MODELS,
+  defaults,
+  BaseApi,
+  baseSearchReducer,
+  SearchContext,
+  useBasicSearch,
+  removeUndefined,
+  defaultCreateQuery,
+  defaultIsEnabled,
+  defaultHasFilters,
+} from '.';
 
 export interface SearchProviderProps<R extends MODELS.Resource> {
   api: BaseApi<R>;
@@ -12,9 +24,9 @@ export interface SearchProviderProps<R extends MODELS.Resource> {
   hasFitlers: (state: MODELS.SearchState) => boolean;
 }
 
-export const SearchProvider = <R extends MODELS.Resource>({ 
-  children, 
-  api, 
+export const SearchProvider = <R extends MODELS.Resource>({
+  children,
+  api,
   context,
   searchType,
   reducers: reducersParam = {},
@@ -39,7 +51,7 @@ export const SearchProvider = <R extends MODELS.Resource>({
     enabled: isEnabled(state),
   });
 
-  const { data: result, pagination } = data;
+  const { data: result, pagination } = data!;
 
   const value = {
     result,
@@ -51,9 +63,5 @@ export const SearchProvider = <R extends MODELS.Resource>({
     hasFilters: hasFitlers(state),
   };
 
-  return (
-    <SearchContext.Provider value={value}>
-      {children}
-    </SearchContext.Provider>
-  );
-}
+  return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;
+};
