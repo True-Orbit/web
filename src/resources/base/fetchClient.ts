@@ -1,6 +1,13 @@
 import { MODELS } from '.';
 
-export const fetchClient = async ({ method = 'POST', url, data }: MODELS.FetchClientParams) => {
+export interface FetchClientParams {
+  method?: MODELS.FetchMethods;
+  url: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data?: any;
+}
+
+export const fetchClient = async ({ method = 'POST', url, data }: FetchClientParams): Promise<any> => {
   const options: RequestInit = {
     method,
     headers: {

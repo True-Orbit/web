@@ -1,38 +1,44 @@
-import { fetchClient, MODELS } from '.';
+import { MODELS, fetchClient, defaults } from '.';
 
-export class Api<T> {
-  private endpoint: string;
-  private baseUrl: string;
+export interface BaseApiParams {
+  endpoint: string;
+  allowedProps?: MODELS.AllowedProps;
+  transformations?: MODELS.Transformations;
+}
 
-  constructor(endpoint: string, baseUrl: string = '/api') {
-    this.baseUrl = baseUrl;
+export abstract class BaseApi <R extends MODELS.Resource> {
+  protected endpoint: string;
+  protected allowedProps: MODELS.AllowedProps;
+  protected transformations: MODELS.Transformations;
+  protected baseUrl = "";
+
+  protected constructor({ endpoint, allowedProps, transformations }: BaseApiParams) {
     this.endpoint = endpoint;
+    this.allowedProps = { ...defaults.allowedProps, ...allowedProps };
+    this.transformations = { ...defaults.transformations, ...transformations };
   }
 
-  public fetch(endpoint: string, ids: MODELS.ids, method: MODELS.FetchMethods): Promise<MODELS.FetchResponse<T>> {
-    Object.keys(ids).forEach((key: string) => {
-      endpoint = endpoint.replace(`:${key}`, ids[key]);
-    });
-    return fetchClient({ method, url: `${this.baseUrl}/${endpoint}` });
+  public async findById(id: string): Promise<R> {
+    const data = await fetchClient({ method: 'GET', url: this.baseUrl, data: {} });
+    return this.transformations.incoming(data);
   }
 
-  public getAll(): Promise<MODELS.FetchResponse<T>> {
-    return fetchClient({ url: `${this.baseUrl}/${this.endpoint}` });
+  public async create(item: R): Promise<R> {
+    const data = await fetchClient({ method: 'POST', url: this.baseUrl, data: item });
+    return this.transformations.incoming(data);
   }
 
-  public find(id: string): Promise<MODELS.FetchResponse<T>> {
-    return fetchClient({ url: `${this.baseUrl}/${this.endpoint}/${id}` });
+  public async update(item: R): Promise<R> {
+    const data = await fetchClient({ method: 'PUT', url: this.baseUrl, data: item });
+    return this.transformations.incoming(data);
   }
 
-  public create(item: Partial<T>): Promise<MODELS.FetchResponse<T>> {
-    return fetchClient({ url: `${this.baseUrl}/${this.endpoint}/create`, data: item, method: 'POST' });
+  public async delete(id: string): Promise<void> {
+    await fetchClient({ method: 'DELETE', url: this.baseUrl, data: {} });
   }
 
-  public update(item: Partial<T>): Promise<MODELS.FetchResponse<T>> {
-    return fetchClient({ url: `${this.baseUrl}/${this.endpoint}/update`, data: item, method: 'PUT' });
-  }
-
-  public delete(id: string): Promise<MODELS.FetchResponse<T>> {
-    return fetchClient({ url: `${this.baseUrl}/${this.endpoint}/delete/${id}`, method: 'DELETE' });
+  public async search(searchOptions: Record<string, unknown>): Promise<R[]> {
+    const data = await fetchClient({ method: 'POST', url: this.baseUrl, data: searchOptions });
+    return data.map((item: R) => this.transformations.incoming(item));
   }
 }

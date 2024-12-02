@@ -1,4 +1,3 @@
-import { defaults as fetchDefaults } from '@/resources/fetch';
 import { MODELS } from '.';
 
 export const resource: MODELS.Resource = {
@@ -7,20 +6,55 @@ export const resource: MODELS.Resource = {
   updatedAt: new Date(),
 };
 
-export const state: MODELS.State = {
-  ...fetchDefaults.state,
+export const itemState: MODELS.ItemState = {
   item: { ...resource },
-  list: [],
+  modified: false,
+  currentId: undefined,
 };
 
-export const context: MODELS.Context = {
-  getAll: async () => [],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  find: async (id: string) => ({}),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-  create: async (item: any) => ({}),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-  update: async (item: any) => ({}),
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  remove: async (id: string) => {},
+export const itemContext: MODELS.ItemContext = {
+  state: { ...itemState },
+  dispatch: () => {},
+  item: { ...resource },
+};
+
+export const allowedProps: MODELS.AllowedProps = {
+  create: () => {},
+  update: () => {},
+};
+
+export const transformations: MODELS.Transformations = {
+  outgoing: () => {},
+  incoming: () => {},
+};
+
+export const endpoints: MODELS.Endpoints = {
+  findById: () => '',
+  create: () => '',
+  update: () => '',
+  delete: () => '',
+};
+
+export const pagination: MODELS.Pagination = {
+  page: 1,
+  pageSize: 100,
+  total: 0,
+};
+
+export const searchState: MODELS.SearchState = {
+  searchOptions: {},
+  pagination: { ...pagination },
+  searchStr: '',
+  forceSearch: false,
+  showFilters: false,
+};
+
+export const searchContext: MODELS.SearchContext = {
+  state: searchState,
+  dispatch: () => {},
+  result: [],
+  isFetching: false,
+  hasFilters: false,
+  pagination: { ...pagination },
+  currentSearch: {},
 };
