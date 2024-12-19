@@ -1,10 +1,11 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { MODELS, defaults } from '.';
+import { MODELS, defaults, BaseApi } from '.';
 
-export interface usebasicSearchProps {
+export interface useBasicSearchProps {
   searchType: string;
-  api: any;
-  searchOptions: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  api: BaseApi<any>;
+  searchOptions: Record<string, unknown>;
   enabled: boolean;
 }
 
@@ -13,7 +14,7 @@ export const useBasicSearch = ({
   api,
   searchOptions,
   enabled,
-}: usebasicSearchProps): UseQueryResult<{ data: unknown[]; pagination: MODELS.Pagination }> =>
+}: useBasicSearchProps): UseQueryResult<{ data: unknown[]; pagination: MODELS.Pagination }> =>
   useQuery({
     enabled,
     queryKey: [searchType, 'search', searchOptions],

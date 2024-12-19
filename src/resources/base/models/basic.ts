@@ -3,7 +3,7 @@ export interface ids {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface Action<T = string, P = any> {
+export interface Action<T = any, P = any> {
   type: T;
   payload: P;
 }

@@ -1,3 +1,4 @@
+import { Context } from 'react';
 import { Resource, Action } from '.';
 
 export interface ItemState<RM = Resource> {
@@ -6,7 +7,7 @@ export interface ItemState<RM = Resource> {
   currentId: string | undefined;
 }
 
-export type ReducerFunc<BSM = Record<string, any>, BAM = Action> = (state: BSM, action: BAM) => BSM;
+export type ReducerFunc<BSM = Record<string, unknown>, BAM = Action> = (state: BSM, action: BAM) => BSM;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface ItemContext<R = Resource> {
@@ -16,5 +17,5 @@ export interface ItemContext<R = Resource> {
 }
 
 export interface ItemProviderProps {
-  Context: any;
+  Context: Context<unknown>;
 }

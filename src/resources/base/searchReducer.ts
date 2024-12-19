@@ -54,7 +54,7 @@ export const setPagination = (
   },
 });
 
-export const resetOptions = (state: MODELS.SearchState, action: MODELS.Action<'resetOptions', never>) => ({
+export const resetOptions = (state: MODELS.SearchState, _action: MODELS.Action<'resetOptions', never>) => ({
   ...state,
   searchOptions: {},
   pagination: {

@@ -7,7 +7,7 @@ export const setMofified = (state: MODELS.ItemState, action: MODELS.Action<'setM
   };
 };
 
-export const resetItem = (state: MODELS.ItemState, action: MODELS.Action<'resetItem', never>) => {
+export const resetItem = (state: MODELS.ItemState, _action: MODELS.Action<'resetItem', never>) => {
   return {
     ...state,
     modified: false,
@@ -15,7 +15,7 @@ export const resetItem = (state: MODELS.ItemState, action: MODELS.Action<'resetI
   };
 };
 
-export const reset = (state: MODELS.ItemState, action: MODELS.Action<'reset', never>) => {
+export const reset = (_state: MODELS.ItemState, _action: MODELS.Action<'reset', never>) => {
   return defaults.itemState;
 };
 

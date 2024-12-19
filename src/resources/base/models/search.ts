@@ -1,5 +1,4 @@
-import { BaseApi } from '..';
-import { Action, Resource } from '.';
+import { Action } from '.';
 
 export interface Pagination {
   total: number;
@@ -15,12 +14,18 @@ export interface SearchState<OptionsType = Record<string, unknown>> {
   showFilters: boolean;
 }
 
-export interface SearchContext<R = any> {
+export interface SearchContext<R = unknown> {
   state: SearchState;
-  dispatch: React.Dispatch<Action>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dispatch: React.Dispatch<Action<any, any>>;
   result: R[];
   isFetching: boolean;
   hasFilters: boolean;
   pagination: Pagination;
   currentSearch: Record<string, unknown>;
+}
+
+export interface SearchResults {
+  data: unknown[];
+  pagination: Pagination;
 }

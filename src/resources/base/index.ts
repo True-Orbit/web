@@ -1,11 +1,8 @@
 export * as MODELS from './models';
 export * as defaults from './defaults';
 export * from './utils';
-export * from './combine';
-export * from './fetchClient';
 export * from './queries';
 export * from './api';
-export * from './contexts';
-export * from './itemReducer';
+export * as baseItemReducer from './itemReducer';
 export * as baseSearchReducer from './searchReducer';
 export * from './searchProvider';

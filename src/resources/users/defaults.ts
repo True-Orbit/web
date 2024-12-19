@@ -11,15 +11,14 @@ export const user: MODELS.User = {
   avatar: '',
 };
 
-export const state: MODELS.State = {
-  ...baseDefaults.state,
-  item: { ...user },
-  list: [],
+export const SearchState: MODELS.SearchState = {
+  ...baseDefaults.searchState,
 };
 
-export const context: MODELS.Context = {
-  ...baseDefaults.context,
-  state: { ...state },
+export const searchContext: MODELS.SearchContext = {
+  ...baseDefaults.searchContext,
+  result: [],
+  state: { ...SearchState },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  dispatch: (action: MODELS.Action) => {},
+  dispatch: (action: MODELS.SearchAction) => {},
 };

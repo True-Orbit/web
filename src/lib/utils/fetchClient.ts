@@ -1,4 +1,4 @@
-import { MODELS } from '.';
+import { MODELS } from '../../resources/base';
 
 export interface FetchClientParams {
   method?: MODELS.FetchMethods;
@@ -7,7 +7,7 @@ export interface FetchClientParams {
   data?: any;
 }
 
-export const fetchClient = async ({ method = 'POST', url, data }: FetchClientParams): Promise<any> => {
+export const fetchClient = async ({ method = 'POST', url, data }: FetchClientParams): Promise<unknown> => {
   const options: RequestInit = {
     method,
     headers: {

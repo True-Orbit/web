@@ -1,11 +1,10 @@
-import { useReducer, useMemo } from 'react';
+import { useReducer, useMemo, Context } from 'react';
+import { createReducer } from '@/lib/utils';
 import {
-  createReducer,
   MODELS,
   defaults,
   BaseApi,
   baseSearchReducer,
-  SearchContext,
   useBasicSearch,
   removeUndefined,
   defaultCreateQuery,
@@ -17,17 +16,17 @@ export interface SearchProviderProps<R extends MODELS.Resource> {
   api: BaseApi<R>;
   children: React.ReactNode;
   searchType: string;
-  context: MODELS.SearchContext<R>;
-  reducers?: Record<string, any>;
-  createQuery: (search: MODELS.SearchState) => Record<string, unknown>;
-  isEnabled: (state: MODELS.SearchState) => boolean;
-  hasFitlers: (state: MODELS.SearchState) => boolean;
+  context: Context<MODELS.SearchContext<R>>;
+  reducers?: Record<string, unknown>;
+  createQuery?: (search: MODELS.SearchState) => Record<string, unknown>;
+  isEnabled?: (state: MODELS.SearchState) => boolean;
+  hasFitlers?: (state: MODELS.SearchState) => boolean;
 }
 
 export const SearchProvider = <R extends MODELS.Resource>({
   children,
   api,
-  context,
+  context: SearchContext,
   searchType,
   reducers: reducersParam = {},
   createQuery = defaultCreateQuery,
@@ -54,7 +53,7 @@ export const SearchProvider = <R extends MODELS.Resource>({
   const { data: result, pagination } = data!;
 
   const value = {
-    result,
+    result: result as R[],
     pagination: { ...defaults.pagination, ...pagination },
     isFetching,
     state,
