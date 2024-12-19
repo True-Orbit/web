@@ -1,5 +1,5 @@
 import { MODELS as BASE_MODELS } from '@/resources/base';
-import { reducers } from '.';
+import { searchReducer } from '.';
 
 export interface Core {
   email: string;
@@ -12,18 +12,18 @@ export interface Core {
 
 export interface User extends BASE_MODELS.Resource, Core {}
 
-export interface Context extends BASE_MODELS.Context<User> {
-  state: State;
-  dispatch: (action: Action) => void;
+export interface SearchContext extends BASE_MODELS.SearchContext<User> {
+  state: SearchState;
+  dispatch: (action: SearchAction) => void;
 }
 
-export type ReducersTypes = keyof typeof reducers;
+export type ReducersTypes = keyof typeof searchReducer;
 
-export interface State extends BASE_MODELS.State<User> {}
+export interface SearchState extends BASE_MODELS.SearchState<User> {}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface Action<P = any> extends BASE_MODELS.Action<ReducersTypes, P> {}
-export type ReducerFunc = BASE_MODELS.ReducerFunc<State, Action>;
+export interface SearchAction<P = any> extends BASE_MODELS.Action<ReducersTypes, P> {}
+export type SearchReducerFunc = BASE_MODELS.ReducerFunc<SearchState, SearchAction>;
 
 export interface ProviderProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

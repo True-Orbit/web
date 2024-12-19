@@ -1,8 +1,8 @@
-import { Api } from '@/resources/base';
+import { BaseApi } from '@/resources/base';
 import { MODELS } from '.';
 
-export class UserApi extends Api<MODELS.User> {
+export class UserApi extends BaseApi<MODELS.User> {
   constructor() {
-    super('users');
+    super({ endpoint: 'users' });
   }
 }
