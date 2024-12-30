@@ -1,4 +1,4 @@
-import { ThemeOptions, createTheme as createMuiTheme } from '@mui/material/styles';
+import { createTheme as createMuiTheme } from '@mui/material/styles';
 import { models } from '@/app/styles/colors';
 
 declare module '@mui/material/styles' {
@@ -11,7 +11,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const createTheme = (name: string = 'light') =>
+export const createTheme = () =>
   createMuiTheme({
     colors: {},
   });
