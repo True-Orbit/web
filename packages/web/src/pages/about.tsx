@@ -10,6 +10,11 @@ const About = () => (
       come at the cost of truth. That&apos;s why we have built our community guidelines and features around one core
       principle: safeguarding authenticity and we actively take measures to minimize the spread of misinformation.
     </p>
+    <p>
+      Current Social Media platforms do not pay their creators for their content. We believe that creators are the heart
+      of any social media platform and should be rewarded for their work. To that end, we promise to be transparent with
+      how we spend our income and to share it appropriately with our creators.
+    </p>
   </Container>
 );
 
