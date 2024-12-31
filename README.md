@@ -1,15 +1,19 @@
 # A social media web app
 
-## Getting Started
+### Architecture
 
 ### Prerequisites
 
 - docker
 - postgresql
 - node 21
-- Get the env variables
+
+### web
+  - Get the env variables
+
+## Getting Started
 
 ```bash
 pnpm install
-pnpm dev
+pnpm web dev
 ```
