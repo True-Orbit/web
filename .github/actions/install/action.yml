@@ -10,6 +10,10 @@ runs:
       uses: pnpm/action-setup@v2
       with:
         version: 8.15.1
+        
+    - name: Install dependencies
+      run: pnpm install
+      shell: bash
 
     - name: Cache node modules
       id: cache-pnpm
@@ -31,6 +35,3 @@ runs:
       shell: bash
       run: ls -la ~/.local/share/pnpm/store/v3
 
-    - name: Install dependencies
-      run: pnpm install
-      shell: bash
