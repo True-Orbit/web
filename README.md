@@ -3,10 +3,8 @@
 ### Architecture
 
 ### Prerequisites
-
-- docker
-- postgresql
 - node 21
+- pnpm
 
 ### web
   - Get the env variables
