@@ -13,5 +13,5 @@
 
 ```bash
 pnpm install
-pnpm web dev
+pnpm dev
 ```
