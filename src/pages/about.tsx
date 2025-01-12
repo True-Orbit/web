@@ -15,7 +15,6 @@ const About = () => (
       of any social media platform and should be rewarded for their work. To that end, we promise to be transparent with
       how we spend our income and to share it appropriately with our creators.
     </p>
-    <p>If you would like to help us in our mission, please consider donating to our... (more to come)</p>
   </Container>
 );
 
