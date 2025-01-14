@@ -1,0 +1,55 @@
+name: Build Image and Push to ECR
+
+# on:
+#   push:
+#     branches:
+#       - main
+on: pull_request
+
+jobs:
+  build-and-push-image:
+    name: Build
+    runs-on: ubuntu-latest
+
+    env: 
+      AWS_IMAGE_MANAGER_ROLE: $AWS_IMAGE_MANAGER_ROLE
+      AWS_ACCESS_KEY_ID: $GITHUB_ACTION_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: $GITHUB_ACTION_SECRET_ACCESS_KEY
+      AWS_REGION: $AWS_REGION
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: echo "********** starting ***********"
+      - run: echo "${{ env.AWS_ACCESS_KEY_ID }}"
+      - run: echo "${{ env.AWS_SECRET_ACCESS_KEY }}"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: "${{ env.AWS_ACCESS_KEY_ID }}"
+          aws-secret-access-key: "${{ env.AWS_SECRET_ACCESS_KEY }}"
+          # role-to-assume: ${{ env.AWS_IMAGE_MANAGER_ROLE }}
+          # role-to-assume: arn:aws:iam::267135861046:user/github-act
+          role-session-name: GithubActions
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Verify Role Assumption
+        run: aws sts get-caller-identity
+
+      - run: echo "********** worked ***********"
+
+      # - name: Build, tag, and push image to Amazon ECR
+      #   id: build-imaged
+      #   env:
+      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     ECR_REPOSITORY: "true-orbit/web"
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     # Build a docker container and push it to ECR
+      #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

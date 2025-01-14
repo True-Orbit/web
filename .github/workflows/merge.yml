@@ -9,9 +9,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    # needs: install
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install
         uses: ./.github/actions/install
@@ -22,9 +21,8 @@ jobs:
   prettier:
     name: Prettier
     runs-on: ubuntu-latest
-    # needs: install
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install
         uses: ./.github/actions/install
@@ -37,9 +35,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    # needs: install
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install
         uses: ./.github/actions/install
@@ -50,9 +47,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    # needs: install
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install
         uses: ./.github/actions/install
