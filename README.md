@@ -5,9 +5,7 @@
 ### Prerequisites
 - node 21
 - pnpm
-
-### web
-  - Get the env variables
+- Get the env variables
 
 ## Getting Started
 
