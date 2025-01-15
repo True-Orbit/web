@@ -1,8 +1,5 @@
-name: Build
-
-permissions:
-  contents: read
-  id-token: write
+name: build_push_image
+description: Build and push image to Amazon ECR
 
 runs:
   using: "composite"

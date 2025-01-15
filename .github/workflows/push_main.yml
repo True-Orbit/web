@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
 
+    permissions:
+      contents: read
+      id-token: write
+
     env: 
       AWS_IMAGE_MANAGER_ROLE: ${{ secrets.AWS_IMAGE_MANAGER_ROLE }}
       AWS_REGION: ${{ vars.AWS_REGION }}
