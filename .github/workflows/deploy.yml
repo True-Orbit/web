@@ -33,6 +33,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set IMAGE_TAG
-        run: echo "IMAGE_TAG=web:$TAG:$SHA" >> $GITHUB_ENV
+        run: echo "IMAGE_TAG=web:$TAG-$SHA" >> $GITHUB_ENV
 
       - uses: ./.github/actions/build_push_image
