@@ -1,4 +1,4 @@
-name: Manualy deploy to environment
+name: Manually deploy to tagged release
 
 on: 
   workflow_dispatch:
@@ -6,6 +6,13 @@ on:
       environment:
         required: true
         default: development
+      tag:
+        required: true
+
+env:
+  DEPLOYER: ${{ github.actor }}
+  TAG: ${{ github.event.inputs.tag }}
+  SHA: ${{ github.sha }}
 
 jobs:
   build-and-push-image:
@@ -17,6 +24,7 @@ jobs:
       AWS_IMAGE_MANAGER_ROLE: ${{ secrets.AWS_IMAGE_MANAGER_ROLE }}
       AWS_REGION: ${{ vars.AWS_REGION }}
       ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+      IMAGE_TAG: web:$TAG:$SHA
 
     permissions:
       contents: read
