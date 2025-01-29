@@ -24,7 +24,6 @@ jobs:
       AWS_IMAGE_MANAGER_ROLE: ${{ secrets.AWS_IMAGE_MANAGER_ROLE }}
       AWS_REGION: ${{ vars.AWS_REGION }}
       ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-      IMAGE_TAG: web:$TAG:$SHA
 
     permissions:
       contents: read
@@ -32,4 +31,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set IMAGE_TAG
+        run: echo "IMAGE_TAG=web:$TAG:$SHA" >> $GITHUB_ENV
+
       - uses: ./.github/actions/build_push_image
