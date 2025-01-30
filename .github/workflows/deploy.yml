@@ -34,3 +34,7 @@ jobs:
         run: echo "IMAGE_TAG=$TAG-$SHA" >> $GITHUB_ENV
 
       - uses: ./.github/actions/build_push_image
+
+      # - uses: ./.github/actions/trigger_deploy
+      #   with:
+      #     IMAGE_URI: ${{ steps.build-imaged.outputs.IMAGE_URI }}

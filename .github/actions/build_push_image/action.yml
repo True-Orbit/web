@@ -12,7 +12,7 @@ runs:
       with:
         aws-region: ${{ env.AWS_REGION }}
         role-to-assume: ${{ env.AWS_IMAGE_MANAGER_ROLE }}
-        role-session-name: GithubActions
+        role-session-name: PushImage
 
     - name: Login to Amazon ECR
       id: login-ecr
