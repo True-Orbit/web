@@ -1,0 +1,17 @@
+name: trigger_deploy
+description: Trigger terraform to deploy the latest image to ECS
+
+inputs:
+  image_tag:
+    description: 'The image tag to deploy'
+    required: true
+
+runs:
+  using: "composite"
+
+  steps:
+    - uses: actions/checkout@v4
+      with:
+        repository: True-Orbit/infrastructure
+        path: .github/workflows/terraform_apply
+        web_service_image_tag: ${{ inputs.myInput }}
