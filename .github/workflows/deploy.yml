@@ -9,8 +9,7 @@ on:
 
 env:
   DEPLOYER: ${{ github.actor }}
-  TAG: ${{ github.ref_name }}
-  SHA: ${{ github.sha }}
+  IMAGE_TAG: "${{ github.ref_name }}-${{ github.sha }}"
 
 jobs:
   build-and-push-image:
@@ -30,11 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set IMAGE_TAG
-        run: echo "IMAGE_TAG=$TAG-$SHA" >> $GITHUB_ENV
-
-      - uses: ./.github/actions/build_push_image
-
-      - uses: ./.github/actions/trigger_deploy
+      - name: build and push image
+        uses: ./.github/actions/build_push_image
+      
+      - name: Trigger deploy
+        uses: ./.github/actions/trigger_deploy
         with:
           image_tag: $IMAGE_TAG
