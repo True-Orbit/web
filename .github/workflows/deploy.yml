@@ -35,6 +35,6 @@ jobs:
 
       - uses: ./.github/actions/build_push_image
 
-      # - uses: ./.github/actions/trigger_deploy
-      #   with:
-      #     IMAGE_URI: ${{ steps.build-imaged.outputs.IMAGE_URI }}
+      - uses: ./.github/actions/trigger_deploy
+        with:
+          image_tag: $IMAGE_TAG

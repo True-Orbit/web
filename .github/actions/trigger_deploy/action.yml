@@ -1,20 +1,17 @@
 name: trigger_deploy
 description: Trigger terraform to deploy the latest image to ECS
 
+inputs:
+  image_tag:
+    description: 'The image tag to deploy'
+    required: true
+
 runs:
   using: "composite"
 
   steps:
     - uses: actions/checkout@v4
-
-    - name: Redeploy ECS Service
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        family: ${{ env.ECS_FAMILY }}
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
-        container-name: ${{ env.ECS_CONTAINER_NAME }}
-        container-port: ${{ env.ECS_CONTAINER_PORT }}
-        image: ${{ steps.build-imaged.outputs.IMAGE_URI }}
-        wait-for-service-stability: true
+        repository: True-Orbit/infrastructure
+        path: .github/workflows/terraform_apply
+        web_service_image_tag: ${{ inputs.myInput }}
