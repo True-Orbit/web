@@ -29,8 +29,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/build_push_image
-
-      - uses: ./.github/actions/trigger_deploy
+      - name: build and push image
+        uses: ./.github/actions/build_push_image
+      
+      - name: Trigger deploy
+        uses: ./.github/actions/trigger_deploy
         with:
           image_tag: $IMAGE_TAG
