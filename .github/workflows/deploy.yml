@@ -35,4 +35,4 @@ jobs:
       - name: Trigger deploy
         uses: ./.github/actions/trigger_deploy
         with:
-          image_tag: $IMAGE_TAG
+          image_tag: ${{ env.IMAGE_TAG }}
