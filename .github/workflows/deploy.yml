@@ -31,8 +31,6 @@ jobs:
 
       - name: build and push image
         uses: ./.github/actions/build_push_image
-        with:
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
       
       - name: Trigger deploy
         uses: ./.github/actions/trigger_deploy
