@@ -40,6 +40,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
+      
       - name: Trigger deploy
         uses: ./.github/actions/trigger_deploy
         with:
