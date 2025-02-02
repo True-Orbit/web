@@ -5,6 +5,9 @@ inputs:
   image_tag:
     description: 'The image tag to deploy'
     required: true
+  access_token:
+    description: 'The access token to trigger the deployment'
+    required: true
 
 runs:
   using: "composite"
@@ -13,7 +16,7 @@ runs:
     - name: Repository Dispatch
       uses: peter-evans/repository-dispatch@v3
       with:
-        token: ${{ secrets.INFRASTRUCTURE_ACCESS_TOKEN }}
+        token: ${{ inputs.access_token }}
         repository: True-Orbit/infrastructure
         event-type: terraform_apply
         client-payload: '{ "web_service_image_tag": "${{ inputs.image_tag }}" }'
