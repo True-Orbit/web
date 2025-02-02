@@ -18,14 +18,10 @@ runs:
       id: login_ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Set IMAGE_URI
-      id: set_image_uri
-      env: 
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      run: echo "IMAGE_URI=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
-
     - name: Build, tag, and push image to Amazon ECR
       id: build_push_image
+      env: 
+        IMAGE_URI: "${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}"
       shell: bash
       run: |
         # Build a docker container and push it to ECR
