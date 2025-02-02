@@ -38,3 +38,4 @@ jobs:
         uses: ./.github/actions/trigger_deploy
         with:
           image_tag: ${{ env.IMAGE_TAG }}
+          access_token: ${{ secrets.INFRASTRUCTURE_ACCESS_TOKEN }}
