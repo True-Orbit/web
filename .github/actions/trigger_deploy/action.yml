@@ -18,5 +18,5 @@ runs:
       with:
         token: ${{ inputs.access_token }}
         repository: True-Orbit/infrastructure
-        event-type: terraform_apply
-        client-payload: '{ "web_service_image_tag": "${{ inputs.image_tag }}" }'
+        event-type: deploy_web_service
+        client-payload: '{ "image_tag": "${{ inputs.image_tag }}" }'
