@@ -9,8 +9,7 @@ on:
 
 env:
   DEPLOYER: ${{ github.actor }}
-  IMAGE_TAG: "${{ github.ref_name }}-${{ github.sha }}"
-
+  
 jobs:
   build-and-push-image:
     name: Build and push
@@ -21,6 +20,7 @@ jobs:
       AWS_IMAGE_MANAGER_ROLE: ${{ secrets.AWS_IMAGE_MANAGER_ROLE }}
       AWS_REGION: ${{ vars.AWS_REGION }}
       ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+      IMAGE_TAG: "${{ github.ref_name }}-${{ github.sha }}"
 
     permissions:
       contents: read
@@ -32,7 +32,7 @@ jobs:
       - name: build and push image
         uses: ./.github/actions/build_push_image
         with:
-          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+          image_tag: ${{ env.IMAGE_TAG }}
       
       - name: Trigger deploy
         uses: ./.github/actions/trigger_deploy
