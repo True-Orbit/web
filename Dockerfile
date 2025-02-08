@@ -2,7 +2,7 @@
 # Build
 # ========
 
-FROM node:21.7.3-alpine AS builder
+FROM --platform=linux/amd64 node:21.7.3-alpine AS builder
 
 RUN apk add --no-cache \
   npm \
@@ -28,11 +28,11 @@ RUN pnpm run build
 # Production
 # ========
 
-FROM node:21.7.3-alpine AS runner
+FROM --platform=linux/amd64 node:21.7.3-alpine AS runner
 
 RUN apk add --no-cache nodejs npm
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@10.2.1
 
 WORKDIR /app
 

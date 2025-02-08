@@ -5,11 +5,14 @@ runs:
 
   steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.ref }}
+        fetch-depth: 0
 
     - name: Install pnpm
       uses: pnpm/action-setup@v2
       with:
-        version: 8.15.1
+        version: 10.2.1
 
     - name: Install dependencies
       run: pnpm install
