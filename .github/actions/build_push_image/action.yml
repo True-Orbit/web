@@ -30,7 +30,6 @@ runs:
       shell: bash
       run: |
         # Build a docker container and push it to ECR
-        docker buildx build --platform linux/amd64 -t $IMAGE_URI .
-        docker push $IMAGE_URI
+        docker buildx build --platform linux/amd64 -t $IMAGE_URI --push .
 
     
