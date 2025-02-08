@@ -9,10 +9,18 @@ runs:
     - name: Install pnpm
       uses: pnpm/action-setup@v2
       with:
-        version: 8.15.1
+        version: 10.2.1
 
     - name: Install dependencies
       run: pnpm install
+      shell: bash
+
+    - name: marker
+      run: echo "*********************"
+      shell: bash
+
+    - name: list files
+      run: ls -la
       shell: bash
 
     - name: Prettify code
@@ -20,3 +28,4 @@ runs:
       with:
         prettier_options: "--check --ignore-path .prettierignore src/**/*.{ts,js,tsx}"
         dry: true
+        working_directory: "."
