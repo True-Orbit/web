@@ -5,6 +5,9 @@ runs:
 
   steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
 
     - name: Install pnpm
       uses: pnpm/action-setup@v2
