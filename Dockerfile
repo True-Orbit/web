@@ -44,6 +44,9 @@ COPY --from=builder /app/next.config.mjs ./
 
 RUN pnpm install --prod --frozen-lockfile
 
+# Need curl for healthcheck
+RUN apk --no-cache add curl
+
 EXPOSE 3000
 
 CMD ["pnpm", "start"]
