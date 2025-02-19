@@ -1,7 +1,7 @@
 import { signIn } from 'next-auth/react';
 import { GetServerSidePropsContext } from 'next';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/pages/api/auth/options';
+import { authOptions } from '@/pages/api/web/auth/options';
 
 export const getServerSideProps = async ({ req, res }: GetServerSidePropsContext) => {
   const session = await getServerSession(req, res, authOptions);
