@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p 3000",
+    "start": "node ./scripts/unpackSecrets.js && next start -H 0.0.0.0 -p 3000",
     "test": "jest",
     "lint": "next lint",
     "prettier:write": "npx prettier 'src/**/*.{ts,js,tsx}' --write",
