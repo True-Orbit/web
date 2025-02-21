@@ -49,10 +49,8 @@ jobs:
         with:
           image_tag: ${{ env.IMAGE_TAG }}
           access_token: ${{ secrets.INFRASTRUCTURE_ACCESS_TOKEN }}
-          secrets: |
-            '[
-              {
-                "name": "WEB_SERVICE_SECRETS",
-                "valueFrom": "$WEB_SERVICE_SECRETS"
-              }
-            ]'
+          secrets: >-
+            [{
+              "name": "WEB_SERVICE_SECRETS", 
+              "valueFrom": "${{ env.WEB_SERVICE_SECRETS }}"
+            }]
