@@ -42,6 +42,9 @@ COPY --from=builder /app/.next ./.next
 
 COPY --from=builder /app/next.config.mjs ./
 
+COPY ./scripts ./scripts
+COPY ./config ./config
+
 RUN pnpm install --prod --frozen-lockfile
 
 # Need curl for healthcheck
