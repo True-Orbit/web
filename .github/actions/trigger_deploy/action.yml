@@ -22,4 +22,4 @@ runs:
         token: ${{ inputs.access_token }}
         repository: True-Orbit/infrastructure
         event-type: deploy_web_service
-        client-payload: '{ "image_tag": "${{ inputs.image_tag }}" }, "secrets": "${{ inputs.secrets }}" }'
+        client-payload: '{ "image_tag": "${{ inputs.image_tag }}", "secrets": "${{ inputs.secrets }}" }'
