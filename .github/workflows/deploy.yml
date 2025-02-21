@@ -44,6 +44,15 @@ jobs:
       
       - name: Trigger deploy
         uses: ./.github/actions/trigger_deploy
+        env: 
+          WEB_SERVICE_SECRETS: ${{ secrets.AWS_SECRETS_ARN }}
         with:
           image_tag: ${{ env.IMAGE_TAG }}
           access_token: ${{ secrets.INFRASTRUCTURE_ACCESS_TOKEN }}
+          secrets: |
+            '[
+              {
+                "name": "WEB_SERVICE_SECRETS",
+                "valueFrom": "$WEB_SERVICE_SECRETS"
+              }
+            ]'
