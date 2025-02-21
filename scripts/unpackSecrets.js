@@ -27,22 +27,19 @@ const secretsMapLocation = args[0] || './config/secretsMap.json';
 const secretsMapFile = path.join(__dirname, secretsMapLocation);
 
 if (!fs.existsSync(secretsMapFile)) {
-  console.error("Secrets map file not found.");
-  process.exit(1);
+  throw "Secrets map file not found";
 }
 
 async function readSecretsMap() {
-
   try {
     const data = await fsPromise.readFile(secretsMapFile, 'utf8');
     const secretsMapArray = JSON.parse(data) ?? [];
     if (!Array.isArray(secretsMapArray)) {
-      console.error("Secrets map file should be an array.");
-      process.exit(1);
+      throw "Secrets map file should be an array";
     }
     return secretsMapArray;
   } catch (err) {
-    console.error('Error reading file:', err);
+    throw `Error reading file: ${err}`;
   }
 }
 
@@ -52,18 +49,13 @@ const setEnvVars = (secretsMapArray) => {
   
     const awsSecretString = process.env[awsSecretName];
     if (!awsSecretString) {
-      console.error(`Secret ${awsSecretName} not found in environment variables.`);
-      continue;
+      throw `Secret ${awsSecretName} not found in environment variables`;
     }
     const awsSecret = JSON.parse(awsSecretString);
   
     for (const [awsName, envName] of Object.entries(fields)) {
       const value = awsSecret[awsName];
-  
-      if (!value) {
-        console.error(`Value for ${awsName} not found in secret.`);
-        continue;
-      }
+      if (!value) throw `Value for ${awsName} not found in secret`;
   
       process.env[envName ?? awsName] = value;
       console.log('Setting env var: ', envName ?? awsName)
@@ -73,7 +65,9 @@ const setEnvVars = (secretsMapArray) => {
   console.log("Secrets have been loaded as environment variables.");
 }
 
-readSecretsMap().then(setEnvVars);
-
-
-
+readSecretsMap().then(setEnvVars).then(() => {
+  process.exit(0);
+}).catch((err) => {
+  console.error('Error reading secrets map:', err);
+  process.exit(1);
+});
