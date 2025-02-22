@@ -43,10 +43,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Echo JSON env var using heredoc
-        run: |
-          cat <<EOF
-          [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "$AWS_SECRETS_ARN"}]
-          EOF
+        run: echo $AWS_SECRETS_ARN
 
       - name: Echo JSON secret using heredoc
         run: |
