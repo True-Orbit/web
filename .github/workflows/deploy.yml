@@ -41,6 +41,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Echo JSON secret using heredoc
+        run: |
+          cat <<EOF
+          [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "${{ secrets.AWS_SECRETS_ARN }}"}]
+          EOF
       
       - name: Trigger deploy
         uses: ./.github/actions/trigger_deploy
@@ -48,4 +54,4 @@ jobs:
           image_tag: ${{ env.IMAGE_TAG }}
           access_token: ${{ secrets.INFRASTRUCTURE_ACCESS_TOKEN }}
           secrets: >-
-            [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "${{ secrets.AWS_SECRETS_ARN }}"}]
+            "[{"name": "WEB_SERVICE_SECRETS", "valueFrom": "${{ secrets.AWS_SECRETS_ARN }}"}]"
