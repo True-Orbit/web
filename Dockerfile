@@ -30,7 +30,7 @@ RUN pnpm run build
 
 FROM --platform=linux/amd64 node:21.7.3-alpine AS runner
 
-RUN apk add --no-cache nodejs npm
+RUN apk add --no-cache nodejs npm jq
 
 RUN npm install -g pnpm@10.2.1
 
