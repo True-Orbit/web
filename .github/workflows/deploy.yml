@@ -42,6 +42,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
 
+    env: 
+      AWS_SECRETS_ARN: ${{ vars.AWS_SECRETS_ARN }}
+      SECRET_AWS_SECRETS_ARN: ${{ secrets.AWS_SECRETS_ARN }}
+
     steps:
       - uses: actions/checkout@v4
 
