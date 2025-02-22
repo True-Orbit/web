@@ -40,12 +40,16 @@ jobs:
     needs: build_push_image
     name: Trigger deploy
     runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Echo JSON env var using heredoc
-        run: echo "smurf is $AWS_SECRETS_ARN"
+        run: echo "AWS_IMAGE_MANAGER_ROLE is $AWS_IMAGE_MANAGER_ROLE"
+
+      - name: Echo JSON env var using heredoc
+        run: echo "AWS_SECRETS_ARN is $AWS_SECRETS_ARN"
 
       - name: Echo JSON secret using heredoc
         run: |
