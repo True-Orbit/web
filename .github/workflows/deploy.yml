@@ -21,8 +21,6 @@ jobs:
       AWS_IMAGE_MANAGER_ROLE: ${{ secrets.AWS_IMAGE_MANAGER_ROLE }}
       AWS_REGION: ${{ vars.AWS_REGION }}
       ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
-      AWS_SECRETS_ARN: ${{ vars.AWS_SECRETS_ARN }}
-      SECRET_AWS_SECRETS_ARN: ${{ secrets.AWS_SECRETS_ARN }}
       
     permissions:
       contents: read
@@ -43,28 +41,15 @@ jobs:
     environment: ${{ github.event.inputs.environment }}
 
     env: 
-      AWS_SECRETS_ARN: ${{ vars.AWS_SECRETS_ARN }}
-      SECRET_AWS_SECRETS_ARN: ${{ secrets.AWS_SECRETS_ARN }}
+      AWS_SECRETS_ARN: ${{ secrets.AWS_SECRETS_ARN }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Echo JSON env var using heredoc
-        run: echo "AWS_IMAGE_MANAGER_ROLE is $AWS_IMAGE_MANAGER_ROLE"
-
-      - name: Echo JSON env var using heredoc
-        run: echo "AWS_SECRETS_ARN is $AWS_SECRETS_ARN"
-
-      - name: Echo JSON secret using heredoc
-        run: |
-          cat <<EOF
-          [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "$SECRET_AWS_SECRETS_ARN"}]
-          EOF
-      
       - name: Trigger deploy
         uses: ./.github/actions/trigger_deploy
         with:
           image_tag: ${{ env.IMAGE_TAG }}
           access_token: ${{ secrets.INFRASTRUCTURE_ACCESS_TOKEN }}
           secrets: >-
-            "[{"name": "WEB_SERVICE_SECRETS", "valueFrom": "${{ secrets.AWS_SECRETS_ARN }}"}]"
+            '[{"name": "WEB_SERVICE_SECRETS", "valueFrom": "$AWS_SECRETS_ARN"}]''
