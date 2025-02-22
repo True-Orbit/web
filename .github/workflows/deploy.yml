@@ -21,6 +21,8 @@ jobs:
       AWS_IMAGE_MANAGER_ROLE: ${{ secrets.AWS_IMAGE_MANAGER_ROLE }}
       AWS_REGION: ${{ vars.AWS_REGION }}
       ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+      AWS_SECRETS_ARN: ${{ vars.AWS_SECRETS_ARN }}
+      SECRET_AWS_SECRETS_ARN: ${{ secrets.AWS_SECRETS_ARN }}
       
     permissions:
       contents: read
@@ -48,7 +50,7 @@ jobs:
       - name: Echo JSON secret using heredoc
         run: |
           cat <<EOF
-          [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "${{ secrets.AWS_SECRETS_ARN }}"}]
+          [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "$SECRET_AWS_SECRETS_ARN"}]
           EOF
       
       - name: Trigger deploy
