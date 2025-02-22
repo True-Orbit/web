@@ -45,6 +45,7 @@ jobs:
       - name: Echo JSON secret using heredoc
         run: |
           cat <<EOF
+          [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "$AWS_SECRETS_ARN"}]
           [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "${{ secrets.AWS_SECRETS_ARN }}"}]
           EOF
       
