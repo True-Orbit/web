@@ -30,7 +30,7 @@ RUN pnpm run build
 
 FROM --platform=linux/amd64 node:21.7.3-alpine AS runner
 
-RUN apk add --no-cache nodejs npm jq
+RUN apk add --no-cache nodejs npm jq curl
 
 RUN npm install -g pnpm@10.2.1
 
@@ -46,9 +46,6 @@ COPY ./scripts ./scripts
 
 RUN pnpm install --prod --frozen-lockfile
 
-# Need curl for healthcheck
-RUN apk --no-cache add curl
-
-EXPOSE 3000
+EXPOSE 3001
 
 CMD ["pnpm", "start"]
