@@ -1,6 +1,5 @@
-import { fetchClient } from '..';
-// import "@/lib/mocks/fetch.mock";
 import { mockFetch } from '@/lib/mocks/fetch.mock';
+import { fetchClient } from '..';
 
 describe('fetchClient', () => {
   it('should call fetch with the correct params', async () => {
