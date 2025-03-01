@@ -1,4 +1,4 @@
-import { MODELS } from '../../resources/base';
+import { MODELS } from '@/resources/base';
 
 export interface FetchClientParams {
   method?: MODELS.FetchMethods;

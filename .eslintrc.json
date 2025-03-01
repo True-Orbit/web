@@ -29,6 +29,21 @@
         "argsIgnorePattern": "^_",
         "varsIgnorePattern": "^_"
       }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["../../*"]
+      }
+    ],
+    "no-duplicate-imports": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc", "caseInsensitive": true }
+      }
     ]
   },
   "overrides": [
