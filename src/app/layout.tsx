@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@/app/styles/themes';
 
 import { AuthProvider } from '@/resources/auth';
-import { ProviderList } from '@/components/basic';
+import { ProviderList, PageContainer } from '@/components/basic';
 
 import './styles/reset.css';
 import './styles/globals.scss';
@@ -24,7 +24,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <ThemeProvider theme={theme}>
       <ProviderList providers={providers}>
         <html lang="en">
-          <body>{children}</body>
+          <body>
+            <PageContainer>
+              {children}
+            </PageContainer>
+          </body>
         </html>
       </ProviderList>
     </ThemeProvider>
