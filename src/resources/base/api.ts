@@ -20,17 +20,17 @@ export abstract class BaseApi<R extends MODELS.Resource> {
   }
 
   public async findById(id: string): Promise<R> {
-    const data = await apiClient.get(`${this.baseUrl}/${id}`) as R;
+    const data = (await apiClient.get(`${this.baseUrl}/${id}`)) as R;
     return this.transformations.incoming(data) as R;
   }
 
   public async create(item: R): Promise<R> {
-    const data = await apiClient.post(this.baseUrl, { ...item } ) as R;
+    const data = (await apiClient.post(this.baseUrl, item)) as R;
     return this.transformations.incoming(data) as R;
   }
 
   public async update(item: R): Promise<R> {
-    const data = await apiClient.put(`${this.baseUrl}/${item.id}`, { ...item }) as R;
+    const data = (await apiClient.put(`${this.baseUrl}/${item.id}`, item)) as R;
     return this.transformations.incoming(data) as R;
   }
 
@@ -39,7 +39,7 @@ export abstract class BaseApi<R extends MODELS.Resource> {
   }
 
   public async search(searchOptions: Record<string, unknown>): Promise<MODELS.SearchResults> {
-    const { data, pagination } = await apiClient.post(this.baseUrl, { ...searchOptions }) as MODELS.SearchResults;
+    const { data, pagination } = (await apiClient.post(this.baseUrl, searchOptions)) as MODELS.SearchResults;
     return { data: data.map((item) => this.transformations.incoming(item) as R), pagination };
   }
 }

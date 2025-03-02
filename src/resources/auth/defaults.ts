@@ -1,9 +1,9 @@
-import { MODELS } from ".";
+import { MODELS } from '.';
 
 export const authUser: MODELS.AuthUser = {
-  id: "1",
-  email: "example@example.com",
-  roles: ["guest"],
+  id: '1',
+  email: 'example@example.com',
+  roles: ['guest'],
 };
 
 export const state: MODELS.State = {

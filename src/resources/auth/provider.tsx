@@ -1,21 +1,8 @@
 import React, { useReducer, useEffect, ReactNode } from 'react';
 
-import {
-  getAuthToken,
-  setAuthToken,
-  removeAuthToken,
-  setRefreshToken,
-  removeRefreshToken,
-} from '@/lib/utils';
+import { getAuthToken, setAuthToken, removeAuthToken, setRefreshToken, removeRefreshToken } from '@/lib/utils';
 
-import { 
-  api,
-  Context,
-  MODELS,
-  DEFAULTS,
-  reducers,
-  isAuthenticated,
-} from '.';
+import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated } from '.';
 
 interface Props {
   children: ReactNode;
@@ -33,15 +20,15 @@ export const AuthProvider = ({ children }: Props) => {
     initializeAuth();
   }, []);
 
-  const login = async ({ email, password }: MODELS.Credentials) => { 
+  const login = async ({ email, password }: MODELS.Credentials) => {
     dispatch({ type: 'setError', payload: undefined });
     try {
       const response = await api.login({ email, password });
       const { authToken, refreshToken, user: userData } = response.data;
-      
+
       setAuthToken(authToken);
       if (refreshToken) setRefreshToken(refreshToken);
-      
+
       dispatch({ type: 'setUser', payload: userData });
     } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Login failed' });
@@ -54,10 +41,10 @@ export const AuthProvider = ({ children }: Props) => {
     try {
       const response = await api.register(userData);
       const { authToken, refreshToken, user: newUser } = response.data;
-      
+
       setAuthToken(authToken);
       if (refreshToken) setRefreshToken(refreshToken);
-      
+
       dispatch({ type: 'setUser', payload: newUser });
     } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Registration failed' });

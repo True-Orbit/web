@@ -7,14 +7,14 @@ export const setUser = (state: MODELS.State, { payload }: BASE_MODELS.Action) =>
     user: payload,
     loading: false,
   };
-}
+};
 
 export const setLoading = (state: MODELS.State, { payload }: BASE_MODELS.Action) => {
   return {
     ...state,
     loading: payload,
   };
-}
+};
 
 export const setError = (state: MODELS.State, { payload }: BASE_MODELS.Action) => {
   return {
@@ -22,4 +22,4 @@ export const setError = (state: MODELS.State, { payload }: BASE_MODELS.Action) =
     error: payload,
     loading: false,
   };
-}
+};
