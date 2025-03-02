@@ -9,8 +9,6 @@ import { AuthProvider } from '@/resources/auth';
 import { ProviderList, PageContainer } from '@/components/basic';
 import { useBrowserColorScheme } from '@/lib/hooks';
 
-import './styles/reset.css';
-
 interface RootLayoutProps {
   children: React.ReactNode;
 }
