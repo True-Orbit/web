@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useReducer, useEffect, ReactNode } from 'react';
 
 import { getAuthToken, setAuthToken, removeAuthToken, setRefreshToken, removeRefreshToken } from '@/resources/auth';
