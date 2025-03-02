@@ -7,23 +7,24 @@ import { createTheme } from '@/app/styles/themes';
 
 import { AuthProvider } from '@/resources/auth';
 import { ProviderList, PageContainer } from '@/components/basic';
+import { useBrowserColorScheme } from '@/lib/hooks';
 
 import './styles/reset.css';
-import './styles/globals.scss';
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const theme = createTheme();
-
+  const browserColorScheme = useBrowserColorScheme();
+  const theme = createTheme({ browserColorScheme });
   const providers = [AuthProvider, CssBaseline];
+  const language = 'en';
 
   return (
     <ThemeProvider theme={theme}>
       <ProviderList providers={providers}>
-        <html lang="en">
+        <html lang={language}>
           <body>
             <PageContainer>
               {children}
