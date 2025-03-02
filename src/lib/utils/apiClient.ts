@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-import { AUTH_TOKEN_NAME, REFRESH_TOKEN_NAME } from '@/resources/auth';
+import { 
+  getAuthToken,
+  setAuthToken,
+  removeAuthToken,
+  getRefreshToken,
+  removeRefreshToken,
+} from '@/resources/auth';
+
 const BASE_URL = process.env.DOMAIN!;
 
 const apiClient = axios.create({
@@ -12,7 +19,7 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem(AUTH_TOKEN_NAME);
+    const token = getAuthToken();
     
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -35,24 +42,24 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true;
       
       try {
-        const refreshToken = localStorage.getItem(REFRESH_TOKEN_NAME);
+        const refreshToken = getRefreshToken();
         if (refreshToken) {
           const response = await axios.post(`${BASE_URL}/auth/refresh`, { refreshToken });
           const { token } = response.data;
           
-          localStorage.setItem(AUTH_TOKEN_NAME, token);
+          setAuthToken(token);
           
           originalRequest.headers.Authorization = `Bearer ${token}`;
           return apiClient(originalRequest);
         }
       } catch (refreshError) {
-        localStorage.removeItem(AUTH_TOKEN_NAME);
-        localStorage.removeItem(REFRESH_TOKEN_NAME);
+        removeAuthToken();
+        removeRefreshToken();
         window.location.href = '/login';
         return Promise.reject(refreshError);
       }
       
-      localStorage.removeItem(AUTH_TOKEN_NAME);
+      removeAuthToken();
       window.location.href = '/login';
     }
     
