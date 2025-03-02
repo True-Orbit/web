@@ -1,5 +1,5 @@
-import React, { useReducer, useEffect } from 'react';
-import { MODELS as BASE_MODELS } from '@/resources/base';
+import React, { useReducer, useEffect, ReactNode } from 'react';
+
 import {
   getAuthToken,
   setAuthToken,
@@ -16,7 +16,11 @@ import {
   reducers,
 } from '.';
 
-export const AuthProvider = ({ children }) => {
+interface Props {
+  children: ReactNode;
+}
+
+export const AuthProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducers, DEFAULTS.context);
 
   // Check for existing session on component mount
@@ -38,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       if (refreshToken) setRefreshToken(refreshToken);
       
       dispatch({ type: 'setUser', payload: userData });
-    } catch (err: BASE_MODELS.Error) {
+    } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Login failed' });
       throw err;
     }
@@ -54,7 +58,7 @@ export const AuthProvider = ({ children }) => {
       if (refreshToken) setRefreshToken(refreshToken);
       
       dispatch({ type: 'setUser', payload: newUser });
-    } catch (err: BASE_MODELS.Error) {
+    } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Registration failed' });
     }
   };

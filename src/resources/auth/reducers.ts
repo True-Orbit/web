@@ -1,4 +1,7 @@
-export const setUser = (state, { payload }) => {
+import { MODELS as BASE_MODELS } from '@/resources/base';
+import { MODELS } from '.';
+
+export const setUser = (state: MODELS.State, { payload }: BASE_MODELS.Action) => {
   return {
     ...state,
     user: payload,
@@ -6,14 +9,14 @@ export const setUser = (state, { payload }) => {
   };
 }
 
-export const setLoading = (state, { payload }) => {
+export const setLoading = (state: MODELS.State, { payload }: BASE_MODELS.Action) => {
   return {
     ...state,
     loading: payload,
   };
 }
 
-export const setError = (state, { payload }) => {
+export const setError = (state: MODELS.State, { payload }: BASE_MODELS.Action) => {
   return {
     ...state,
     error: payload,
