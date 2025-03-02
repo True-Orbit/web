@@ -1,7 +1,7 @@
 export interface AuthUser {
   id: string;
   email: string;
-  roles: string;
+  roles: string[];
 }
 
 export interface Credentials {
@@ -20,4 +20,5 @@ export interface Context {
   register: (credentials: Credentials) => Promise<void>;
   login: (credentials: Credentials) => Promise<void>;
   logout: () => Promise<void>;
+  isAuthenticated: boolean;
 }

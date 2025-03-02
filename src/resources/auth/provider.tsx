@@ -14,6 +14,7 @@ import {
   MODELS,
   DEFAULTS,
   reducers,
+  isAuthenticated,
 } from '.';
 
 interface Props {
@@ -79,7 +80,8 @@ export const AuthProvider = ({ children }: Props) => {
     state,
     login,
     register,
-    logout
+    logout,
+    isAuthenticated: isAuthenticated(state.user),
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
