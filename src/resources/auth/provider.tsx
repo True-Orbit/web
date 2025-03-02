@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }: Props) => {
       if (refreshToken) setRefreshToken(refreshToken);
 
       dispatch({ type: 'setUser', payload: userData });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Login failed' });
       throw err;
@@ -46,6 +47,7 @@ export const AuthProvider = ({ children }: Props) => {
       if (refreshToken) setRefreshToken(refreshToken);
 
       dispatch({ type: 'setUser', payload: newUser });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Registration failed' });
     }

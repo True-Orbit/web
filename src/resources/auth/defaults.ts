@@ -14,8 +14,8 @@ export const state: MODELS.State = {
 
 export const context: MODELS.Context = {
   state,
-  register: async (credentials: MODELS.Credentials) => {},
-  login: async (credentials: MODELS.Credentials) => {},
+  register: async (_credentials: MODELS.Credentials) => {},
+  login: async (_credentials: MODELS.Credentials) => {},
   logout: async () => {},
   isAuthenticated: false,
 };

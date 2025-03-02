@@ -1,4 +1,4 @@
-import { AUTH_TOKEN_NAME, REFRESH_TOKEN_NAME } from '../../resources/auth';
+import { AUTH_TOKEN_NAME, REFRESH_TOKEN_NAME } from '@/resources/auth';
 
 export const getAuthToken = () => {
   return localStorage.getItem(AUTH_TOKEN_NAME);
