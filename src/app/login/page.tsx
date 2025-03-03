@@ -2,8 +2,10 @@ import { Container } from '@mui/material';
 
 const Login = () => {
   return (
-    <h1>Sign In</h1>
+    <Container>
+      <h1>Sign In</h1>
+    </Container>
   );
-}
+};
 
 export default Login;

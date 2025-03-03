@@ -7,9 +7,5 @@ interface Props {
 }
 
 export const PageContainer = ({ children }: Props) => {
-  return (
-    <StyledPageContainer className="pageContainer">
-      {children}
-    </StyledPageContainer>
-  );
+  return <StyledPageContainer className="pageContainer">{children}</StyledPageContainer>;
 };

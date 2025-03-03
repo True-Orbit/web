@@ -10,11 +10,11 @@ export const useBrowserColorScheme = (): 'light' | 'dark' => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleChange = (e: any) => {
       setIsLightMode(e.matches);
-    }
+    };
     mediaQuery.addEventListener('change', handleChange);
 
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   return isLightMode ? 'light' : 'dark';
-}
+};

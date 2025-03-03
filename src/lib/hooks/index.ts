@@ -1,1 +1,1 @@
-export * from "./browserColorScheme";
+export * from './browserColorScheme';

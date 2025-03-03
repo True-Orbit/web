@@ -2,7 +2,6 @@ import { AUTH_TOKEN_NAME, REFRESH_TOKEN_NAME, MODELS } from '.';
 
 export const isAuthenticated = (user: MODELS.AuthUser) => !!user;
 
-
 export const getAuthToken = () => {
   return localStorage.getItem(AUTH_TOKEN_NAME);
 };
@@ -26,4 +25,3 @@ export const setRefreshToken = (token: string) => {
 export const removeRefreshToken = () => {
   localStorage.removeItem(REFRESH_TOKEN_NAME);
 };
-
