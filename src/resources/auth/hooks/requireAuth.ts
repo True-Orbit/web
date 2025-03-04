@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useContext } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
@@ -6,7 +6,9 @@ import { setPreloginLocation } from '@/lib/utils';
 import { Context as AuthContext } from '..';
 
 export const useRequireAuth = () => {
-  const { state: { user, loading } } = useContext(AuthContext);
+  const {
+    state: { user, loading },
+  } = useContext(AuthContext);
   const router = useRouter();
   const currentPath = usePathname();
 

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -20,11 +20,14 @@ export const LoginForm = () => {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
-      password: ''
-    }
+      password: '',
+    },
   });
 
-  const { handleSubmit, formState: { isSubmitting } } = zodMethods;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = zodMethods;
 
   const { login } = useContext(AuthContext);
 
@@ -41,19 +44,13 @@ export const LoginForm = () => {
       <Typography variant="h5" component="h1" gutterBottom>
         Login
       </Typography>
-      
+
       <FormProvider {...zodMethods}>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 2 }}>
           <Email.field />
           <Password.field />
-          
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            disabled={isSubmitting}
-            sx={{ mt: 3, mb: 2 }}
-          >
+
+          <Button type="submit" fullWidth variant="contained" disabled={isSubmitting} sx={{ mt: 3, mb: 2 }}>
             {isSubmitting ? 'Logging in...' : 'Log in'}
           </Button>
         </Box>

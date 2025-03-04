@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -8,14 +8,16 @@ import { Button, Box, Paper, Typography } from '@mui/material';
 import { Email, Password } from '@/components/fields';
 import { Context as AuthContext } from '@/resources/auth';
 
-const registrationSchema = z.object({
-  email: Email.basicSchema,
-  password: Password.registrationSchema,
-  confirmPassword: z.string().min(1, { message: 'Please confirm your password' })
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+const registrationSchema = z
+  .object({
+    email: Email.basicSchema,
+    password: Password.registrationSchema,
+    confirmPassword: z.string().min(1, { message: 'Please confirm your password' }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
 
 type RegistrationFormValues = z.infer<typeof registrationSchema>;
 
@@ -27,11 +29,14 @@ export const RegistrationForm = () => {
     defaultValues: {
       email: '',
       password: '',
-      confirmPassword: ''
-    }
+      confirmPassword: '',
+    },
   });
 
-  const { handleSubmit, formState: { isSubmitting } } = methods;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
 
   const onSubmit = async (data: RegistrationFormValues) => {
     try {
@@ -46,28 +51,16 @@ export const RegistrationForm = () => {
       <Typography variant="h5" component="h1" gutterBottom>
         Create an Account
       </Typography>
-      
+
       <FormProvider {...methods}>
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <Email.field />
-          
-          <Password.field 
-            name="password"
-            label="Password"
-          />
-          
-          <Password.field 
-            name="confirmPassword" 
-            label="Confirm Password" 
-          />
-          
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            disabled={isSubmitting}
-            sx={{ mt: 3, mb: 2 }}
-          >
+
+          <Password.field name="password" label="Password" />
+
+          <Password.field name="confirmPassword" label="Confirm Password" />
+
+          <Button type="submit" fullWidth variant="contained" disabled={isSubmitting} sx={{ mt: 3, mb: 2 }}>
             {isSubmitting ? 'Creating Account...' : 'Register'}
           </Button>
         </Box>

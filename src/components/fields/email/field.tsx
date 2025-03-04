@@ -7,9 +7,12 @@ interface Props {
 }
 
 const EmailField: FC<Props> = ({ name = 'email' }: Props) => {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
   const errorMessage = errors[name]?.message as string | undefined;
-  
+
   return (
     <TextField
       id={name}
