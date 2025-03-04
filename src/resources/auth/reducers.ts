@@ -3,12 +3,12 @@ import { MODELS } from '.';
 
 export const setAuthUser = (state: MODELS.State, { payload }: BASE_MODELS.Action) => ({
   ...state,
-  user: payload,
+  authUser: payload,
 });
 
 export const setUser = (state: MODELS.State, { payload }: BASE_MODELS.Action) => ({
   ...state,
-  user: payload,
+  user: { ...state.authUser, ...payload },
   loading: false,
 });
 

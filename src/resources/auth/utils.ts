@@ -1,6 +1,6 @@
 import { MODELS, api } from '.';
 
-export const isAuthenticated = ({ user }: MODELS.State) => !!user && !user.roles.includes('guest');
+export const isAuthenticated = ({ user }: MODELS.State) => !!user && user.role !== 'guest';
 
 const maxRetries = 3;
 const delayMs = 1000;

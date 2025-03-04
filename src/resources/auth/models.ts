@@ -3,7 +3,7 @@ import { MODELS as userModels } from '@/resources/users';
 export interface AuthUser {
   id: string;
   email: string;
-  roles: string[];
+  role: string;
 }
 
 export interface Credentials {
