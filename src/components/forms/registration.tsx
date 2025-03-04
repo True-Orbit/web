@@ -1,10 +1,10 @@
 'use client';
 
 import { useContext } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { Button, Box, Paper, Typography } from '@mui/material';
+import { useForm, FormProvider } from 'react-hook-form';
+import * as z from 'zod';
 import { Email, Password } from '@/components/fields';
 import { Context as AuthContext } from '@/resources/auth';
 

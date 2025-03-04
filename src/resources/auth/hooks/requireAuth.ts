@@ -17,7 +17,7 @@ export const useRequireAuth = () => {
       setPreloginLocation(currentPath);
       router.push(`/login`);
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, currentPath]);
 
   return { user, loading };
 };

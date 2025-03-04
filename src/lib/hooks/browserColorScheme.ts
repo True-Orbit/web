@@ -14,7 +14,7 @@ export const useBrowserColorScheme = (): 'light' | 'dark' => {
     mediaQuery.addEventListener('change', handleChange);
 
     return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  }, [isLightMode]);
 
   return isLightMode ? 'light' : 'dark';
 };

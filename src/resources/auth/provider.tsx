@@ -3,11 +3,11 @@
 import React, { useReducer, useEffect, ReactNode, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { ErrorContext } from '@/components/error';
+import { getPreloginLocation, clearPreloginLocation } from '@/lib/utils';
 import { getAuthToken, setAuthToken, removeAuthToken, setRefreshToken, removeRefreshToken } from '@/resources/auth';
 
-import { getPreloginLocation, clearPreloginLocation } from '@/lib/utils';
 
-import { ErrorContext } from '@/components/error';
 
 import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated } from '.';
 
