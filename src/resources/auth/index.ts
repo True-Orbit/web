@@ -1,8 +1,8 @@
 import { createReducer } from '@/lib/utils';
 
 export * as MODELS from './models';
-export * as DEFAULTS from './defaults';
 export * from './constants';
+export * as DEFAULTS from './defaults';
 export * as api from './api';
 export * from './utils';
 

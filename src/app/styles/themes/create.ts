@@ -1,3 +1,5 @@
+'use client';
+
 import { createTheme as createMuiTheme } from '@mui/material/styles';
 
 interface Props {

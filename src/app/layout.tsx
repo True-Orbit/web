@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 import { createTheme } from '@/app/styles/themes';
 
@@ -15,7 +16,7 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-const providers = [AuthProvider, CssBaseline];
+const providers = [ErrorProvider, AuthProvider, CssBaseline];
 const language = 'en';
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -23,16 +24,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const theme = useMemo(() => createTheme({ browserColorScheme }), [browserColorScheme]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <ErrorProvider>
-        <ProviderList providers={providers}>
-          <html lang={language}>
-            <body>
+    <html lang={language}>
+      <body>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <ProviderList providers={providers}>
               <PageContainer>{children}</PageContainer>
-            </body>
-          </html>
-        </ProviderList>
-      </ErrorProvider>
-    </ThemeProvider>
+            </ProviderList>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
+      </body>
+    </html>
   );
 }

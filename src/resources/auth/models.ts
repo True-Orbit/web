@@ -1,3 +1,5 @@
+import { MODELS as userModels } from '@/resources/users';
+
 export interface AuthUser {
   id: string;
   email: string;
@@ -10,9 +12,9 @@ export interface Credentials {
 }
 
 export interface State {
-  user?: AuthUser;
+  authUser: AuthUser | null;
+  user: userModels.User | null;
   loading: boolean;
-  error?: string;
 }
 
 export interface Context {

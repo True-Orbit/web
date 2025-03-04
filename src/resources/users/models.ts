@@ -8,6 +8,9 @@ export interface Core {
   profileUrl: string;
   handle: string;
   avatar: string;
+  roles: string[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface User extends BASE_MODELS.Resource, Core {}

@@ -5,11 +5,8 @@ import { useRouter } from 'next/navigation';
 
 import { ErrorContext } from '@/components/error';
 import { getPreloginLocation, clearPreloginLocation } from '@/lib/utils';
-import { getAuthToken, setAuthToken, removeAuthToken, setRefreshToken, removeRefreshToken } from '@/resources/auth';
 
-
-
-import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated } from '.';
+import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated, fetchCurrentUser } from '.';
 
 interface Props {
   children: ReactNode;
@@ -22,24 +19,31 @@ export const AuthProvider = ({ children }: Props) => {
 
   useEffect(() => {
     const initializeAuth = async () => {
-      if (!getAuthToken()) return dispatch({ type: 'setLoading', payload: false });
-    };
+      try {
+        const user = await fetchCurrentUser();
+        dispatch({ type: 'setUser', payload: user });
+        dispatch({ type: 'setLoading', payload: false });
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
+        dispatch({ type: 'setLoading', payload: false });
+        router.push('/login');
+      }
+    };
+    dispatch({ type: 'setLoading', payload: true });
     initializeAuth();
   }, []);
 
   const login = async ({ email, password }: MODELS.Credentials) => {
     try {
-      const response = await api.login({ email, password });
-      const { authToken, refreshToken, user: userData } = response.data;
+      await api.login({ email, password });
+      const user = await fetchCurrentUser();
 
-      setAuthToken(authToken);
-      if (refreshToken) setRefreshToken(refreshToken);
-
-      dispatch({ type: 'setUser', payload: userData });
+      dispatch({ type: 'setUser', payload: user });
       const nextPage = getPreloginLocation() || '/feed';
       clearPreloginLocation();
       router.push(nextPage);
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       displayError(err.message || 'Login failed');
@@ -49,16 +53,14 @@ export const AuthProvider = ({ children }: Props) => {
 
   const register = async (userData: MODELS.Credentials) => {
     try {
-      const response = await api.register(userData);
-      const { authToken, refreshToken, user: newUser } = response.data;
+      await api.register(userData);
+      const user = await fetchCurrentUser();
 
-      setAuthToken(authToken);
-      if (refreshToken) setRefreshToken(refreshToken);
-
-      dispatch({ type: 'setUser', payload: newUser });
+      dispatch({ type: 'setUser', payload: user });
       const nextPage = getPreloginLocation() || '/feed';
       clearPreloginLocation();
       router.push(nextPage);
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.log('Registration error:', err);
@@ -68,13 +70,13 @@ export const AuthProvider = ({ children }: Props) => {
 
   const logout = async () => {
     try {
-      if (getAuthToken()) await api.logout();
+      await api.logout();
+      dispatch({ type: 'setUser', payload: null });
+      router.push('/');
     } catch (err) {
       console.error('Logout error:', err);
     } finally {
-      removeAuthToken();
-      removeRefreshToken();
-      dispatch({ type: 'setUser', payload: undefined });
+      dispatch({ type: 'setUser', payload: null });
     }
   };
 

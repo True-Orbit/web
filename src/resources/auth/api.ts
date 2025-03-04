@@ -7,3 +7,5 @@ export const login = (credentials: MODELS.Credentials) => apiClient.post('/auth/
 export const register = (userData: MODELS.Credentials) => apiClient.post('/auth/register', userData);
 
 export const logout = () => apiClient.post('/auth/logout');
+
+export const me = () => apiClient.get('/api/me');
