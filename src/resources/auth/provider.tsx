@@ -7,6 +7,8 @@ import { getAuthToken, setAuthToken, removeAuthToken, setRefreshToken, removeRef
 
 import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated } from '.';
 
+import { getPreloginLocation, clearPreloginLocation } from '@/lib/utils';
+
 interface Props {
   children: ReactNode;
 }
@@ -33,7 +35,9 @@ export const AuthProvider = ({ children }: Props) => {
       if (refreshToken) setRefreshToken(refreshToken);
 
       dispatch({ type: 'setUser', payload: userData });
-      router.push('/feed');
+      const nextPage = getPreloginLocation() || '/feed';
+      clearPreloginLocation();
+      router.push(nextPage);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Login failed' });
