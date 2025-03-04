@@ -3,14 +3,14 @@ import { useState, createContext, useEffect } from 'react';
 import { Toast, setupGlobalErrorHandlers, unsetGlobalErrorHandlers } from '.';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-export const ErrorContext = createContext({ error: null, displayError: (error: any) => {} });
+export const ErrorContext = createContext({ error: '', displayError: (error: string) => {} });
 
 interface Props {
   children: React.ReactNode;
 }
 
 export const ErrorProvider = ({ children }: Props) => {
-  const [error, displayError] = useState(null);
+  const [error, displayError] = useState('');
 
   useEffect(() => {
     setupGlobalErrorHandlers();

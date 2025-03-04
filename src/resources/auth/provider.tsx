@@ -1,19 +1,22 @@
 'use client';
 
-import React, { useReducer, useEffect, ReactNode } from 'react';
+import React, { useReducer, useEffect, ReactNode, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { getAuthToken, setAuthToken, removeAuthToken, setRefreshToken, removeRefreshToken } from '@/resources/auth';
 
-import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated } from '.';
-
 import { getPreloginLocation, clearPreloginLocation } from '@/lib/utils';
+
+import { ErrorContext } from '@/components/error';
+
+import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated } from '.';
 
 interface Props {
   children: ReactNode;
 }
 
 export const AuthProvider = ({ children }: Props) => {
+  const { displayError } = useContext(ErrorContext);
   const [state, dispatch] = useReducer(reducers, DEFAULTS.context);
   const router = useRouter();
 
@@ -26,7 +29,6 @@ export const AuthProvider = ({ children }: Props) => {
   }, []);
 
   const login = async ({ email, password }: MODELS.Credentials) => {
-    dispatch({ type: 'setError', payload: undefined });
     try {
       const response = await api.login({ email, password });
       const { authToken, refreshToken, user: userData } = response.data;
@@ -40,13 +42,12 @@ export const AuthProvider = ({ children }: Props) => {
       router.push(nextPage);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      dispatch({ type: 'setError', payload: err.response?.data?.message || 'Login failed' });
+      displayError(err.message || 'Login failed');
       throw err;
     }
   };
 
   const register = async (userData: MODELS.Credentials) => {
-    dispatch({ type: 'setError', payload: undefined });
     try {
       const response = await api.register(userData);
       const { authToken, refreshToken, user: newUser } = response.data;
@@ -55,9 +56,13 @@ export const AuthProvider = ({ children }: Props) => {
       if (refreshToken) setRefreshToken(refreshToken);
 
       dispatch({ type: 'setUser', payload: newUser });
+      const nextPage = getPreloginLocation() || '/feed';
+      clearPreloginLocation();
+      router.push(nextPage);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      dispatch({ type: 'setError', payload: err.response?.data?.message || 'Registration failed' });
+      console.log('Registration error:', err);
+      displayError(err.message || 'Registration failed');
     }
   };
 

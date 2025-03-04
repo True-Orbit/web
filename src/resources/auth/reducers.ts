@@ -15,11 +15,3 @@ export const setLoading = (state: MODELS.State, { payload }: BASE_MODELS.Action)
     loading: payload,
   };
 };
-
-export const setError = (state: MODELS.State, { payload }: BASE_MODELS.Action) => {
-  return {
-    ...state,
-    error: payload,
-    loading: false,
-  };
-};
