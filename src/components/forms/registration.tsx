@@ -8,13 +8,9 @@ import { Button, Box, Paper, Typography } from '@mui/material';
 import { Email, Password } from '@/components/fields';
 import { Context as AuthContext } from '@/resources/auth';
 
-// @ts-ignore
-const passwordSchema = process.env.APP_ENV === 'local' ? Password.basicSchema : Password.registrationSchema;
-
 const registrationSchema = z.object({
   email: Email.basicSchema,
-  // password: passwordSchema,
-  password: Password.basicSchema,
+  password: Password.registrationSchema,
   confirmPassword: z.string().min(1, { message: 'Please confirm your password' })
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",
