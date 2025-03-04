@@ -9,8 +9,8 @@ import { Email, Password } from '@/components/fields';
 import { Context as AuthContext } from '@/resources/auth';
 
 const loginSchema = z.object({
-  email: Email.schema,
-  password: Password.schema,
+  email: Email.basicSchema,
+  password: Password.basicSchema,
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;

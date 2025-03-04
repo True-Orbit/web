@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useContext } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { setPreloginLocation } from '@/lib/utils';

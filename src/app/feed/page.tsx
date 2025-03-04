@@ -1,8 +1,7 @@
 'use client';
 
-import { useContext } from 'react';
 import { Container } from '@mui/material';
-import { Context as AuthContext, useRequireAuth } from '@/resources/auth';
+import { useRequireAuth } from '@/resources/auth';
 
 const Feed = () => {
   useRequireAuth();
