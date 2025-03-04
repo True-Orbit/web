@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useReducer, useEffect, ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { getAuthToken, setAuthToken, removeAuthToken, setRefreshToken, removeRefreshToken } from '@/resources/auth';
 
@@ -12,8 +13,8 @@ interface Props {
 
 export const AuthProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducers, DEFAULTS.context);
+  const router = useRouter();
 
-  // Check for existing session on component mount
   useEffect(() => {
     const initializeAuth = async () => {
       if (!getAuthToken()) return dispatch({ type: 'setLoading', payload: false });
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }: Props) => {
       if (refreshToken) setRefreshToken(refreshToken);
 
       dispatch({ type: 'setUser', payload: userData });
+      router.push('/feed');
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       dispatch({ type: 'setError', payload: err.response?.data?.message || 'Login failed' });

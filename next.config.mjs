@@ -9,7 +9,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  
+  experimental: {
+    serverComponents: false,
+  },
   async redirects() {
     return [
       {

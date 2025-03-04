@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { createTheme } from '@/app/styles/themes';
 
 import { ProviderList, PageContainer } from '@/components/basic';
-import { ErrorBoundary, ErrorProvider } from '@/components/error';
+import { ErrorProvider } from '@/components/error';
 import { useBrowserColorScheme } from '@/lib/hooks';
 import { AuthProvider } from '@/resources/auth';
 
@@ -23,15 +23,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ThemeProvider theme={theme}>
       <ErrorProvider>
-        <ErrorBoundary>
-          <ProviderList providers={providers}>
-            <html lang={language}>
-              <body>
-                <PageContainer>{children}</PageContainer>
-              </body>
-            </html>
-          </ProviderList>
-        </ErrorBoundary>
+        <ProviderList providers={providers}>
+          <html lang={language}>
+            <body>
+              <PageContainer>{children}</PageContainer>
+            </body>
+          </html>
+        </ProviderList>
       </ErrorProvider>
     </ThemeProvider>
   );

@@ -1,9 +1,12 @@
+"use client";
+
+import { useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button, Box, Paper, Typography } from '@mui/material';
 import { Email, Password } from '@/components/fields';
-
+import { Context as AuthContext } from '@/resources/auth';
 
 const loginSchema = z.object({
   email: Email.schema,
@@ -13,7 +16,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export const LoginForm = () => {
-  const methods = useForm<LoginFormValues>({
+  const zodMethods = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
@@ -21,11 +24,13 @@ export const LoginForm = () => {
     }
   });
 
-  const { handleSubmit, formState: { isSubmitting } } = methods;
+  const { handleSubmit, formState: { isSubmitting } } = zodMethods;
+
+  const { login } = useContext(AuthContext);
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-
+      login(data);
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -37,7 +42,7 @@ export const LoginForm = () => {
         Login
       </Typography>
       
-      <FormProvider {...methods}>
+      <FormProvider {...zodMethods}>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 2 }}>
           <Email.field />
           <Password.field />

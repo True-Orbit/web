@@ -1,9 +1,9 @@
 import { apiClient } from '@/lib/utils';
 
-import { models } from '.';
+import { MODELS } from '.';
 
-export const login = (credentials: models.Credentials) => apiClient.post('/auth/login', credentials);
+export const login = (credentials: MODELS.Credentials) => apiClient.post('/auth/login', credentials);
 
-export const register = (userData: models.Credentials) => apiClient.post('/auth/register', userData);
+export const register = (userData: MODELS.Credentials) => apiClient.post('/auth/register', userData);
 
 export const logout = () => apiClient.post('/auth/logout');
