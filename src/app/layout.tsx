@@ -1,4 +1,5 @@
 'use client';
+import { useMemo } from 'react';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
@@ -14,11 +15,12 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
+const providers = [AuthProvider, CssBaseline];
+const language = 'en';
+
 export default function RootLayout({ children }: RootLayoutProps) {
   const browserColorScheme = useBrowserColorScheme();
-  const theme = createTheme({ browserColorScheme });
-  const providers = [AuthProvider, CssBaseline];
-  const language = 'en';
+  const theme = useMemo(() => createTheme({ browserColorScheme }), [browserColorScheme]);
 
   return (
     <ThemeProvider theme={theme}>

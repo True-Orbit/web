@@ -4,7 +4,8 @@ import { Container } from '@mui/material';
 import { useRequireAuth } from '@/resources/auth';
 
 const Feed = () => {
-  useRequireAuth();
+  const { user } = useRequireAuth();
+  console.log('user: ', user);
 
   return (
     <Container>

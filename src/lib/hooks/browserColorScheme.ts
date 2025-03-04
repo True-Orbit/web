@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 
 export const useBrowserColorScheme = (): 'light' | 'dark' => {
-  const [isLightMode, setIsLightMode] = useState(true);
-
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
+  const [isLightMode, setIsLightMode] = useState(mediaQuery.matches);
+  
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
-    setIsLightMode(mediaQuery.matches);
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleChange = (e: any) => {
-      setIsLightMode(e.matches);
+      if (isLightMode !== e.matches) setIsLightMode(e.matches);
     };
     mediaQuery.addEventListener('change', handleChange);
 
