@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import { MODELS, api } from '.';
 
 export const isAuthenticated = ({ user }: MODELS.State) => !!user && user.role !== 'guest';
@@ -7,10 +9,18 @@ const delayMs = 1000;
 
 export const fetchCurrentUser = async () => {
   let attempt = 0;
-  while (attempt < maxRetries) {
+  let tryAgain = true;
+  while (tryAgain && attempt < maxRetries) {
     try {
-      return await api.me();
-    } catch (error) {
+      await api.me();
+    } catch (err: unknown) {
+      const error = err as AxiosError;
+      const { status } = error;
+        
+      if (status === 401) {
+        tryAgain = false;
+        return null;
+      }
       console.error(`Attempt ${attempt + 1} failed:`, error);
     }
     await new Promise((resolve) => setTimeout(resolve, delayMs));

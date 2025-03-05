@@ -5,8 +5,7 @@ import { styled } from '@mui/material/styles';
 export const StyledToast = styled(Box)({
   position: 'fixed',
   top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  right: 0,
   padding: 20,
   borderRadius: 4,
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',

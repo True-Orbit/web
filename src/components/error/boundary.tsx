@@ -40,6 +40,6 @@ export class ErrorBoundary extends Component<any, any> {
   }
 
   render() {
-    return this.state.error ? Toast(this.state.error, this.state.errorInfo) : this.props.children;
+    return this.state.error ? Toast(this.state.error || this.state.errorInfo) : this.props.children;
   }
 }

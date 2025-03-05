@@ -19,16 +19,11 @@ export const AuthProvider = ({ children }: Props) => {
 
   useEffect(() => {
     const initializeAuth = async () => {
-      try {
-        const user = await fetchCurrentUser();
+      const user = await fetchCurrentUser();
+      if (user) {
         dispatch({ type: 'setUser', payload: user });
-        dispatch({ type: 'setLoading', payload: false });
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (err: any) {
-        dispatch({ type: 'setLoading', payload: false });
-        router.push('/login');
       }
+      dispatch({ type: 'setLoading', payload: false });
     };
     dispatch({ type: 'setLoading', payload: true });
     initializeAuth();
@@ -85,7 +80,7 @@ export const AuthProvider = ({ children }: Props) => {
     login,
     register,
     logout,
-    isAuthenticated: isAuthenticated(state.user),
+    isAuthenticated: isAuthenticated(state),
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
