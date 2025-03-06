@@ -1,3 +1,4 @@
+import { MODELS as AUTH_MODELS } from '@/resources/auth';
 import { MODELS as BASE_MODELS } from '@/resources/base';
 import { searchReducer } from '.';
 
@@ -6,11 +7,12 @@ export interface Core {
   firstName: string;
   lastName: string;
   profileUrl: string;
+  avatarUrl: string;
   handle: string;
-  avatar: string;
+  role: string;
 }
 
-export interface User extends BASE_MODELS.Resource, Core {}
+export interface User extends BASE_MODELS.Resource, AUTH_MODELS.AuthUser, Core {}
 
 export interface SearchContext extends BASE_MODELS.SearchContext<User> {
   state: SearchState;

@@ -1,1 +1,3 @@
-export interface Colors {}
+export interface Colors {
+  deleteMe?: string;
+}

@@ -7,8 +7,9 @@ export const user: MODELS.User = {
   firstName: '',
   lastName: '',
   profileUrl: '',
+  avatarUrl: '',
   handle: '',
-  avatar: '',
+  role: '',
 };
 
 export const SearchState: MODELS.SearchState = {

@@ -1,19 +1,14 @@
+'use client';
+
 import { createTheme as createMuiTheme } from '@mui/material/styles';
-import { models } from '@/app/styles/colors';
 
-declare module '@mui/material/styles' {
-  interface Theme {
-    colors: models.Colors;
-  }
-
-  interface ThemeOptions {
-    colors: models.Colors;
-  }
+interface Props {
+  browserColorScheme: 'light' | 'dark';
 }
 
-export const createTheme = () =>
-  createMuiTheme({
+export const createTheme = ({ browserColorScheme }: Props) => {
+  console.log('browserColorScheme:', browserColorScheme);
+  return createMuiTheme({
     colors: {},
   });
-
-export default createTheme;
+};
