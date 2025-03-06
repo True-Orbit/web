@@ -12,7 +12,6 @@ export interface Credentials {
 }
 
 export interface State {
-  authUser: AuthUser | null;
   user: userModels.User | null;
   loading: boolean;
 }

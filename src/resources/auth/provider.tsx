@@ -14,12 +14,13 @@ interface Props {
 
 export const AuthProvider = ({ children }: Props) => {
   const { displayError } = useContext(ErrorContext);
-  const [state, dispatch] = useReducer(reducers, DEFAULTS.context);
+  const [state, dispatch] = useReducer(reducers, DEFAULTS.state);
   const router = useRouter();
 
   useEffect(() => {
     const initializeAuth = async () => {
       const user = await fetchCurrentUser();
+      console.log('user', user);
       if (user) {
         dispatch({ type: 'setUser', payload: user });
       }
@@ -58,7 +59,7 @@ export const AuthProvider = ({ children }: Props) => {
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      console.log('Registration error:', err);
+      console.error('Registration error:', err);
       displayError(err.message || 'Registration failed');
     }
   };

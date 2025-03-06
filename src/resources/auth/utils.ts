@@ -12,7 +12,9 @@ export const fetchCurrentUser = async () => {
   let tryAgain = true;
   while (tryAgain && attempt < maxRetries) {
     try {
-      await api.me();
+      const user = await api.me();
+
+      return user;
     } catch (err: unknown) {
       const error = err as AxiosError;
       const { status } = error;

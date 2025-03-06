@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const createTheme = ({ browserColorScheme }: Props) => {
-  console.log('browserColorScheme', browserColorScheme);
 
   return createMuiTheme({
     colors: {},

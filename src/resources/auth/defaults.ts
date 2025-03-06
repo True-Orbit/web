@@ -1,7 +1,6 @@
 import { MODELS } from '.';
 
 export const state: MODELS.State = {
-  authUser: null,
   user: null,
   loading: true,
 };
