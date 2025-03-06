@@ -1,5 +1,5 @@
-import { MODELS as BASE_MODELS } from '@/resources/base';
 import { MODELS as AUTH_MODELS } from '@/resources/auth';
+import { MODELS as BASE_MODELS } from '@/resources/base';
 import { searchReducer } from '.';
 
 export interface Core {

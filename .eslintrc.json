@@ -36,6 +36,7 @@
         "patterns": ["../../*"]
       }
     ],
+    "react-hooks/exhaustive-deps": "off",
     "no-duplicate-imports": "error",
     "import/order": [
       "error",

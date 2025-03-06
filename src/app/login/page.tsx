@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
 import { useContext, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Container } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { LoginForm } from '@/components/forms';
 import { Context as AuthContext } from '@/resources/auth';
 

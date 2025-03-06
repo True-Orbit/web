@@ -18,7 +18,7 @@ export const fetchCurrentUser = async () => {
     } catch (err: unknown) {
       const error = err as AxiosError;
       const { status } = error;
-        
+
       if (status === 401) {
         tryAgain = false;
         return null;
@@ -29,4 +29,4 @@ export const fetchCurrentUser = async () => {
     attempt++;
   }
   throw new Error(`Fetching current user failed after ${maxRetries} attempts`);
-}
+};
