@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { ErrorContext } from '@/components/error';
 import { getPreloginLocation, clearPreloginLocation } from '@/lib/utils';
-
+import { isUserComplete, MODELS as UserModels } from '@/resources/users';
 import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated, fetchCurrentUser } from '.';
 
 interface Props {
@@ -20,9 +20,13 @@ export const AuthProvider = ({ children }: Props) => {
   useEffect(() => {
     const initializeAuth = async () => {
       const user = await fetchCurrentUser();
-      console.log('user', user);
       if (user) {
         dispatch({ type: 'setUser', payload: user });
+        if (!isUserComplete(user as unknown as UserModels.User)) {
+          router.push('/complete-profile');
+        }
+      } else {
+        router.push('/login');
       }
       dispatch({ type: 'setLoading', payload: false });
     };

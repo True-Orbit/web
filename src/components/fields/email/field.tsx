@@ -4,9 +4,11 @@ import { useFormContext } from 'react-hook-form';
 
 interface Props {
   name?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }
 
-const EmailField: FC<Props> = ({ name = 'email' }: Props) => {
+const EmailField: FC<Props> = ({ name = 'email', ...props }: Props) => {
   const {
     register,
     formState: { errors },
@@ -18,11 +20,10 @@ const EmailField: FC<Props> = ({ name = 'email' }: Props) => {
       id={name}
       label="Email"
       type="email"
-      fullWidth
-      margin="normal"
       error={!!errors[name]}
       helperText={errorMessage}
       {...register(name)}
+      {...props}
     />
   );
 };

@@ -8,6 +8,8 @@ import { useFormContext } from 'react-hook-form';
 interface Props {
   name?: string;
   label?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }
 
 const PasswordField: FC<Props> = ({ name = 'password', label = 'Password' }: Props) => {
@@ -22,11 +24,9 @@ const PasswordField: FC<Props> = ({ name = 'password', label = 'Password' }: Pro
       id={name}
       label={label}
       type={showPassword ? 'text' : 'password'}
-      fullWidth
-      margin="normal"
       error={!!errors[name]}
       helperText={errors[name]?.message as string | undefined}
-      InputProps={{
+      slotProps={{ input: {
         endAdornment: (
           <InputAdornment position="end">
             <IconButton
@@ -38,7 +38,7 @@ const PasswordField: FC<Props> = ({ name = 'password', label = 'Password' }: Pro
             </IconButton>
           </InputAdornment>
         ),
-      }}
+      }}}
       {...register(name)}
     />
   );
