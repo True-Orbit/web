@@ -55,13 +55,13 @@ export const RegistrationForm = () => {
 
       <FormProvider {...methods}>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Email.field fullWidth margin="normal" />
+          <Email.field />
 
-          <Password.field fullWidth margin="normal" name="password" label="Password" />
+          <Password.field name="password" label="Password" />
 
-          <Password.field fullWidth margin="normal" name="confirmPassword" label="Confirm Password" />
+          <Password.field name="confirmPassword" label="Confirm Password" />
 
-          <Button type="submit" fullWidth variant="contained" disabled={isSubmitting}>
+          <Button type="submit" variant="contained" disabled={isSubmitting}>
             {isSubmitting ? 'Creating Account...' : 'Register'}
           </Button>
         </Box>

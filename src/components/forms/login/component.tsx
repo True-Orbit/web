@@ -49,10 +49,10 @@ export const LoginForm = () => {
 
       <FormProvider {...zodMethods}>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Email.field fullWidth margin="normal"/>
-          <Password.field fullWidth margin="normal" />
+          <Email.field />
+          <Password.field />
 
-          <Button type="submit" fullWidth variant="contained" disabled={isSubmitting}>
+          <Button type="submit" variant="contained" disabled={isSubmitting}>
             {isSubmitting ? 'Logging in...' : 'Log in'}
           </Button>
         </Box>

@@ -1,11 +1,11 @@
 'use client';
 
 import { Container } from '@mui/material';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { CompleteProfileForm } from '@/components/forms';
 
 const CompleteProfile = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <Container>

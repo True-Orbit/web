@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { TextField } from '@mui/material';
-import { useFormContext } from 'react-hook-form';
 import humanizeString from 'humanize-string';
+import { useFormContext } from 'react-hook-form';
+
 
 interface Props {
   name: string;
