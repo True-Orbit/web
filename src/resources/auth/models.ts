@@ -12,7 +12,7 @@ export interface Credentials {
 }
 
 export interface State {
-  user: userModels.User | null;
+  user: userModels.User;
   loading: boolean;
 }
 

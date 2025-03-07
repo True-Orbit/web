@@ -12,6 +12,17 @@ export const user: MODELS.User = {
   role: '',
 };
 
+export const guest: MODELS.User = {
+  ...baseDefaults.resource,
+  email: 'guest@example.com',
+  firstName: 'guest',
+  lastName: '',
+  profileUrl: '',
+  avatarUrl: '',
+  handle: '',
+  role: 'guest',
+};
+
 export const SearchState: MODELS.SearchState = {
   ...baseDefaults.searchState,
 };

@@ -25,11 +25,11 @@ export const CompleteProfileForm: FC = () => {
   const { handleSubmit } = methods;
 
   const onSubmit = (data: ProfileFormData) => {
-    console.log('Profile data:', data);
+    
   };
 
   return (
-    <StyledCompleteProfileForm>
+    <StyledCompleteProfileForm elevation={3}>
       <Typography variant="h4" component="h1" gutterBottom>
         Complete Profile
       </Typography>
