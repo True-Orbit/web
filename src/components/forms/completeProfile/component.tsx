@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { FC, useContext } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -7,9 +7,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Text } from '@/components/fields';
-import { api as userApi } from '@/resources/users';
 import { Context as AuthContext } from '@/resources/auth';
-import { StyledCompleteProfileForm } from ".";
+import { api as userApi } from '@/resources/users';
+import { StyledCompleteProfileForm } from '.';
 
 const profileSchema = z.object({
   firstName: z.string().min(1, { message: 'First name is required' }),
@@ -20,7 +20,10 @@ const profileSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export const CompleteProfileForm: FC = () => {
-  const { state: { user }, auth } = useContext(AuthContext);
+  const {
+    state: { user },
+    auth,
+  } = useContext(AuthContext);
   const methods = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
   });

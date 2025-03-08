@@ -11,14 +11,14 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.response.use(
-  response => response,
-  async error => {
+  (response) => response,
+  async (error) => {
     const originalRequest = error.config;
     if (
-      error.response 
-      && error.response.status === 401 
-      && !originalRequest._retry
-      && !error.response.request.responseURL.includes("/auth/refresh")
+      error.response &&
+      error.response.status === 401 &&
+      !originalRequest._retry &&
+      !error.response.request.responseURL.includes('/auth/refresh')
     ) {
       originalRequest._retry = true;
       try {
@@ -35,7 +35,7 @@ apiClient.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default apiClient;

@@ -26,19 +26,21 @@ const PasswordField: FC<Props> = ({ name = 'password', label = 'Password' }: Pro
       type={showPassword ? 'text' : 'password'}
       error={!!errors[name]}
       helperText={errors[name]?.message as string | undefined}
-      slotProps={{ input: {
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={() => setShowPassword(!showPassword)}
-              edge="end"
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}}
+      slotProps={{
+        input: {
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => setShowPassword(!showPassword)}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        },
+      }}
       {...register(name)}
     />
   );

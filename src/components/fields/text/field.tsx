@@ -3,7 +3,6 @@ import { TextField } from '@mui/material';
 import humanizeString from 'humanize-string';
 import { useFormContext } from 'react-hook-form';
 
-
 interface Props {
   name: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
