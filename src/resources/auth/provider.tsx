@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useReducer, useEffect, ReactNode, useContext } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 import { ErrorContext } from '@/components/error';
-import { getPreloginLocation, clearPreloginLocation } from '@/lib/utils';
-
+import { getPreloginLocation, apiClient } from '@/lib/utils';
+import { isUserComplete, MODELS as USER_MODELS } from '@/resources/users';
 import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated, fetchCurrentUser } from '.';
 
 interface Props {
@@ -16,29 +16,47 @@ export const AuthProvider = ({ children }: Props) => {
   const { displayError } = useContext(ErrorContext);
   const [state, dispatch] = useReducer(reducers, DEFAULTS.state);
   const router = useRouter();
+  const currentPath = usePathname();
+
+  const auth = async (): Promise<Partial<USER_MODELS.User>> => {
+    dispatch({ type: 'setLoading', payload: true });
+    const user = await fetchCurrentUser();
+    dispatch({ type: 'setUser', payload: user });
+    dispatch({ type: 'setLoading', payload: false });
+    return user;
+  };
 
   useEffect(() => {
-    const initializeAuth = async () => {
-      const user = await fetchCurrentUser();
-      console.log('user', user);
-      if (user) {
-        dispatch({ type: 'setUser', payload: user });
+    const initialAuth = async () => {
+      const user = await auth();
+      try {
+        await apiClient.post('/auth/refresh');
+      } catch (err) {
+        console.error('Refresh token error:', err);
       }
-      dispatch({ type: 'setLoading', payload: false });
+      if (user && isAuthenticated(user) && !isUserComplete(user) && currentPath !== '/complete-profile') {
+        router.push('/complete-profile');
+      }
     };
-    dispatch({ type: 'setLoading', payload: true });
-    initializeAuth();
+    initialAuth();
   }, []);
 
   const login = async ({ email, password }: MODELS.Credentials) => {
     try {
       await api.login({ email, password });
-      const user = await fetchCurrentUser();
-
-      dispatch({ type: 'setUser', payload: user });
-      const nextPage = getPreloginLocation() || '/feed';
-      clearPreloginLocation();
-      router.push(nextPage);
+      const user = await auth();
+      if (user && isAuthenticated(user)) {
+        if (!isUserComplete(user)) {
+          router.push('/complete-profile');
+        } else {
+          const preloginLocation = getPreloginLocation();
+          if (preloginLocation) {
+            router.push(preloginLocation);
+          } else {
+            router.push('/feed');
+          }
+        }
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -50,12 +68,10 @@ export const AuthProvider = ({ children }: Props) => {
   const register = async (userData: MODELS.Credentials) => {
     try {
       await api.register(userData);
-      const user = await fetchCurrentUser();
-
-      dispatch({ type: 'setUser', payload: user });
-      const nextPage = getPreloginLocation() || '/feed';
-      clearPreloginLocation();
-      router.push(nextPage);
+      const user = await auth();
+      if (user && isAuthenticated(user)) {
+        router.push('/complete-profile');
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -81,7 +97,8 @@ export const AuthProvider = ({ children }: Props) => {
     login,
     register,
     logout,
-    isAuthenticated: isAuthenticated(state),
+    auth,
+    isAuthenticated: isAuthenticated(state.user),
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

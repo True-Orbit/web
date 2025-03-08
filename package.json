@@ -27,6 +27,7 @@
     "change-case": "^5.4.4",
     "classnames": "^2.5.1",
     "dotenv": "^16.4.7",
+    "humanize-string": "^3.0.0",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

@@ -1,11 +1,9 @@
 import { SearchProvider } from '@/resources/base';
-import { SearchContext, UserApi, searchReducer, MODELS } from '.';
-
-const api = new UserApi();
+import { SearchContext, api as userApi, searchReducer, MODELS } from '.';
 
 export const Provider = ({ children }: MODELS.ProviderProps) => {
   return (
-    <SearchProvider<MODELS.User> searchType="user" api={api} context={SearchContext} reducers={searchReducer}>
+    <SearchProvider<MODELS.User> searchType="user" api={userApi} context={SearchContext} reducers={searchReducer}>
       {children}
     </SearchProvider>
   );

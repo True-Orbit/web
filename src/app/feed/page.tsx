@@ -1,10 +1,9 @@
 'use client';
+
 import { Container } from '@mui/material';
-import { useRequireAuth } from '@/resources/auth';
+import { withAuth } from '@/components/hocs';
 
 const Feed = () => {
-  useRequireAuth();
-
   return (
     <Container>
       <h1>Welcome to True Orbit!</h1>
@@ -12,4 +11,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default withAuth(Feed);

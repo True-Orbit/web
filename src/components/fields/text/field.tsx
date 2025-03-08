@@ -1,14 +1,15 @@
 import { FC } from 'react';
 import { TextField } from '@mui/material';
+import humanizeString from 'humanize-string';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {
-  name?: string;
+  name: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
-const EmailField: FC<Props> = ({ name = 'email', ...props }: Props) => {
+const Text: FC<Props> = ({ name, ...props }: Props) => {
   const {
     register,
     formState: { errors },
@@ -18,8 +19,8 @@ const EmailField: FC<Props> = ({ name = 'email', ...props }: Props) => {
   return (
     <TextField
       id={name}
-      label="Email"
-      type="email"
+      label={humanizeString(name)}
+      type="text"
       error={!!errors[name]}
       helperText={errorMessage}
       {...register(name)}
@@ -28,4 +29,4 @@ const EmailField: FC<Props> = ({ name = 'email', ...props }: Props) => {
   );
 };
 
-export default EmailField;
+export default Text;
