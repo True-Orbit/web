@@ -7,14 +7,14 @@ export const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): 
   const AuthComponent: React.FC<P> = (props) => {
     const router = useRouter();
     const currentPath = usePathname();
-    const { state: { user, loading }, isAuthenticated } = useContext(AuthContext);
+    const { state: { loading }, isAuthenticated } = useContext(AuthContext);
 
     useEffect(() => {
-      if (!isAuthenticated) {
+      if (!loading && !isAuthenticated) {
         setPreloginLocation(currentPath);
         router.push('/login');
       }
-    }, [user, loading, router]);
+    }, [loading, router]);
 
     // // Optionally, display a loading indicator while authentication status is being determined
     // if (loading || !user) {
