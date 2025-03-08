@@ -1,4 +1,4 @@
-import { defaults } from "@/resources/users";
+import { defaults } from '@/resources/users';
 import { MODELS } from '.';
 
 export const state: MODELS.State = {
