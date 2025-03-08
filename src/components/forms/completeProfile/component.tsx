@@ -1,12 +1,14 @@
 "use client";
 
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, Typography, Button } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Text } from '@/components/fields';
+import { api as userApi } from '@/resources/users';
+import { Context as AuthContext } from '@/resources/auth';
 import { StyledCompleteProfileForm } from ".";
 
 const profileSchema = z.object({
@@ -18,6 +20,7 @@ const profileSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export const CompleteProfileForm: FC = () => {
+  const { state: { user }, auth } = useContext(AuthContext);
   const methods = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
   });
@@ -25,7 +28,8 @@ export const CompleteProfileForm: FC = () => {
   const { handleSubmit } = methods;
 
   const onSubmit = (data: ProfileFormData) => {
-    
+    userApi.update({ id: user.id, ...data });
+    auth();
   };
 
   return (

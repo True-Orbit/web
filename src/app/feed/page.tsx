@@ -1,9 +1,9 @@
 'use client';
+
 import { Container } from '@mui/material';
-import { useRequireAuth } from '@/resources/auth';
+import { withAuth } from "@/components/hocs";
 
 const Feed = () => {
-  useRequireAuth();
 
   return (
     <Container>
@@ -12,4 +12,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default withAuth(Feed);

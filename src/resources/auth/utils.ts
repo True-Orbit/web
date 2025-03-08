@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
 
 import { MODELS as USER_MODELS, defaults as userDefaults } from '@/resources/users';
-import { MODELS, api } from '.';
+import { api } from '.';
 
-export const isAuthenticated = ({ user }: MODELS.State) => !!user && user.role !== 'guest';
+export const isAuthenticated = (user: Partial<USER_MODELS.User>) => !!user && user.role !== 'guest';
 
 const maxRetries = 3;
 const delayMs = 1000;

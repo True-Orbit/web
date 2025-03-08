@@ -1,4 +1,4 @@
-import { MODELS as userModels } from '@/resources/users';
+import { MODELS as USER_MODELS } from '@/resources/users';
 
 export interface AuthUser {
   id: string;
@@ -12,14 +12,15 @@ export interface Credentials {
 }
 
 export interface State {
-  user: userModels.User;
+  user: USER_MODELS.User;
   loading: boolean;
 }
 
 export interface Context {
   state: State;
+  isAuthenticated: boolean;
   register: (credentials: Credentials) => Promise<void>;
   login: (credentials: Credentials) => Promise<void>;
   logout: () => Promise<void>;
-  isAuthenticated: boolean;
+  auth: () => Promise<Partial<USER_MODELS.User>>;
 }
