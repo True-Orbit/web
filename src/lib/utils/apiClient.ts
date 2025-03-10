@@ -10,6 +10,22 @@ const apiClient = axios.create({
   },
 });
 
+axios.interceptors.request.use(
+  async (config) => {
+    try {
+      const response = await apiClient.post('/auth/csrf-token');
+      const csrfToken = response.data.csrfToken;
+      config.headers['X-CSRF-Token'] = csrfToken;
+    } catch (error) {
+      console.error(error);
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
