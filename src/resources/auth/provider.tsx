@@ -4,7 +4,7 @@ import React, { useReducer, useEffect, ReactNode, useContext } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 import { ErrorContext } from '@/components/error';
-import { getPreloginLocation, apiClient } from '@/lib/utils';
+import { getPreloginLocation } from '@/lib/utils';
 import { isUserComplete, MODELS as USER_MODELS } from '@/resources/users';
 import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated, fetchCurrentUser } from '.';
 
@@ -29,11 +29,6 @@ export const AuthProvider = ({ children }: Props) => {
   useEffect(() => {
     const initialAuth = async () => {
       const user = await auth();
-      try {
-        await apiClient.post('/auth/refresh');
-      } catch (err) {
-        console.error('Refresh token error:', err);
-      }
       if (user && isAuthenticated(user) && !isUserComplete(user) && currentPath !== '/complete-profile') {
         router.push('/complete-profile');
       }

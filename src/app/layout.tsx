@@ -7,7 +7,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 import { createTheme } from '@/app/styles/themes';
 
-import { ProviderList, PageContainer } from '@/components/basic';
+import { ProviderList, PageContainer, Header } from '@/components/basic';
 import { ErrorProvider, ErrorBoundary } from '@/components/error';
 import { useBrowserColorScheme } from '@/lib/hooks';
 import { AuthProvider } from '@/resources/auth';
@@ -16,7 +16,7 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-const providers = [ErrorBoundary, ErrorProvider, AuthProvider, CssBaseline];
+const providers = [ErrorBoundary, ErrorProvider, AuthProvider, CssBaseline, PageContainer];
 const language = 'en';
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -29,7 +29,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <ProviderList providers={providers}>
-              <PageContainer>{children}</PageContainer>
+              <Header />
+              {children}
             </ProviderList>
           </ThemeProvider>
         </AppRouterCacheProvider>
