@@ -16,13 +16,7 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-const providers = [
-  ErrorBoundary, 
-  ErrorProvider, 
-  AuthProvider, 
-  CssBaseline, 
-  PageContainer,
-];
+const providers = [ErrorBoundary, ErrorProvider, AuthProvider, CssBaseline, PageContainer];
 const language = 'en';
 
 export default function RootLayout({ children }: RootLayoutProps) {

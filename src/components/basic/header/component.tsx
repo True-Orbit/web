@@ -1,11 +1,6 @@
 import React from 'react';
-import { 
-  Toolbar,
-  IconButton,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Toolbar, IconButton, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { StyledHeader } from '.';
 
@@ -17,12 +12,7 @@ export const Header = () => {
     <StyledHeader position="static">
       <Toolbar>
         {isMobile && (
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
             <MenuIcon />
           </IconButton>
         )}
