@@ -2,15 +2,11 @@ import axios from 'axios';
 import { getCsrfExpiration, getCsrfToken, setCsrfToken, setCsrfExpiration } from '@/lib/utils';
 
 const fetchCsrfToken = async () => {
-  console.log('fetchCsrfToken');
   try {
     const response = await apiClient.post('/auth/csrf-token');
     const { token: csrfToken, expiration } = response.data;
     setCsrfToken(csrfToken);
     setCsrfExpiration(expiration);
-    console.log('expiration', expiration);
-    console.log('Date.now()', Date.now());
-    console.log('Date.now() < expiration', Date.now() < expiration);
     return csrfToken;
   } catch (error) {
     console.error(error);
@@ -35,8 +31,6 @@ apiClient.interceptors.request.use(
 
     const storedCsrfToken = getCsrfToken();
     const csrfExpiration = getCsrfExpiration();
-    console.log('Date.now()', Date.now());
-    console.log('csrfExpiration', csrfExpiration);
     if (storedCsrfToken && csrfExpiration && Date.now() < csrfExpiration) {
       config.headers['x-csrf-token'] = storedCsrfToken;
     } else {
@@ -58,41 +52,36 @@ apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    console.log('error.response: ', error.response);
-    if (
-      error.response &&
-      error.response.status === 401 &&
-      !originalRequest._retry) {
-        // Handle CSRF token error
-        if (error.response.data?.error === 'Invalid CSRF token') {
-          console.log('Invalid CSRF token');
-          try {
-            originalRequest.headers['x-csrf-token'] = await fetchCsrfToken();
-            return apiClient(originalRequest);
-          } catch (error) {
-            console.error(error);
-          }
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      // Handle CSRF token error
+      if (error.response.data?.error === 'Invalid CSRF token') {
+        try {
+          originalRequest.headers['x-csrf-token'] = await fetchCsrfToken();
+          return apiClient(originalRequest);
+        } catch (error) {
+          console.error(error);
         }
+      }
 
-        // Handle all other error (try to refresh token)
-        if (
-          error.response.data?.error === 'Invalid authentication token' 
-          && !error.response.request.responseURL.includes('/auth/refresh')
-        ) {
-          originalRequest._retry = true;
-          try {
-            const response = await apiClient.post('/auth/refresh');
-    
-            if (response.status !== 200) {
-              console.error('Failed to refresh token');
-              return Promise.reject(response);
-            }
-    
-            return apiClient(originalRequest);
-          } catch (refreshError) {
-            return Promise.reject(refreshError);
+      // Handle all other error (try to refresh token)
+      if (
+        error.response.data?.error === 'Invalid authentication token' &&
+        !error.response.request.responseURL.includes('/auth/refresh')
+      ) {
+        originalRequest._retry = true;
+        try {
+          const response = await apiClient.post('/auth/refresh');
+
+          if (response.status !== 200) {
+            console.error('Failed to refresh token');
+            return Promise.reject(response);
           }
+
+          return apiClient(originalRequest);
+        } catch (refreshError) {
+          return Promise.reject(refreshError);
         }
+      }
     }
     return Promise.reject(error);
   },
