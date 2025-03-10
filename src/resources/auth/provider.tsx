@@ -29,11 +29,6 @@ export const AuthProvider = ({ children }: Props) => {
   useEffect(() => {
     const initialAuth = async () => {
       const user = await auth();
-      try {
-        await apiClient.post('/auth/refresh');
-      } catch (err) {
-        console.error('Refresh token error:', err);
-      }
       if (user && isAuthenticated(user) && !isUserComplete(user) && currentPath !== '/complete-profile') {
         router.push('/complete-profile');
       }
