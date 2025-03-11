@@ -11,6 +11,6 @@ export const context: MODELS.Context = {
   register: async (_credentials: MODELS.Credentials) => {},
   login: async (_credentials: MODELS.Credentials) => {},
   logout: async () => {},
-  auth: async () => ({}),
+  auth: async (_redirectPage?: string) => ({}),
   isAuthenticated: false,
 };

@@ -1,15 +1,23 @@
 import axios from 'axios';
+import { delay } from 'lodash';
 import { getCsrfExpiration, getCsrfToken, setCsrfToken, setCsrfExpiration } from '@/lib/utils';
 
 const fetchCsrfToken = async () => {
   try {
+    await delay(() => {}, 100);
     const response = await apiClient.post('/auth/csrf-token');
+    if (response.status !== 200) {
+      console.error('Failed to fetch CSRF token');
+      return null;
+    }
     const { token: csrfToken, expiration } = response.data;
     setCsrfToken(csrfToken);
     setCsrfExpiration(expiration);
     return csrfToken;
-  } catch (error) {
-    console.error(error);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+  } catch (error: any) {
+    // console.error(error);
+    return null;
   }
 };
 
@@ -35,7 +43,9 @@ apiClient.interceptors.request.use(
       config.headers['x-csrf-token'] = storedCsrfToken;
     } else {
       try {
-        config.headers['x-csrf-token'] = await fetchCsrfToken();
+        const csrfToken = await fetchCsrfToken();
+
+        config.headers['x-csrf-token'] = csrfToken;
       } catch (error) {
         console.error(error);
       }
@@ -53,16 +63,6 @@ apiClient.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
     if (error.response && error.response.status === 401 && !originalRequest._retry) {
-      // Handle CSRF token error
-      if (error.response.data?.error === 'Invalid CSRF token') {
-        try {
-          originalRequest.headers['x-csrf-token'] = await fetchCsrfToken();
-          return apiClient(originalRequest);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-
       // Handle all other error (try to refresh token)
       if (
         error.response.data?.error === 'Invalid authentication token' &&
@@ -80,6 +80,16 @@ apiClient.interceptors.response.use(
           return apiClient(originalRequest);
         } catch (refreshError) {
           return Promise.reject(refreshError);
+        }
+      }
+
+      // Handle CSRF token error
+      if (error.response.data?.error === 'Invalid CSRF token') {
+        try {
+          originalRequest.headers['x-csrf-token'] = await fetchCsrfToken();
+          return apiClient(originalRequest);
+        } catch (error) {
+          console.error(error);
         }
       }
     }

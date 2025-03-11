@@ -30,9 +30,9 @@ export const CompleteProfileForm: FC = () => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: ProfileFormData) => {
-    userApi.update({ id: user.id, ...data });
-    auth();
+  const onSubmit = async (data: ProfileFormData) => {
+    await userApi.update({ id: user.id, ...data });
+    auth('/feed');
   };
 
   return (

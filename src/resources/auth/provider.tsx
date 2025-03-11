@@ -18,11 +18,19 @@ export const AuthProvider = ({ children }: Props) => {
   const router = useRouter();
   const currentPath = usePathname();
 
-  const auth = async (): Promise<Partial<USER_MODELS.User>> => {
+  const auth = async (redirectPage?: string): Promise<Partial<USER_MODELS.User>> => {
     dispatch({ type: 'setLoading', payload: true });
     const user = await fetchCurrentUser();
     dispatch({ type: 'setUser', payload: user });
     dispatch({ type: 'setLoading', payload: false });
+    if (redirectPage && isAuthenticated(user)) {
+      const preloginLocation = getPreloginLocation();
+      if (preloginLocation) {
+        router.push(preloginLocation);
+      } else {
+        router.push('/feed');
+      }
+    }
     return user;
   };
 
