@@ -22,5 +22,5 @@ export interface Context {
   register: (credentials: Credentials) => Promise<void>;
   login: (credentials: Credentials) => Promise<void>;
   logout: () => Promise<void>;
-  auth: () => Promise<Partial<USER_MODELS.User>>;
+  auth: (redirectPage?: string) => Promise<Partial<USER_MODELS.User>>;
 }

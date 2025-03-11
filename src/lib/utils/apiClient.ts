@@ -14,7 +14,8 @@ const fetchCsrfToken = async () => {
     setCsrfToken(csrfToken);
     setCsrfExpiration(expiration);
     return csrfToken;
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+  } catch (error: any) {
     // console.error(error);
     return null;
   }
@@ -43,7 +44,7 @@ apiClient.interceptors.request.use(
     } else {
       try {
         const csrfToken = await fetchCsrfToken();
-        
+
         config.headers['x-csrf-token'] = csrfToken;
       } catch (error) {
         console.error(error);
