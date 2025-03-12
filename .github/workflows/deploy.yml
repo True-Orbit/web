@@ -49,4 +49,13 @@ jobs:
           image_tag: ${{ env.IMAGE_TAG }}
           access_token: ${{ secrets.INFRASTRUCTURE_ACCESS_TOKEN }}
           secrets: |
-            [{"name": "WEB_SERVICE_SECRETS", "valueFrom": "${{ vars.AWS_SECRETS_ARN }}"}]
+            [
+              {
+                "name": "WEB_SERVICE_SECRETS", 
+                "valueFrom": "${{ vars.WEB_SERVICE_SECRETS }}"
+              },
+              {
+                "name": "ORG_SECRETS", 
+                "valueFrom": "${{ vars.ORG_SECRETS }}"
+              }
+            ] 
