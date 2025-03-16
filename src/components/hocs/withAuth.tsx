@@ -15,7 +15,7 @@ export const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): 
 
     useEffect(() => {
       if (!loading && !isAuthenticated) {
-        setPreloginLocation(currentPath);
+        if (currentPath) setPreloginLocation(currentPath);
         router.push('/login');
       }
     }, [loading, router]);
