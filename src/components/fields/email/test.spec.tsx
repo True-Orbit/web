@@ -2,15 +2,14 @@ import { render, screen } from '@testing-library/react';
 import { FormWrapper } from '@/components/spec';
 import { field as EmailField } from '.';
 
-
 describe('EmailField', () => {
   it('renders with default name prop', () => {
     render(
       <FormWrapper>
         <EmailField />
-      </FormWrapper>
+      </FormWrapper>,
     );
-    
+
     const emailField = screen.getByLabelText('Email');
     expect(emailField).toBeInTheDocument();
     expect(emailField).toHaveAttribute('type', 'email');
@@ -21,9 +20,9 @@ describe('EmailField', () => {
     render(
       <FormWrapper>
         <EmailField name="userEmail" />
-      </FormWrapper>
+      </FormWrapper>,
     );
-    
+
     const emailField = screen.getByLabelText('Email');
     expect(emailField).toBeInTheDocument();
     expect(emailField).toHaveAttribute('id', 'userEmail');
@@ -33,9 +32,9 @@ describe('EmailField', () => {
     render(
       <FormWrapper>
         <EmailField />
-      </FormWrapper>
+      </FormWrapper>,
     );
-    
+
     const form = screen.getByRole('textbox');
     expect(form).toBeInTheDocument();
   });
@@ -44,9 +43,9 @@ describe('EmailField', () => {
     render(
       <FormWrapper>
         <EmailField placeholder="Enter email address" disabled />
-      </FormWrapper>
+      </FormWrapper>,
     );
-    
+
     const emailField = screen.getByLabelText('Email');
     expect(emailField).toHaveAttribute('placeholder', 'Enter email address');
     expect(emailField).toBeDisabled();
