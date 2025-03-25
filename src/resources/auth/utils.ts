@@ -1,3 +1,5 @@
+"use client";
+
 import { AxiosError } from 'axios';
 
 import { MODELS as USER_MODELS, defaults as userDefaults } from '@/resources/users';
@@ -30,3 +32,11 @@ export const fetchCurrentUser = async (): Promise<USER_MODELS.User> => {
   }
   throw new Error(`Fetching current user failed after ${maxRetries} attempts`);
 };
+
+export const logout = async () => {
+  try {
+    await api.logout();
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
+}
