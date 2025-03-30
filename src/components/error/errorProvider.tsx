@@ -1,6 +1,6 @@
 import { useState, createContext, useEffect } from 'react';
 
-import { Toast, setupGlobalErrorHandlers, unsetGlobalErrorHandlers } from '.';
+import { ErrorToast, setupGlobalErrorHandlers, unsetGlobalErrorHandlers } from '.';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 export const ErrorContext = createContext({ error: '', displayError: (error: string) => {} });
@@ -29,7 +29,7 @@ export const ErrorProvider = ({ children }: Props) => {
 
   return (
     <ErrorContext.Provider value={{ error, displayError }}>
-      {error && <Toast error={error} />}
+      {error && <ErrorToast error={error} />}
       {children}
     </ErrorContext.Provider>
   );

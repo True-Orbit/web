@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useContext, ComponentType } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
@@ -14,11 +16,11 @@ export const withAuth = <P extends object>(WrappedComponent: ComponentType<P>): 
     } = useContext(AuthContext);
 
     useEffect(() => {
-      if (!loading && !isAuthenticated) {
+      if (!(loading || isAuthenticated)) {
         if (currentPath) setPreloginLocation(currentPath);
         router.push('/login');
       }
-    }, [loading, router]);
+    }, [loading, router, isAuthenticated, currentPath]);
 
     // // Optionally, display a loading indicator while authentication status is being determined
     // if (loading || !user) {

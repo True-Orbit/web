@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useContext } from 'react';
+import classnames from 'classnames';
 import { useRouter } from 'next/navigation';
 import {
   Menu as MuiMenu,
@@ -9,10 +10,11 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { logout } from "@/resources/auth";
+import { Context as AuthContext } from "@/resources/auth";
 
 export const Menu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { logout, isAuthenticated } = useContext(AuthContext);
 
   const handleMenu = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,8 +28,14 @@ export const Menu = () => {
 
   const logoutHandler = async () => {
     await logout();
-    router.push('/feed');
   };
+
+  const loginHandler = async () => {
+    router.push("/login");
+  };
+
+  // Don't use this in SSR, as it will be undefined
+  const pageContainer = typeof window !== 'undefined' ? window.document.getElementById('pageContainer') : undefined;
 
   return (
     <>
@@ -35,12 +43,13 @@ export const Menu = () => {
         edge="start"
         color="inherit"
         aria-label="menu"
-        sx={{ mr: 2 }}
+        className="menuIcon"
         onClick={handleMenu}
       >
         <MenuIcon />
       </IconButton>
       <MuiMenu
+        container={pageContainer}
         id="menu-appbar"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -48,7 +57,18 @@ export const Menu = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+        <MenuItem 
+          className={classnames({ hidden: isAuthenticated })} 
+          onClick={loginHandler}
+        >
+          Login
+        </MenuItem>
+        <MenuItem 
+          className={classnames({ hidden: !isAuthenticated })} 
+          onClick={logoutHandler}
+        >
+          Logout
+        </MenuItem>
       </MuiMenu>
     </>
   );

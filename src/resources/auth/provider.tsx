@@ -87,7 +87,6 @@ export const AuthProvider = ({ children }: Props) => {
     try {
       await api.logout();
       dispatch({ type: 'setUser', payload: null });
-      router.push('/');
     } catch (err) {
       console.error('Logout error:', err);
     } finally {

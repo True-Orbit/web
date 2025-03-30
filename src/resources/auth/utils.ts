@@ -32,11 +32,3 @@ export const fetchCurrentUser = async (): Promise<USER_MODELS.User> => {
   }
   throw new Error(`Fetching current user failed after ${maxRetries} attempts`);
 };
-
-export const logout = async () => {
-  try {
-    await api.logout();
-  } catch (error) {
-    console.error('Logout error:', error);
-  }
-}
