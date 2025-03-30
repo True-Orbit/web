@@ -26,13 +26,8 @@ export const Menu = () => {
 
   const router = useRouter();
 
-  const logoutHandler = async () => {
-    await logout();
-  };
-
-  const loginHandler = async () => {
-    router.push("/login");
-  };
+  const login = async () => router.push("/login");
+  const register = async () => router.push("/register");
 
   // Don't use this in SSR, as it will be undefined
   const pageContainer = typeof window !== 'undefined' ? window.document.getElementById('pageContainer') : undefined;
@@ -59,13 +54,19 @@ export const Menu = () => {
       >
         <MenuItem 
           className={classnames({ hidden: isAuthenticated })} 
-          onClick={loginHandler}
+          onClick={login}
         >
           Login
         </MenuItem>
         <MenuItem 
+          className={classnames({ hidden: isAuthenticated })} 
+          onClick={register}
+        >
+          Join
+        </MenuItem>
+        <MenuItem 
           className={classnames({ hidden: !isAuthenticated })} 
-          onClick={logoutHandler}
+          onClick={logout}
         >
           Logout
         </MenuItem>
