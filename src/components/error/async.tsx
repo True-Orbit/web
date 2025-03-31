@@ -1,5 +1,5 @@
 import { useEffect, useState, ReactNode } from 'react';
-import { models as errorModels } from "@/resources/error"
+import { models as errorModels } from "@/resources/errors"
 import { ErrorToast } from '.';
 
 interface Props {

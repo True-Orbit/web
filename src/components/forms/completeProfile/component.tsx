@@ -1,12 +1,13 @@
 'use client';
 
-import { FC, useContext } from 'react';
+import { FC, useContext, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Box, Typography, Button } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Text } from '@/components/fields';
+import { ErrorMessage } from '@/components/error';
 import { Context as AuthContext } from '@/resources/auth';
 import { api as userApi } from '@/resources/users';
 import { StyledCompleteProfileForm } from '.';
@@ -20,6 +21,8 @@ const profileSchema = z.object({
 type ProfileFormData = z.infer<typeof profileSchema>;
 
 export const CompleteProfileForm: FC = () => {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const {
     state: { user },
     auth,
@@ -31,8 +34,12 @@ export const CompleteProfileForm: FC = () => {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: ProfileFormData) => {
-    await userApi.update({ id: user.id, ...data });
-    auth('/feed');
+    try {
+      await userApi.update({ id: user.id, ...data });
+      auth('/feed');
+    } catch (err) {
+      setErrorMessage('Failed to update profile. Please try again.');
+    }
   };
 
   return (
@@ -49,6 +56,7 @@ export const CompleteProfileForm: FC = () => {
             Submit
           </Button>
         </Box>
+        <ErrorMessage message={errorMessage} />
       </FormProvider>
     </StyledCompleteProfileForm>
   );

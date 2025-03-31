@@ -3,8 +3,8 @@
 import React, { useReducer, useEffect, ReactNode, useContext } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
-import { ErrorContext } from '@/components/error';
 import { getPreloginLocation } from '@/lib/utils';
+import { ErrorContext } from '@/resources/errors';
 import { isUserComplete, MODELS as USER_MODELS } from '@/resources/users';
 import { api, Context, MODELS, DEFAULTS, reducers, isAuthenticated, fetchCurrentUser } from '.';
 

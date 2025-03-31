@@ -1,6 +1,6 @@
 import { useState, createContext, useEffect } from 'react';
 
-import { ErrorToast, setupGlobalErrorHandlers, unsetGlobalErrorHandlers } from '.';
+import { ErrorToast, setupGlobalErrorHandlers, unsetGlobalErrorHandlers } from '../../components/error';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
 export const ErrorContext = createContext({ error: '', displayError: (error: string) => {} });
