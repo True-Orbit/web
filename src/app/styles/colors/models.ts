@@ -8,4 +8,4 @@ export type ComponentColors = {
   [key in ComponentNames]: {
     [key in themeModels.ThemeNames]: CSSObject;
   };
-}
+};

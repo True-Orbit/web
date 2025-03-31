@@ -1,9 +1,9 @@
 export const light = {
   // message: "DarkRed",
-  message: "FireBrick",
-}
+  message: 'FireBrick',
+};
 
 export const dark = {
   // message: "DarkRed",
-  message: "FireBrick",
-}
+  message: 'FireBrick',
+};

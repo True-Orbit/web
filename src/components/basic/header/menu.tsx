@@ -1,16 +1,12 @@
-"use client";
+'use client';
 
 import { useState, MouseEvent, useContext } from 'react';
 import classnames from 'classnames';
 import { useRouter } from 'next/navigation';
-import {
-  Menu as MuiMenu,
-  IconButton,
-  MenuItem,
-} from '@mui/material';
+import { Menu as MuiMenu, IconButton, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { Context as AuthContext } from "@/resources/auth";
+import { Context as AuthContext } from '@/resources/auth';
 
 export const Menu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -26,21 +22,15 @@ export const Menu = () => {
 
   const router = useRouter();
 
-  const login = async () => router.push("/login");
-  const register = async () => router.push("/register");
+  const login = async () => router.push('/login');
+  const register = async () => router.push('/register');
 
   // Don't use this in SSR, as it will be undefined
   const pageContainer = typeof window !== 'undefined' ? window.document.getElementById('pageContainer') : undefined;
 
   return (
     <>
-      <IconButton
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        className="menuIcon"
-        onClick={handleMenu}
-      >
+      <IconButton edge="start" color="inherit" aria-label="menu" className="menuIcon" onClick={handleMenu}>
         <MenuIcon />
       </IconButton>
       <MuiMenu
@@ -52,27 +42,18 @@ export const Menu = () => {
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem 
-          className={classnames({ hidden: isAuthenticated })} 
-          onClick={login}
-        >
+        <MenuItem className={classnames({ hidden: isAuthenticated })} onClick={login}>
           Login
         </MenuItem>
-        <MenuItem 
-          className={classnames({ hidden: isAuthenticated })} 
-          onClick={register}
-        >
+        <MenuItem className={classnames({ hidden: isAuthenticated })} onClick={register}>
           Join
         </MenuItem>
-        <MenuItem 
-          className={classnames({ hidden: !isAuthenticated })} 
-          onClick={logout}
-        >
+        <MenuItem className={classnames({ hidden: !isAuthenticated })} onClick={logout}>
           Logout
         </MenuItem>
       </MuiMenu>
     </>
   );
-}
+};
 
 export default Menu;

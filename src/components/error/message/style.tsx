@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { models } from ".";
+import { models } from '.';
 
 interface Props {
   variant: models.MessageType;
@@ -11,12 +11,21 @@ const variants = {
   },
   block: {
     display: 'block',
-    marginTop: "1rem",
-    marginBotton: "1rem",
+    marginTop: '1rem',
+    marginBotton: '1rem',
   },
 };
 
-export const StyledMessage = styled('span')<Props>(({ variant, theme: { colors: { components: { error } } } }) => ({
-  color: error.message,
-  ...variants[variant],
-}));
+export const StyledMessage = styled('span')<Props>(
+  ({
+    variant,
+    theme: {
+      colors: {
+        components: { error },
+      },
+    },
+  }) => ({
+    color: error.message,
+    ...variants[variant],
+  }),
+);

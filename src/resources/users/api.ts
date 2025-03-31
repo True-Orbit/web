@@ -8,7 +8,7 @@ class UserApi extends BaseApi<MODELS.User> {
   }
 
   public async updateMe(updates: Partial<MODELS.User>): Promise<MODELS.User> {
-    const data = (await apiClient.patch(`${this.endpoint}/me`, { me: updates }));
+    const data = await apiClient.patch(`${this.endpoint}/me`, { me: updates });
     return this.transformations.incoming(data) as MODELS.User;
   }
 }

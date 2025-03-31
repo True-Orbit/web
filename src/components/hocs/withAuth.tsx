@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useContext, ComponentType } from 'react';
 import { useRouter, usePathname } from 'next/navigation';

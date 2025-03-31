@@ -1,5 +1,5 @@
 import { useEffect, useState, ReactNode } from 'react';
-import { models as errorModels } from "@/resources/errors"
+import { models as errorModels } from '@/resources/errors';
 import { ErrorToast } from '.';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 export const AsyncError = ({ children }: Props) => {
   const [error, setError] = useState<errorModels.Error | null>(null);
-  
+
   useEffect(() => {
     const handleError = (event: any) => {
       console.error('Unhandled promise rejection:', event.reason);
@@ -23,8 +23,8 @@ export const AsyncError = ({ children }: Props) => {
   }, []);
   return (
     <>
-      {error && <ErrorToast error={error.message}/>}
+      {error && <ErrorToast error={error.message} />}
       {children}
     </>
   );
-}
+};

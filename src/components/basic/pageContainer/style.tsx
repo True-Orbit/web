@@ -8,7 +8,7 @@ export const StyledPageContainer = styled(Box)({
   padding: 0,
   overflow: 'hidden',
 
-  ".hidden": {
+  '.hidden': {
     display: 'none',
   },
 });

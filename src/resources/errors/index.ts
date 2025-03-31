@@ -1,2 +1,2 @@
-export * as models from "./models";
-export * from "./provider";
+export * as models from './models';
+export * from './provider';
