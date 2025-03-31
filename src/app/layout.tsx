@@ -9,9 +9,10 @@ import { createTheme } from '@/app/styles/themes';
 
 import { ProviderList, PageContainer, Header } from '@/components/basic';
 import { ErrorBoundary, AsyncError } from '@/components/error';
-import { ErrorProvider } from '@/resources/errors';
 import { useBrowserColorScheme } from '@/lib/hooks';
+
 import { AuthProvider } from '@/resources/auth';
+import { ErrorProvider } from '@/resources/errors';
 
 interface RootLayoutProps {
   children: React.ReactNode;

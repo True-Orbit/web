@@ -10,6 +10,7 @@ export const AsyncError = ({ children }: Props) => {
   const [error, setError] = useState<errorModels.Error | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleError = (event: any) => {
       console.error('Unhandled promise rejection:', event.reason);
       setError(event.reason);

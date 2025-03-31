@@ -6,8 +6,8 @@ import { Box, Typography, Button } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Text } from '@/components/fields';
 import { ErrorMessage } from '@/components/error';
+import { Text } from '@/components/fields';
 import { Context as AuthContext } from '@/resources/auth';
 import { api as userApi } from '@/resources/users';
 import { StyledCompleteProfileForm } from '.';
@@ -37,7 +37,7 @@ export const CompleteProfileForm: FC = () => {
     try {
       await userApi.updateMe({ id: user.id, ...data });
       auth('/feed');
-    } catch (err) {
+    } catch (_err) {
       setErrorMessage('Failed to update profile. Please try again.');
     }
   };

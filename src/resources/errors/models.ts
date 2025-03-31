@@ -5,5 +5,4 @@ export interface Error {
   name?: string;
   statusCode?: number;
   statusText?: string;
-  details?: Record<string, any>;
 }
