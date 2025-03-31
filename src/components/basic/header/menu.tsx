@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, MouseEvent, useContext } from 'react';
-import { useRouter } from 'next/navigation';
-import { Menu as MuiMenu, IconButton, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Menu as MuiMenu, IconButton, MenuItem } from '@mui/material';
 import classnames from 'classnames';
+import { useRouter } from 'next/navigation';
 
 import { Context as AuthContext } from '@/resources/auth';
 

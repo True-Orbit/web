@@ -37,7 +37,7 @@ export const CompleteProfileForm: FC = () => {
     try {
       await userApi.updateMe({ id: user.id, ...data });
       auth('/feed');
-    } catch (_err) {
+    } catch {
       setErrorMessage('Failed to update profile. Please try again.');
     }
   };
