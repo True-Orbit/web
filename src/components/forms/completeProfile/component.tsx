@@ -56,8 +56,8 @@ export const CompleteProfileForm: FC = () => {
             Submit
           </Button>
         </Box>
-        <ErrorMessage message={errorMessage} />
       </FormProvider>
+      <ErrorMessage message={errorMessage} variant="block" />
     </StyledCompleteProfileForm>
   );
 };

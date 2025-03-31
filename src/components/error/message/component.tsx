@@ -1,7 +1,8 @@
-import { StyledMessage } from ".";
+import { StyledMessage, models } from ".";
 
 interface Props {
-  message: string;
+  message?: string | null;
+  variant?: models.MessageType;
 }
 
-export const ErrorMessage = ({ message }: Props) => message ? <StyledMessage>{message}</StyledMessage> : null;
+export const ErrorMessage = ({ message, variant='inline' }: Props) => message ? <StyledMessage variant={variant} className="errorMessage">{message}</StyledMessage> : null;
