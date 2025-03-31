@@ -1,3 +1,5 @@
+'use client';
+
 import { AxiosError } from 'axios';
 
 import { MODELS as USER_MODELS, defaults as userDefaults } from '@/resources/users';

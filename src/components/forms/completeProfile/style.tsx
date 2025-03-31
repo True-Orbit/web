@@ -8,6 +8,7 @@ export const StyledCompleteProfileForm = styled(Paper)({
   ...formStyle,
 
   maxWidth: 500,
+  marginTop: '2rem',
   marginLeft: 'auto',
   marginRight: 'auto',
 });

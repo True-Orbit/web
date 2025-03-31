@@ -5,8 +5,5 @@ interface ProviderListProps {
   children: React.ReactNode;
 }
 
-export const ProviderList: React.FC<ProviderListProps> = ({ providers, children }) => {
-  return providers.reduceRight((acc, Provider) => {
-    return <Provider>{acc}</Provider>;
-  }, children);
-};
+export const ProviderList: React.FC<ProviderListProps> = ({ providers, children }) =>
+  providers.reduceRight((acc, Provider) => <Provider>{acc}</Provider>, children);
